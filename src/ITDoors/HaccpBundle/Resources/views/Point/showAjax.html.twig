@@ -1,0 +1,223 @@
+<div class="modal-body">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="control-label col-md-4">Object Name</label>
+                <div class="col-md-8">
+                    <input class="form-control" type="text" placeholder="Object Name">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="control-label col-md-4">Critical Point Type</label>
+                <div class="col-md-8">
+                    <input class="form-control" type="text" placeholder="Critical Point Type">
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <!--<div class="row">-->
+    <div class="portlet box blue tabbable">
+        <div class="portlet-title">
+            <div class="caption">
+                <i class="fa fa-reorder"></i>Critical Point
+            </div>
+        </div>
+        <div class="portlet-body">
+            <div class=" portlet-tabs">
+                <ul class="nav nav-tabs">
+                    <li class="">
+                        <a data-toggle="tab" href="#portlet_tab3">Attribute</a>
+                    </li>
+                    <li class="">
+                        <a data-toggle="tab" href="#portlet_tab2">Regulations</a>
+                    </li>
+                    <li class="active">
+                        <a data-toggle="tab" href="#portlet_tab1">Monitoring</a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div id="portlet_tab1" class="tab-pane active">
+                        <div class="row">
+                            <label class="col-md-4 control-label">Select Month</label>
+                            <div class="col-md-6">
+                                <!-- вставляем adwanced data ranges components_pickers.html
+                                По умолчанию текущий месяц.
+                                Настраиваем на отображение только месяцы.
+
+                                Либо вставляем Months Only и показываем по умолчанию только текцщий месяц.
+                                -->
+                                <div class="btn default" id="reportrange">
+                                    <i class="fa fa-calendar"></i>
+                                    &nbsp;
+                                    <span>January 25, 2014 - February 23, 2014</span>
+                                    <b class="fa fa-angle-down"></b>
+                                </div>
+                            </div>
+                        </div>
+                        <!--<div class="row">
+                        <div class="col-md-12">-->
+                        <p>Удалять и редактировать можно только в текущем месяце для инспектора и куратора. Админ может в любом. Все пишем в историю.</p>
+                        <div class="table-responsive ">
+                            <table class="table table-condensed table-hover ">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Date Time</th>
+                                    <th>Показатель</th>
+                                    <th>Value</th> <!--добавляем ед.измерения-->
+                                    <th>Status</th>
+                                    <th>User</th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>01.02.2014 10:40</td>
+                                    <td>Поедание</td>
+                                    <td>10 %</td>
+                                    <td>
+                                        <span class="label label-sm label-success">Approved</span>
+                                    </td>
+                                    <td>Михайличенко</td>
+                                    <td>
+                                        <a class="btn default btn-xs purple" href="#">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+                                        <a class="btn default btn-xs purple" href="#">
+                                            <i class="fa fa-trash-o"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>10.02.2014 11:00</td>
+                                    <td>Поедание</td>
+                                    <td>50 %</td>
+                                    <td><span class="label label-sm label-warning">Warning</span></td>
+                                    <td>Гутарин</td>
+                                    <td>
+                                        <a class="btn default btn-xs purple" href="#">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+                                        <a class="btn default btn-xs purple" href="#">
+                                            <i class="fa fa-trash-o"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>14.02.2014 11:00</td>
+                                    <td>Поедание</td>
+                                    <td>80 %</td>
+                                    <td><span class="label label-sm label-danger">Danger</span></td>
+                                    <td>Гутарин</td>
+                                    <td>
+                                        <a class="btn default btn-xs purple" href="#">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+                                        <a class="btn default btn-xs purple" href="#">
+                                            <i class="fa fa-trash-o"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!--</div>
+                        </div>-->
+                        <a class="btn green" href="#"><i class="fa fa-plus"></i>Add</a>
+                        <div class="btn-group">
+                            <a data-toggle="dropdown" href="#" class="btn purple">
+                                <i class="fa fa-user"></i> Settings <i class="fa fa-angle-down"></i>
+                            </a>
+                            <ul class="dropdown-menu bottom-up">
+                                <li><a href="#"><i class="fa fa-plus"></i> Add</a></li>
+                                <li><a href="#"><i class="fa fa-trash-o"></i> Edit</a></li>
+                                <li><a href="#"><i class="fa fa-times"></i> Delete</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#"><i class="i"></i> Full Settings</a></li>
+                            </ul>
+                        </div>
+                    </div><!--tab-1-->
+                    <div id="portlet_tab2" class="tab-pane">
+                        <p>
+                            <a target="_blank" href="ui_tabs_accordions_navs.html#portlet_tab2" class="btn red">
+                                Activate this tab via URL
+                            </a>
+                        </p>
+                    </div>
+                    <div id="portlet_tab3" class="tab-pane">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Дата установки</label>
+                                    <input type="text" placeholder="Chee Kin" class="form-control" id="firstName">
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Пользователь</label>
+                                    <input type="text" placeholder="Lim" class="form-control" id="lastName">
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Тип точки</label>
+                                    <input type="text" placeholder="Chee Kin" class="form-control" id="firstName">
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Контур</label>
+                                    <input type="text" placeholder="Lim" class="form-control" id="lastName">
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Объект</label>
+                                    <input type="text" placeholder="Chee Kin" class="form-control" id="firstName">
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Координаты</label>
+                                    <input type="text" placeholder="Lim" class="form-control" id="lastName">
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label">Заметки</label>
+                                    <textarea></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!--tab-content-->
+            </div><!--portrait-tabs-->
+        </div><!--portrait-body-->
+    </div><!--portrait-box-->
+    <!--</div>row-->
+</div><!--modal-body-->
+
+<div class="modal-footer">
+    <button type="button" data-dismiss="modal" class="btn btn-default">Close</button>
+    <button type="button" class="btn blue">Save changes</button>
+</div>

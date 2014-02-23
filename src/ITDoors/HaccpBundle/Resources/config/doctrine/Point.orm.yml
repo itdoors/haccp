@@ -1,0 +1,40 @@
+ITDoors\HaccpBundle\Entity\Point:
+  type: entity
+  repositoryClass: ITDoors\HaccpBundle\Entity\PointRepository
+  table: point
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: IDENTITY
+  fields:
+    name:
+      type: string
+      length: 50
+    imageLatitude:
+      type: string
+      length: 50
+      nullable: true
+    imageLongitude:
+      type: string
+      length: 50
+      nullable: true
+    mapLatitude:
+      type: string
+      length: 50
+      nullable: true
+    mapLongitude:
+      type: string
+      length: 50
+      nullable: true
+  manyToOne:
+    companyObject:
+      targetEntity: CompanyObject
+      joinColumn:
+        name: company_object_id
+        referencedColumnName: id
+    group:
+      targetEntity: PointGroup
+      joinColumn:
+        name: point_group_id
+        referencedColumnName: id

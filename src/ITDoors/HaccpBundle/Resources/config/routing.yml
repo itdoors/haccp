@@ -1,0 +1,8 @@
+plan_show:
+    pattern:  /plan/show/{id}
+    defaults: { _controller: ITDoorsHaccpBundle:Plan:show }
+
+#POINT ROUTE
+point_show_ajax:
+    pattern:  /ajax/point/show/{id}
+    defaults: { _controller: ITDoorsHaccpBundle:Point:showAjax }

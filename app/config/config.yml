@@ -2,6 +2,9 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
 
+parameters:
+    plan.upload_dir: '/plans/'
+
 framework:
     #esi:             ~
     #translator:      { fallback: "%locale%" }
@@ -67,3 +70,4 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+

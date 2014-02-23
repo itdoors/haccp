@@ -1,0 +1,124 @@
+{% extends "::base.html.twig" %}
+
+{% block page_title %}{% endblock %}
+
+{% block body %}
+    <div id="map"></div>
+    <div id="ajax-modal" class="modal fade" role="basic"  data-width="760"></div>
+{% endblock %}
+
+{% block css_page_level_plugin %}
+    {{ parent() }}
+    <link href="{{ asset('templates/leaflet-0.7.2/css/leaflet.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('templates/metronic/plugins/bootstrap-modal/css/bootstrap-modal-bs3patch.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('templates/metronic/plugins/bootstrap-modal/css/bootstrap-modal.css') }}" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+{% block js_page_level_plugins %}
+    {{ parent() }}
+    <script src="{{ asset('templates/leaflet-0.7.2/js/leaflet.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('templates/metronic/plugins/bootstrap-modal/js/bootstrap-modalmanager.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('templates/metronic/plugins/bootstrap-modal/js/bootstrap-modal.js') }}" type="text/javascript"></script>
+    {% if plan.type == 'map' %}
+    <script>
+        var map = L.map('map').setView(new L.LatLng({{ plan.latitude }},{{ plan.longitude }}), 16);
+
+        // add an OpenStreetMap tile layer
+        L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+            attribution: ''
+        }).addTo(map);
+
+        var myIcon = L.divIcon({className: 'my-div-icon'});
+
+        var marker = L.marker(new L.LatLng(50.51145,30.48069), {
+            icon: myIcon
+        });
+
+        var marker1 = L.marker(new L.LatLng(50.51081,30.48251), {
+            icon: myIcon
+        });
+
+        marker.addTo(map);
+        marker1.addTo(map);
+
+        marker.on('click', function(e){
+            HACCP.ajaxModal('Critical point #1', '#ajax-modal', '{{ path('point_show_ajax', { id : 1 }) }}');
+        });
+
+        marker1.on('click', function(e){
+            HACCP.ajaxModal('Critical point #2', '#ajax-modal', '{{ path('point_show_ajax', { id : 1 }) }}');
+        });
+
+        var circle = L.circle(new L.LatLng(50.51114,30.48154), 20, {
+            color: 'red',
+            fillColor: '#f03',
+            fillOpacity: 0.5
+        });
+
+        circle.addTo(map);
+
+        circle.on('click', function(e){
+            window.location = '{{ path('plan_show', { id: 2 }) }}'
+        });
+
+        var popup = L.popup();
+
+        function onMapClick(e) {
+            popup
+                    .setLatLng(e.latlng)
+                    .setContent("You clicked the map at " + e.latlng.toString())
+                    .openOn(map);
+        }
+
+        map.on('click', onMapClick);
+
+    </script>
+    {% endif %}
+
+    {% if plan.type == 'image' %}
+    <script>
+        var windowWidth = $('#map').width();
+
+        var srcWidth = '{{  plan.imageWidth }}';
+        var srcHeight = '{{  plan.imageHeight }}';
+
+        var scale = Math.ceil(srcWidth / windowWidth);
+
+        var map = L.map('map', {
+            crs: L.CRS.Simple,
+            attributionControl: false
+        });
+
+        var myIcon = L.divIcon({className: 'my-div-icon'});
+
+        var imageUrl = '{{ plan.imageFullPath }}';
+        var imageBounds = new L.LatLngBounds([0, 0], [srcHeight/scale , srcWidth/scale]);
+        var options =  { noWrap: true, maxZoom: 3, minZoom: 0};
+
+        L.imageOverlay(imageUrl, imageBounds, options).addTo(map);
+
+        map.setView(new L.LatLng(srcHeight/scale/2, srcWidth/scale/2), 0);
+
+        var marker = L.marker(new L.LatLng(192, 342), {
+            icon: myIcon
+        });
+
+        marker.addTo(map);
+
+        var popup = L.popup();
+
+        function onMapClick(e) {
+            popup
+                    .setLatLng(e.latlng)
+                    .setContent("You clicked the map at " + e.latlng.toString())
+                    .openOn(map);
+        }
+
+        map.on('click', onMapClick);
+
+        marker.on('click', function(e){
+            HACCP.ajaxModal('Critical point data', '#ajax-modal', '{{ path('point_show_ajax', { id : 1 }) }}');
+        });
+    </script>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,8 @@
+it_doors_dashboard:
+    resource: "@ITDoorsDashboardBundle/Resources/config/routing.yml"
+    prefix:   /
+
+it_doors_haccp:
+    resource: "@ITDoorsHaccpBundle/Resources/config/routing.yml"
+    prefix:   /
+

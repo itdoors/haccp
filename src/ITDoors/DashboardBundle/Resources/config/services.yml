@@ -1,0 +1,7 @@
+parameters:
+#    it_doors_dashboard.example.class: ITDoors\DashboardBundle\Example
+
+services:
+#    it_doors_dashboard.example:
+#        class: %it_doors_dashboard.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
