@@ -1,0 +1,17 @@
+ITDoors\HaccpBundle\Entity\Contour:
+  type: entity
+  repositoryClass: ITDoors\HaccpBundle\Entity\ContourRepository
+  table: contour
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: IDENTITY
+  fields:
+    name:
+      type: string
+      length: 50
+    color:
+      type: string
+      length: 50
+      nullable: true

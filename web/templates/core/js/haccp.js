@@ -62,5 +62,45 @@ var HACCP = (function() {
         return header;
     }
 
+    HACCP.prototype.getPopupHtml = function(options)
+    {
+        var content =
+            '<div class="btn-group">' +
+                '<button data-toggle="dropdown" type="button" class="btn default btn-sm dropdown-toggle">' +
+                '<i class="fa fa-building-o"></i> Object Name <i class="fa fa-angle-down"></i>' +
+                '<br>' +
+                    '<span class="badge badge-success"> 58 </span>' +
+                    '<span class="badge badge-warning"> 33 </span>' +
+                    '<span class="badge badge-important"> 25 </span>' +
+                '</button>' +
+                '<ul role="menu" class="dropdown-menu">' +
+                    '<li>' +
+                        '<a href="#">' +
+                        'Plane 1' +
+                        '</a>' +
+                    '</li>' +
+                    '<li>' +
+                        '<a href="#">' +
+                        'Plane 2' +
+                        '</a>' +
+                    '</li>' +
+                    '<li>' +
+                        '<a href="#">' +
+                        'Plane 3' +
+                        '</a>' +
+                    '</li>' +
+                    '<li class="divider">' +
+                    '</li>' +
+                    '<li>' +
+                        '<a href="' + options.url + '">' +
+                            'View This object' +
+                        '</a>' +
+                    '</li>' +
+                '</ul>' +
+            '</div>';
+
+        return content;
+    }
+
     return new HACCP();
 })();

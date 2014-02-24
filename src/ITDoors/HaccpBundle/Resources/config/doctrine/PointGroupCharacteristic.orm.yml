@@ -1,0 +1,52 @@
+ITDoors\HaccpBundle\Entity\PointGroupCharacteristic:
+  type: entity
+  repositoryClass: ITDoors\HaccpBundle\Entity\PointGroupCharacteristicRepository
+  table: point_group_characteristic
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: IDENTITY
+  fields:
+    name:
+      type: string
+      length: 50
+    description:
+      type: text
+      nullable: true
+    unit:
+      type: string
+      length: 20
+    dataType:
+      type: string
+      length: 20
+    allowValueMax:
+      type: string
+      length: 20
+      nullable: true
+    allowValueMin:
+      type: string
+      length: 20
+      nullable: true
+    criticalValueTop:
+      type: string
+      length: 20
+      nullable: true
+    criticalValueBottom:
+      type: string
+      length: 20
+      nullable: true
+    criticalColorTop:
+      type: string
+      length: 20
+      nullable: true
+    criticalColorBottom:
+      type: string
+      length: 20
+      nullable: true
+  manyToOne:
+    group:
+      targetEntity: PointGroup
+      joinColumn:
+        name: point_group_id
+        referencedColumnName: id

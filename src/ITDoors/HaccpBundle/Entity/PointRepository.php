@@ -3,6 +3,7 @@
 namespace ITDoors\HaccpBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Query;
 
 /**
  * PointRepository
@@ -12,4 +13,25 @@ use Doctrine\ORM\EntityRepository;
  */
 class PointRepository extends EntityRepository
 {
+    /**
+     * Returns point info for list
+     *
+     * @param int[] $planIds
+     * @return Query
+     */
+    public function getPointsListQuery($planIds)
+    {
+        return $this->createQueryBuilder('p')
+            ->select('p.id as id')
+            ->addSelect('p.name as name')
+            ->addSelect('p.imageLatitude as imageLatitude')
+            ->addSelect('p.imageLongitude as imageLongitude')
+            ->addSelect('p.mapLatitude as mapLatitude')
+            ->addSelect('p.mapLongitude as mapLongitude')
+            ->addSelect('Contour.color as contourColor')
+            ->leftJoin('p.Contour', 'Contour')
+            ->where('p.planId in (:planIds)')
+            ->setParameter(':planIds', $planIds)
+            ->getQuery();
+    }
 }

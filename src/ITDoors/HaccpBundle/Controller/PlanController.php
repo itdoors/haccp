@@ -3,6 +3,7 @@
 namespace ITDoors\HaccpBundle\Controller;
 
 use ITDoors\HaccpBundle\Services\PlanService;
+use ITDoors\HaccpBundle\Services\PointService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
@@ -18,10 +19,16 @@ class PlanController extends Controller
         /** @var PlanService $ps */
         $ps = $this->get('plan.service');
 
+        /** @var PointService $pointService */
+        $pointService = $this->get('point.service');
+
         $plan = $ps->getPlanShow($id);
 
+        $points = $pointService->getPointsList($id);
+
         return $this->render('ITDoorsHaccpBundle:Plan:show.html.twig', array(
-            'plan' => $plan
+            'plan' => $plan,
+            'points' => $points
         ));
     }
 }

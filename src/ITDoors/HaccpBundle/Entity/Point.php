@@ -20,14 +20,49 @@ class Point
     private $name;
 
     /**
-     * @var \ITDoors\HaccpBundle\Entity\CompanyObject
+     * @var string
      */
-    private $companyObject;
+    private $imageLatitude;
+
+    /**
+     * @var string
+     */
+    private $imageLongitude;
+
+    /**
+     * @var string
+     */
+    private $mapLatitude;
+
+    /**
+     * @var string
+     */
+    private $mapLongitude;
+
+    /**
+     * @var integer
+     */
+    private $contourId;
+
+    /**
+     * @var integer
+     */
+    private $planId;
+
+    /**
+     * @var \ITDoors\HaccpBundle\Entity\Plan
+     */
+    private $Plan;
+
+    /**
+     * @var \ITDoors\HaccpBundle\Entity\Contour
+     */
+    private $Contour;
 
     /**
      * @var \ITDoors\HaccpBundle\Entity\PointGroup
      */
-    private $group;
+    private $Group;
 
 
     /**
@@ -62,72 +97,6 @@ class Point
     {
         return $this->name;
     }
-
-    /**
-     * Set companyObject
-     *
-     * @param \ITDoors\HaccpBundle\Entity\CompanyObject $companyObject
-     * @return Point
-     */
-    public function setCompanyObject(\ITDoors\HaccpBundle\Entity\CompanyObject $companyObject = null)
-    {
-        $this->companyObject = $companyObject;
-
-        return $this;
-    }
-
-    /**
-     * Get companyObject
-     *
-     * @return \ITDoors\HaccpBundle\Entity\CompanyObject 
-     */
-    public function getCompanyObject()
-    {
-        return $this->companyObject;
-    }
-
-    /**
-     * Set group
-     *
-     * @param \ITDoors\HaccpBundle\Entity\PointGroup $group
-     * @return Point
-     */
-    public function setGroup(\ITDoors\HaccpBundle\Entity\PointGroup $group = null)
-    {
-        $this->group = $group;
-
-        return $this;
-    }
-
-    /**
-     * Get group
-     *
-     * @return \ITDoors\HaccpBundle\Entity\PointGroup 
-     */
-    public function getGroup()
-    {
-        return $this->group;
-    }
-    /**
-     * @var string
-     */
-    private $imageLatitude;
-
-    /**
-     * @var string
-     */
-    private $imageLongitude;
-
-    /**
-     * @var string
-     */
-    private $mapLatitude;
-
-    /**
-     * @var string
-     */
-    private $mapLongitude;
-
 
     /**
      * Set imageLatitude
@@ -219,5 +188,120 @@ class Point
     public function getMapLongitude()
     {
         return $this->mapLongitude;
+    }
+
+    /**
+     * Set contourId
+     *
+     * @param integer $contourId
+     * @return Point
+     */
+    public function setContourId($contourId)
+    {
+        $this->contourId = $contourId;
+
+        return $this;
+    }
+
+    /**
+     * Get contourId
+     *
+     * @return integer 
+     */
+    public function getContourId()
+    {
+        return $this->contourId;
+    }
+
+    /**
+     * Set planId
+     *
+     * @param integer $planId
+     * @return Point
+     */
+    public function setPlanId($planId)
+    {
+        $this->planId = $planId;
+
+        return $this;
+    }
+
+    /**
+     * Get planId
+     *
+     * @return integer 
+     */
+    public function getPlanId()
+    {
+        return $this->planId;
+    }
+
+    /**
+     * Set Plan
+     *
+     * @param \ITDoors\HaccpBundle\Entity\Plan $plan
+     * @return Point
+     */
+    public function setPlan(\ITDoors\HaccpBundle\Entity\Plan $plan = null)
+    {
+        $this->Plan = $plan;
+
+        return $this;
+    }
+
+    /**
+     * Get Plan
+     *
+     * @return \ITDoors\HaccpBundle\Entity\Plan 
+     */
+    public function getPlan()
+    {
+        return $this->Plan;
+    }
+
+    /**
+     * Set Contour
+     *
+     * @param \ITDoors\HaccpBundle\Entity\Contour $contour
+     * @return Point
+     */
+    public function setContour(\ITDoors\HaccpBundle\Entity\Contour $contour = null)
+    {
+        $this->Contour = $contour;
+
+        return $this;
+    }
+
+    /**
+     * Get Contour
+     *
+     * @return \ITDoors\HaccpBundle\Entity\Contour 
+     */
+    public function getContour()
+    {
+        return $this->Contour;
+    }
+
+    /**
+     * Set Group
+     *
+     * @param \ITDoors\HaccpBundle\Entity\PointGroup $group
+     * @return Point
+     */
+    public function setGroup(\ITDoors\HaccpBundle\Entity\PointGroup $group = null)
+    {
+        $this->Group = $group;
+
+        return $this;
+    }
+
+    /**
+     * Get Group
+     *
+     * @return \ITDoors\HaccpBundle\Entity\PointGroup 
+     */
+    public function getGroup()
+    {
+        return $this->Group;
     }
 }

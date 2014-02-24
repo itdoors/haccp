@@ -9,14 +9,14 @@
 
 {% block css_page_level_plugin %}
     {{ parent() }}
-    <link href="{{ asset('templates/leaflet-0.7.2/css/leaflet.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('templates/leaflet/css/leaflet.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ asset('templates/metronic/plugins/bootstrap-modal/css/bootstrap-modal-bs3patch.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ asset('templates/metronic/plugins/bootstrap-modal/css/bootstrap-modal.css') }}" rel="stylesheet" type="text/css"/>
 {% endblock %}
 
 {% block js_page_level_plugins %}
     {{ parent() }}
-    <script src="{{ asset('templates/leaflet-0.7.2/js/leaflet.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('templates/leaflet/js/leaflet.js') }}" type="text/javascript"></script>
     <script src="{{ asset('templates/metronic/plugins/bootstrap-modal/js/bootstrap-modalmanager.js') }}" type="text/javascript"></script>
     <script src="{{ asset('templates/metronic/plugins/bootstrap-modal/js/bootstrap-modal.js') }}" type="text/javascript"></script>
     {% if plan.type == 'map' %}
@@ -28,26 +28,22 @@
             attribution: ''
         }).addTo(map);
 
-        var myIcon = L.divIcon({className: 'my-div-icon'});
+        {% for point in points  %}
+            var myIcon = L.divIcon({
+                className: 'my-div-icon',
+                html: '<div>{{ point.name }}</div>'
+            });
 
-        var marker = L.marker(new L.LatLng(50.51145,30.48069), {
-            icon: myIcon
-        });
+            var marker = L.marker(new L.LatLng({{ point.mapLatitude }},{{ point.mapLongitude }}), {
+                icon: myIcon
+            });
 
-        var marker1 = L.marker(new L.LatLng(50.51081,30.48251), {
-            icon: myIcon
-        });
+            marker.addTo(map);
 
-        marker.addTo(map);
-        marker1.addTo(map);
-
-        marker.on('click', function(e){
-            HACCP.ajaxModal('Control point #1', '#ajax-modal', '{{ path('point_show_ajax', { id : 1 }) }}');
-        });
-
-        marker1.on('click', function(e){
-            HACCP.ajaxModal('Control point #2', '#ajax-modal', '{{ path('point_show_ajax', { id : 1 }) }}');
-        });
+            marker.on('click', function(e){
+                HACCP.ajaxModal('Control point ' + '{{ point.name }}', '#ajax-modal', '{{ path('point_show_ajax', { id : point.id }) }}');
+            });
+        {% endfor %}
 
         var circle = L.circle(new L.LatLng(50.51114,30.48154), 20, {
             color: 'red',
@@ -57,11 +53,16 @@
 
         circle.addTo(map);
 
-        circle.on('click', function(e){
-            window.location = '{{ path('plan_show', { id: 2 }) }}'
-        });
-
         var popup = L.popup();
+
+        circle.on('click', function(e){
+            popup
+                    .setLatLng(e.latlng)
+                    .setContent(HACCP.getPopupHtml({
+                        url: '{{ path('plan_show', { id: 2 }) }}'
+                    }))
+                    .openOn(map);
+        });
 
         function onMapClick(e) {
             popup
@@ -89,8 +90,6 @@
             attributionControl: false
         });
 
-        var myIcon = L.divIcon({className: 'my-div-icon'});
-
         var imageUrl = '{{ plan.imageFullPath }}';
         var imageBounds = new L.LatLngBounds([0, 0], [srcHeight/scale , srcWidth/scale]);
         var options =  { noWrap: true, maxZoom: 3, minZoom: 0};
@@ -99,11 +98,22 @@
 
         map.setView(new L.LatLng(srcHeight/scale/2, srcWidth/scale/2), 0);
 
-        var marker = L.marker(new L.LatLng(192, 342), {
-            icon: myIcon
-        });
+        {% for point in points  %}
+            var myIcon = L.divIcon({
+                className: 'my-div-icon',
+                html: '<div>{{ point.name }}</div>'
+            });
 
-        marker.addTo(map);
+            var marker = L.marker(new L.LatLng({{ point.imageLatitude }},{{ point.imageLongitude }}), {
+                icon: myIcon
+            });
+
+            marker.addTo(map);
+
+            marker.on('click', function(e){
+                HACCP.ajaxModal('Control point ' + '{{ point.name }}', '#ajax-modal', '{{ path('point_show_ajax', { id : point.id }) }}');
+            });
+        {% endfor %}
 
         var popup = L.popup();
 
@@ -115,10 +125,6 @@
         }
 
         map.on('click', onMapClick);
-
-        marker.on('click', function(e){
-            HACCP.ajaxModal('Control point data', '#ajax-modal', '{{ path('point_show_ajax', { id : 1 }) }}');
-        });
     </script>
     {% endif %}
 {% endblock %}

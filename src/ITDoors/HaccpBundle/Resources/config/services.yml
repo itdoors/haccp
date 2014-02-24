@@ -3,6 +3,10 @@ parameters:
     it_doors_haccp.plan.repository.entity: ITDoors\HaccpBundle\Entity\Plan
     it_doors_haccp.plan.service.class: ITDoors\HaccpBundle\Services\PlanService
 
+    it_doors_haccp.point.repository.class: ITDoors\HaccpBundle\Entity\PointRepository
+    it_doors_haccp.point.repository.entity: ITDoors\HaccpBundle\Entity\Point
+    it_doors_haccp.point.service.class: ITDoors\HaccpBundle\Services\PointService
+
 services:
     it_doors_haccp.plan.repository:
         class: %it_doors_haccp.plan.repository.class%
@@ -19,3 +23,19 @@ services:
 
     plan.service:
         alias: it_doors_haccp.plan.service
+
+    it_doors_haccp.point.repository:
+        class: %it_doors_haccp.point.repository.class%
+        factory_service: doctrine # this is an instance of Registry
+        factory_method: getRepository
+        arguments: [ %it_doors_haccp.point.repository.entity% ]
+
+    point.repository:
+        alias: it_doors_haccp.point.repository
+
+    it_doors_haccp.point.service:
+        class: %it_doors_haccp.point.service.class%
+        arguments: [ @it_doors_haccp.point.repository]
+
+    point.service:
+        alias: it_doors_haccp.point.service
