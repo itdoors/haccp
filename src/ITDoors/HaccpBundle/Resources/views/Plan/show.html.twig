@@ -42,11 +42,11 @@
         marker1.addTo(map);
 
         marker.on('click', function(e){
-            HACCP.ajaxModal('Critical point #1', '#ajax-modal', '{{ path('point_show_ajax', { id : 1 }) }}');
+            HACCP.ajaxModal('Control point #1', '#ajax-modal', '{{ path('point_show_ajax', { id : 1 }) }}');
         });
 
         marker1.on('click', function(e){
-            HACCP.ajaxModal('Critical point #2', '#ajax-modal', '{{ path('point_show_ajax', { id : 1 }) }}');
+            HACCP.ajaxModal('Control point #2', '#ajax-modal', '{{ path('point_show_ajax', { id : 1 }) }}');
         });
 
         var circle = L.circle(new L.LatLng(50.51114,30.48154), 20, {
@@ -117,7 +117,7 @@
         map.on('click', onMapClick);
 
         marker.on('click', function(e){
-            HACCP.ajaxModal('Critical point data', '#ajax-modal', '{{ path('point_show_ajax', { id : 1 }) }}');
+            HACCP.ajaxModal('Control point data', '#ajax-modal', '{{ path('point_show_ajax', { id : 1 }) }}');
         });
     </script>
     {% endif %}
