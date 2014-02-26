@@ -1,0 +1,3 @@
+it_doors_common_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: ITDoorsCommonBundle:Default:index }

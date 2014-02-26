@@ -18,6 +18,7 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new ITDoors\HaccpBundle\ITDoorsHaccpBundle(),
             new ITDoors\DashboardBundle\ITDoorsDashboardBundle(),
+            new ITDoors\CommonBundle\ITDoorsCommonBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

@@ -11,6 +11,9 @@ ITDoors\HaccpBundle\Entity\Point:
     name:
       type: string
       length: 50
+    installationDate:
+      type: date
+      nullable: true
     imageLatitude:
       type: string
       length: 50

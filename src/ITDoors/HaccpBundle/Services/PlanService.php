@@ -10,6 +10,9 @@ use ITDoors\HaccpBundle\Entity\PlanRepository;
  */
 class PlanService
 {
+    const PLAN_TYPE_MAP = 'map';
+    const PLAN_TYPE_IMAGE = 'image';
+
     /**
      * @var PlanRepository $repository
      */

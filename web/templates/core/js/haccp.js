@@ -67,39 +67,41 @@ var HACCP = (function() {
         var content =
             '<div class="btn-group">' +
                 '<button data-toggle="dropdown" type="button" class="btn default btn-sm dropdown-toggle">' +
-                '<i class="fa fa-building-o"></i> Object Name <i class="fa fa-angle-down"></i>' +
+                '<i class="fa fa-building-o"></i> Цех 1 <i class="fa fa-angle-down"></i>' +
                 '<br>' +
                     '<span class="badge badge-success"> 58 </span>' +
                     '<span class="badge badge-warning"> 33 </span>' +
                     '<span class="badge badge-important"> 25 </span>' +
                 '</button>' +
-                '<ul role="menu" class="dropdown-menu">' +
-                    '<li>' +
-                        '<a href="#">' +
-                        'Plane 1' +
-                        '</a>' +
-                    '</li>' +
-                    '<li>' +
-                        '<a href="#">' +
-                        'Plane 2' +
-                        '</a>' +
-                    '</li>' +
-                    '<li>' +
-                        '<a href="#">' +
-                        'Plane 3' +
-                        '</a>' +
-                    '</li>' +
-                    '<li class="divider">' +
-                    '</li>' +
-                    '<li>' +
-                        '<a href="' + options.url + '">' +
-                            'View This object' +
-                        '</a>' +
-                    '</li>' +
+                '<ul role="menu" class="dropdown-menu">';
+
+        for (key in options.plans)
+        {
+            var plan = options.plans[key];
+
+            content += '<li>' +
+                    '<a href="' + plan.url + '">' +
+                        plan.name +
+                    '</a>' +
+                '</li>';
+        }
+        content +=
                 '</ul>' +
             '</div>';
 
         return content;
+    }
+
+    HACCP.prototype.getPointHtml = function(options)
+    {
+        var point =
+            '<a class="btn btn-xs ' + options.classNameStatistics + '" href="#" style="font-size:10px;">' +
+                '<i class="fa fa-edit"></i><br />' +
+                '' + options.name + '<br />' +
+                '' + Math.ceil(options.value) + ' %<br />'
+            '</a>';
+
+        return point;
     }
 
     return new HACCP();

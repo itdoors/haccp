@@ -1,0 +1,34 @@
+ITDoors\HaccpBundle\Entity\PointStatistics:
+  type: entity
+  repositoryClass: ITDoors\HaccpBundle\Entity\PointStatisticsRepository
+  table: point_statistics
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: IDENTITY
+  fields:
+    createdAt:
+      type: datetime
+    entryDate:
+      type: datetime
+    pointId:
+      type: integer
+      column: point_id
+    characteristicId:
+      type: integer
+      column: characteristic_id
+    value:
+      type: string
+      length: 50
+  manyToOne:
+    Characteristic:
+      targetEntity: PointGroupCharacteristic
+      joinColumn:
+        name: characteristic_id
+        referencedColumnName: id
+    Point:
+      targetEntity: Point
+      joinColumn:
+        name: point_id
+        referencedColumnName: id

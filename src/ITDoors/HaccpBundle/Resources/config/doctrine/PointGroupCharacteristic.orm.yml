@@ -20,30 +20,42 @@ ITDoors\HaccpBundle\Entity\PointGroupCharacteristic:
     dataType:
       type: string
       length: 20
+      column: data_type
     allowValueMax:
       type: string
       length: 20
       nullable: true
+      column: allow_value_max
     allowValueMin:
       type: string
       length: 20
       nullable: true
+      column: allow_value_min
     criticalValueTop:
       type: string
       length: 20
       nullable: true
+      column: critical_value_top
     criticalValueBottom:
       type: string
       length: 20
       nullable: true
+      column: critical_value_bottom
     criticalColorTop:
       type: string
       length: 20
       nullable: true
+      column: critical_color_top
+    criticalColorMiddle:
+      type: string
+      length: 20
+      nullable: true
+      column: critical_color_middle
     criticalColorBottom:
       type: string
       length: 20
       nullable: true
+      column: critical_color_botton
   manyToOne:
     group:
       targetEntity: PointGroup

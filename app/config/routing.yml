@@ -1,3 +1,7 @@
+it_doors_common:
+    resource: "@ITDoorsCommonBundle/Resources/config/routing.yml"
+    prefix:   /
+
 it_doors_dashboard:
     resource: "@ITDoorsDashboardBundle/Resources/config/routing.yml"
     prefix:   /

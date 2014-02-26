@@ -4,10 +4,11 @@ imports:
 
 parameters:
     plan.upload_dir: '/plans/'
+    locale: ru
 
 framework:
     #esi:             ~
-    #translator:      { fallback: "%locale%" }
+    translator:      { fallback: ru }
     secret:          "%secret%"
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -61,7 +62,12 @@ doctrine:
 
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
-        auto_mapping: true
+        entity_managers:
+            default:
+                auto_mapping: true
+                dql:
+                    string_functions:
+                        to_integer: ITDoors\CommonBundle\DQL\ToIntegerDQL
 
 # Swiftmailer Configuration
 swiftmailer:

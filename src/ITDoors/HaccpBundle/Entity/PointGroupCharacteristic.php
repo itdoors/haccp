@@ -332,4 +332,32 @@ class PointGroupCharacteristic
     {
         return $this->group;
     }
+    /**
+     * @var string
+     */
+    private $criticalColorMiddle;
+
+
+    /**
+     * Set criticalColorMiddle
+     *
+     * @param string $criticalColorMiddle
+     * @return PointGroupCharacteristic
+     */
+    public function setCriticalColorMiddle($criticalColorMiddle)
+    {
+        $this->criticalColorMiddle = $criticalColorMiddle;
+
+        return $this;
+    }
+
+    /**
+     * Get criticalColorMiddle
+     *
+     * @return string 
+     */
+    public function getCriticalColorMiddle()
+    {
+        return $this->criticalColorMiddle;
+    }
 }

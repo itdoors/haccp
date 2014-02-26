@@ -2,6 +2,7 @@
 
 namespace ITDoors\HaccpBundle\Controller;
 
+use ITDoors\HaccpBundle\Services\PointService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
@@ -14,6 +15,16 @@ class PointController extends Controller
      */
     public function showAjaxAction($id)
     {
-        return $this->render('ITDoorsHaccpBundle:Point:showAjax.html.twig');
+        /** @var PointService $pointService */
+        $pointService = $this->get('point.service');
+
+        $point = $pointService->getPointShow(array($id));
+
+        $statistics = $pointService->getStatistics($id);
+
+        return $this->render('ITDoorsHaccpBundle:Point:showAjax.html.twig', array(
+            'point' => $point,
+            'statistics' => $statistics
+        ));
     }
 }

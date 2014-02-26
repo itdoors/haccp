@@ -304,4 +304,32 @@ class Point
     {
         return $this->Group;
     }
+    /**
+     * @var \DateTime
+     */
+    private $installationDate;
+
+
+    /**
+     * Set installationDate
+     *
+     * @param \DateTime $installationDate
+     * @return Point
+     */
+    public function setInstallationDate($installationDate)
+    {
+        $this->installationDate = $installationDate;
+
+        return $this;
+    }
+
+    /**
+     * Get installationDate
+     *
+     * @return \DateTime 
+     */
+    public function getInstallationDate()
+    {
+        return $this->installationDate;
+    }
 }

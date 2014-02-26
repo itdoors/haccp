@@ -7,6 +7,13 @@ parameters:
     it_doors_haccp.point.repository.entity: ITDoors\HaccpBundle\Entity\Point
     it_doors_haccp.point.service.class: ITDoors\HaccpBundle\Services\PointService
 
+    it_doors_haccp.point.statistics.repository.class: ITDoors\HaccpBundle\Entity\PointStatisticsRepository
+    it_doors_haccp.point.statistics.repository.entity: ITDoors\HaccpBundle\Entity\PointStatistics
+
+    it_doors_haccp.point.group.characteristic.repository.class: ITDoors\HaccpBundle\Entity\PointGroupCharacteristicRepository
+    it_doors_haccp.point.group.characteristic.repository.entity: ITDoors\HaccpBundle\Entity\PointGroupCharacteristic
+    it_doors_haccp.point.group.characteristic.service.class: ITDoors\HaccpBundle\Services\PointGroupCharacteristicService
+
 services:
     it_doors_haccp.plan.repository:
         class: %it_doors_haccp.plan.repository.class%
@@ -35,7 +42,38 @@ services:
 
     it_doors_haccp.point.service:
         class: %it_doors_haccp.point.service.class%
-        arguments: [ @it_doors_haccp.point.repository]
+        arguments: [ @it_doors_haccp.point.repository, @service_container]
 
     point.service:
         alias: it_doors_haccp.point.service
+
+    it_doors_haccp.point.statistics.repository:
+        class: %it_doors_haccp.point.statistics.repository.class%
+        factory_service: doctrine # this is an instance of Registry
+        factory_method: getRepository
+        arguments: [ %it_doors_haccp.point.statistics.repository.entity% ]
+
+    point.statistics.repository:
+        alias: it_doors_haccp.point.statistics.repository
+
+    it_doors_haccp.point.group.characteristic.repository:
+        class: %it_doors_haccp.point.group.characteristic.repository.class%
+        factory_service: doctrine # this is an instance of Registry
+        factory_method: getRepository
+        arguments: [ %it_doors_haccp.point.group.characteristic.repository.entity% ]
+
+    point.group.characteristic.repository:
+        alias: it_doors_haccp.point.group.characteristic.repository
+
+    it_doors_haccp.point.group.characteristic.service:
+        class: %it_doors_haccp.point.group.characteristic.service.class%
+        arguments: [ @it_doors_haccp.point.group.characteristic.repository, @service_container]
+
+    point.characteristic.service:
+        alias: it_doors_haccp.point.group.characteristic.service
+
+    it_doors_haccp.twig.point_extension:
+        class: ITDoors\HaccpBundle\Twig\PointExtension
+        arguments: [@service_container]
+        tags:
+            - { name: twig.extension }
