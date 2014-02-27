@@ -199,6 +199,28 @@
 
         var popup = L.popup();
 
+        {% if plan.id == 4 %}
+
+            var bounds = [new L.LatLng(507,284), new L.LatLng(464,387)];
+
+            // create an orange rectangle
+            var rectangle = L.rectangle(bounds, {color: "#ff0000", weight: 10});
+
+            rectangle.addTo(map);
+
+            rectangle.on('click', function(e){
+                popup
+                        .setLatLng(e.latlng)
+                        .setContent(HACCP.getPopupHtml({
+                            plans: {
+                                0: { name: 'Этаж 1', url: '{{ path('plan_show', { id: 2 }) }}'},
+                                1: { name: 'Этаж 2', url: '{{ path('plan_show', { id: 3 }) }}'}
+                            }
+                        }))
+                        .openOn(map);
+            });
+        {% endif %}
+
         function onMapClick(e) {
             popup
                     .setLatLng(e.latlng)
