@@ -9,7 +9,15 @@
             <a href="{{ path('dashboard') }}">{% trans %}Home{% endtrans %}</a>
             <i class="fa fa-angle-right"></i>
         </li>
-        <li><a href="#">{% trans %}Dashboard{% endtrans %}</a></li>
+        {% if plan.parentName %}
+            <li>
+                <a href="{{ path('plan_show', { id: plan.parentId }) }}">{{ plan.parentName }}</a>
+                <i class="fa fa-angle-right"></i>
+            </li>
+        {% endif %}
+        {% if plan.name %}
+            <li><a href="{{ path('plan_show', { id: plan.id }) }}">{{ plan.name }}</a></li>
+        {% endif %}
         <li class="pull-right">
             <div id="dashboard-report-range" class="dashboard-date-range tooltips" data-placement="top" data-original-title="Изменить дату">
                 <i class="fa fa-calendar"></i>
@@ -182,11 +190,20 @@
                 html: HACCP.getPointHtml({
                     classNameStatistics: '{{ point.classNameStatistics }}',
                     value: '{{ point.pointAVG }}',
-                    name: '{{ point.name }}'
+                    name: '{{ point.name }}',
+                    contourId: '{{ point.contourId }}'
                 })
             });
 
-            var marker = L.marker(new L.LatLng({{ point.imageLatitude }},{{ point.imageLongitude }}), {
+            var pointLatReal = {{ point.imageLatitude }};
+            var pointLngReal = {{ point.imageLongitude }};
+
+            var pointLat = pointLatReal / scale;
+            var pointLng = pointLngReal / scale;
+
+        console.log(scale);
+
+        var marker = L.marker(new L.LatLng(pointLat , pointLng), {
                 icon: myIcon
             });
 
@@ -199,9 +216,9 @@
 
         var popup = L.popup();
 
-        {% if plan.id == 4 %}
+        {% if plan.id == 5 %}
 
-            var bounds = [new L.LatLng(507,284), new L.LatLng(464,387)];
+            var bounds = [new L.LatLng(472 / scale,360 / scale), new L.LatLng(322/ scale ,900 / scale)];
 
             // create an orange rectangle
             var rectangle = L.rectangle(bounds, {color: "#ff0000", weight: 10});
@@ -222,9 +239,10 @@
         {% endif %}
 
         function onMapClick(e) {
+            console.log(e.latlng);
             popup
                     .setLatLng(e.latlng)
-                    .setContent("Координаты точки " + e.latlng.toString())
+                    .setContent("Координаты точки " + e.latlng.lat * scale + ' ' + e.latlng.lng * scale)
                     .openOn(map);
         }
 

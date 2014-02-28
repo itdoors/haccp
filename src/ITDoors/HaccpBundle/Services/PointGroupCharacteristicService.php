@@ -36,15 +36,15 @@ class PointGroupCharacteristicService
     public static $criticalChars = array(
         self::CRITICAL_CHAR_A => array(
             'color' => '#000000',
-            'classNameStatistics' => 'label-success'
+            'classNameStatistics' => 'success'
         ),
         self::CRITICAL_CHAR_W => array(
             'color' => '#000000',
-            'classNameStatistics' => 'label-warning'
+            'classNameStatistics' => 'warning'
         ),
         self::CRITICAL_CHAR_D => array(
             'color' => '#000000',
-            'classNameStatistics' => 'label-danger'
+            'classNameStatistics' => 'danger'
         )
     );
 

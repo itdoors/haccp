@@ -39,6 +39,10 @@ ITDoors\HaccpBundle\Entity\Plan:
       type: string
       length: 20
       nullable: true
+    parentId:
+      type: integer
+      nullable: true
+      column: parent_id
   oneToMany:
     children:
       targetEntity: Plan

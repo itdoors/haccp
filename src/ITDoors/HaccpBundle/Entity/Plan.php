@@ -349,4 +349,32 @@ class Plan
     {
         return $this->type;
     }
+    /**
+     * @var integer
+     */
+    private $parentId;
+
+
+    /**
+     * Set parentId
+     *
+     * @param integer $parentId
+     * @return Plan
+     */
+    public function setParentId($parentId)
+    {
+        $this->parentId = $parentId;
+
+        return $this;
+    }
+
+    /**
+     * Get parentId
+     *
+     * @return integer 
+     */
+    public function getParentId()
+    {
+        return $this->parentId;
+    }
 }

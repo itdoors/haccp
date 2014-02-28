@@ -90,11 +90,11 @@
                     <li class="">
                         <a data-toggle="tab" href="#portlet_tab3">Аттрибуты</a>
                     </li>
-                    <li class="">
+                    {#<li class="">
                         <a data-toggle="tab" href="#portlet_tab2">Регламент</a>
-                    </li>
+                    </li>#}
                     <li class="active">
-                        <a data-toggle="tab" href="#portlet_tab1">Основное</a>
+                        <a data-toggle="tab" href="#portlet_tab1">Статистика</a>
                     </li>
                 </ul>
                 <div class="tab-content">
@@ -124,11 +124,11 @@
                                 <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Date Time</th>
+                                    <th>Дата инспекции</th>
                                     <th>Показатель</th>
                                     <th>Значение</th> <!--добавляем ед.измерения-->
                                     <th>Статус</th>
-                                    <th>Пользователь</th>
+                                    <th>Инспектор</th>
                                     <th></th>
                                 </tr>
                                 </thead>
@@ -172,13 +172,13 @@
                             </ul>
                         </div>
                     </div><!--tab-1-->
-                    <div id="portlet_tab2" class="tab-pane">
+                    {#<div id="portlet_tab2" class="tab-pane">
                         <p>
                             <a target="_blank" href="#" class="btn red">
                                 Activate this tab via URL
                             </a>
                         </p>
-                    </div>
+                    </div>#}
                     <div id="portlet_tab3" class="tab-pane">
                         <div class="row">
                             <div class="col-md-6">
@@ -194,8 +194,11 @@
 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label">Пользователь</label>
-                                    <input type="text" placeholder="Chee Kin" class="form-control" id="firstName">
+                                    <label class="control-label">Кто установил</label>
+                                    <input type="text"
+                                           placeholder="Михайличенко"
+                                           value="Михайличенко"
+                                           class="form-control" disabled="disabled">
                                 </div>
                             </div>
 
@@ -215,7 +218,7 @@
 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label">Контур</label>
+                                    <label class="control-label">Уровень мультибарьера</label>
                                     <input type="text"
                                            placeholder="{{ point.contourName|e }}"
                                            value="{{ point.contourName|e }}"

@@ -29,6 +29,7 @@ class PointRepository extends EntityRepository
             ->addSelect('p.mapLatitude as mapLatitude')
             ->addSelect('p.mapLongitude as mapLongitude')
             ->addSelect('Contour.color as contourColor')
+            ->addSelect('Contour.id as contourId')
             ->addSelect('PointGroup.id as pointGroupId')
             ->addSelect('(SELECT AVG(to_integer(ps.value)) from ITDoorsHaccpBundle:PointStatistics ps where ps.pointId = p.id) as pointAVG')
             ->leftJoin('p.Contour', 'Contour')

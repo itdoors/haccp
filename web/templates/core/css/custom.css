@@ -1,0 +1,16 @@
+.leaflet-div-icon {
+    border: 0px;
+}
+
+.leaflet-container a {
+    color: #000000;
+}
+
+.leaflet-container a span{
+    color: #000000;
+    z-index: 901;
+}
+
+.leaflet-container a:hover {
+    text-decoration: none;
+}

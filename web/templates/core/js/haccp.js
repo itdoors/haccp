@@ -67,11 +67,11 @@ var HACCP = (function() {
         var content =
             '<div class="btn-group">' +
                 '<button data-toggle="dropdown" type="button" class="btn default btn-sm dropdown-toggle">' +
-                '<i class="fa fa-building-o"></i> Цех 1 <i class="fa fa-angle-down"></i>' +
+                '<i class="fa fa-building-o"></i> План 1 <i class="fa fa-angle-down"></i>' +
                 '<br>' +
-                    '<span class="badge badge-success"> 58 </span>' +
-                    '<span class="badge badge-warning"> 33 </span>' +
-                    '<span class="badge badge-important"> 25 </span>' +
+                    '<span class="badge badge-success"> 2 </span>' +
+                    '<span class="badge badge-warning"> 7 </span>' +
+                    '<span class="badge badge-important"> 2 </span>' +
                 '</button>' +
                 '<ul role="menu" class="dropdown-menu">';
 
@@ -95,14 +95,17 @@ var HACCP = (function() {
     HACCP.prototype.getPointHtml = function(options)
     {
         var point =
-            '<a class="btn btn-xs ' + options.classNameStatistics + '" href="#" style="font-size:10px;">' +
-                '<i class="fa fa-edit"></i><br />' +
-                '' + options.name + '<br />' +
-                '' + Math.ceil(options.value) + ' %<br />'
+            '<a class="' + options.classNameStatistics + '-' + options.contourId + ' ' +
+                ' " href="#">' +
+                '<div style="z-index: 901; position: relative;">' + options.name  + '</div>' +
+                '<div class="contour-' + options.classNameStatistics + '-' + options.contourId +
+                '"></div>' +
             '</a>';
 
         return point;
     }
+
+    HACCP.prototype.getRealPontCoordinates
 
     return new HACCP();
 })();
