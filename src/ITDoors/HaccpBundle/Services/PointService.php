@@ -75,6 +75,8 @@ class PointService
 
         $pointShow['coordinates'] = $this->getCoordinates($pointShow);
 
+        $pointShow['qrCodePath'] = $this->generateQRCode($pointShow);
+
         return $pointShow;
     }
 
@@ -212,5 +214,89 @@ class PointService
         }
 
         return $translator->trans("Approved", array(), 'messages');
+    }
+
+    /**
+     * Returns QRCode upload dir
+     *
+     * @return string
+     */
+    protected function getQRCodeUploadDir()
+    {
+        return $this->container->getParameter('qrcode.upload_dir');
+    }
+
+    /**
+     * Returns QRCode upload dir absolute path
+     *
+     * @return string
+     */
+    protected function getQRCodeUploadDirAbsolutePath()
+    {
+        return $this->container->getParameter('project.web.dir') .
+                DIRECTORY_SEPARATOR .
+                $this->getQRCodeUploadDir();
+    }
+
+    /**
+     * Returns QRCode imagePath
+     *
+     * @param mixed[] $pointShow
+     *
+     * @return string
+     */
+    public function getQRCodeImagePath($pointShow)
+    {
+        return $this->getQRCodeUploadDir() . DIRECTORY_SEPARATOR . "{$pointShow['id']}.png";
+    }
+
+    /**
+     * Returns QRCode imagePath
+     *
+     * @param mixed[] $pointShow
+     *
+     * @return string
+     */
+    public function getQRCodeImagePathAbsolutePath($pointShow)
+    {
+        return $this->getQRCodeUploadDirAbsolutePath() . DIRECTORY_SEPARATOR . "{$pointShow['id']}.png";
+    }
+
+    /**
+     * Generates QRCode img in {qrcode.upload_dir} and returns img_path
+     *
+     * @param mixed[] $pointShow
+     *
+     * @return string
+     */
+    public function generateQRCode($pointShow)
+    {
+        $imgAbsolutePath = $this->getQRCodeImagePathAbsolutePath($pointShow);
+        $imgPath = $this->getQRCodeImagePath($pointShow);
+
+        if (file_exists($imgAbsolutePath))
+        {
+            unlink($imgAbsolutePath);
+        }
+
+        \PHPQRCode\QRcode::png($this->getPointQRCodeInfo($pointShow), $imgAbsolutePath, 'L', 10, 2);
+
+        return $imgPath;
+    }
+
+    /**
+     * Returns point info for qrcode
+     *
+     * @param mixed[] $pointShow
+     *
+     * @return string
+     */
+    protected function getPointQRCodeInfo($pointShow)
+    {
+        $pointInfo = array(
+            'id' => $pointShow['id']
+        );
+
+        return json_encode($pointInfo);
     }
 }

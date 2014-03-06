@@ -96,6 +96,13 @@
                     <li class="active">
                         <a data-toggle="tab" href="#portlet_tab1">Статистика</a>
                     </li>
+                    <li>
+                        <a data-toggle="tab" href="#portlet_tab4">
+                            {% trans from 'ITDoorsHaccpBundle' %}
+                                QR Code
+                            {% endtrans %}
+                        </a>
+                    </li>
                 </ul>
                 <div class="tab-content">
                     <div id="portlet_tab1" class="tab-pane active">
@@ -254,6 +261,13 @@
                                 </div>
                             </div>
 
+                        </div>
+                    </div>
+                    <div id="portlet_tab4" class="tab-pane active">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <img src="{{ point.qrCodePath }}" class="qrcode-img"/>
+                            </div>
                         </div>
                     </div>
                 </div><!--tab-content-->

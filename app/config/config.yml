@@ -4,6 +4,9 @@ imports:
 
 parameters:
     plan.upload_dir: '/plans'
+    project.dir: '/var/www/haccp'
+    project.web.dir: '/var/www/haccp/web'
+    qrcode.upload_dir: '/qrcodes'
     locale: ru
 
 framework:
