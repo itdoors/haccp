@@ -2,7 +2,7 @@ imports:
     - { resource: config.yml }
 
 parameters:
-    project.dir: '/var/www/haccp/web'
+    project.dir: '/var/www/haccp'
 
 framework:
     router:
