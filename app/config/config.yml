@@ -4,8 +4,8 @@ imports:
 
 parameters:
     plan.upload_dir: '/plans'
-    project.dir: '/var/www/haccp'
-    project.web.dir: '/var/www/haccp/web'
+    project.dir: '/var/www/vhosts/itdoors.com.ua/subdomains/haccp'
+    project.web.dir: "%project.dir%/web"
     qrcode.upload_dir: '/qrcodes'
     locale: ru
 
