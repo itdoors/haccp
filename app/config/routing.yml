@@ -1,5 +1,5 @@
-it_doors_common:
-    resource: "@ITDoorsCommonBundle/Resources/config/routing.yml"
+it_doors_ajax:
+    resource: "@ITDoorsAjaxBundle/Resources/config/routing.yml"
     prefix:   /
 
 it_doors_dashboard:

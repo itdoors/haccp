@@ -1,0 +1,13 @@
+ITDoors\HaccpBundle\Entity\Service:
+  type: entity
+  repositoryClass: ITDoors\HaccpBundle\Entity\ServiceRepository
+  table: service
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: IDENTITY
+  fields:
+    name:
+      type: string
+      length: 50

@@ -10,8 +10,10 @@ ITDoors\HaccpBundle\Entity\PointStatistics:
   fields:
     createdAt:
       type: datetime
+      column: created_at
     entryDate:
       type: datetime
+      column: entry_date
     pointId:
       type: integer
       column: point_id

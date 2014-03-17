@@ -14,6 +14,15 @@ parameters:
     it_doors_haccp.point.group.characteristic.repository.entity: ITDoors\HaccpBundle\Entity\PointGroupCharacteristic
     it_doors_haccp.point.group.characteristic.service.class: ITDoors\HaccpBundle\Services\PointGroupCharacteristicService
 
+    it_doors_haccp.contour.repository.class: ITDoors\HaccpBundle\Entity\ContourRepository
+    it_doors_haccp.contour.repository.entity: ITDoors\HaccpBundle\Entity\Contour
+    it_doors_haccp.contour.service.class: ITDoors\HaccpBundle\Services\ContourService
+
+    it_doors_haccp.service.repository.class: ITDoors\HaccpBundle\Entity\ServiceRepository
+    it_doors_haccp.service.repository.entity: ITDoors\HaccpBundle\Entity\Service
+
+    it_doors_haccp.form.serviceFilterType.class: ITDoors\HaccpBundle\Form\ServiceFilterType
+
 services:
     it_doors_haccp.plan.repository:
         class: %it_doors_haccp.plan.repository.class%
@@ -72,8 +81,39 @@ services:
     point.characteristic.service:
         alias: it_doors_haccp.point.group.characteristic.service
 
+    it_doors_haccp.contour.repository:
+        class: %it_doors_haccp.contour.repository.class%
+        factory_service: doctrine # this is an instance of Registry
+        factory_method: getRepository
+        arguments: [ %it_doors_haccp.contour.repository.entity% ]
+
+    contour.repository:
+        alias: it_doors_haccp.contour.repository
+
+    it_doors_haccp.contour.service:
+        class: %it_doors_haccp.contour.service.class%
+        arguments: [ @it_doors_haccp.contour.repository, @service_container]
+
+    contour.service:
+        alias: it_doors_haccp.contour.service
+
+    it_doors_haccp.service.repository:
+        class: %it_doors_haccp.service.repository.class%
+        factory_service: doctrine # this is an instance of Registry
+        factory_method: getRepository
+        arguments: [ %it_doors_haccp.service.repository.entity% ]
+
+    service.repository:
+        alias: it_doors_haccp.service.repository
+
     it_doors_haccp.twig.point_extension:
         class: ITDoors\HaccpBundle\Twig\PointExtension
         arguments: [@service_container]
         tags:
             - { name: twig.extension }
+
+    it_doors_haccp.form.serviceFilterType:
+        class: %it_doors_haccp.form.serviceFilterType.class%
+        arguments: [@service_container]
+        tags:
+            - { name: form.type, alias: serviceFilterType }

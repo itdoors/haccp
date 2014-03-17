@@ -8,6 +8,7 @@ parameters:
     project.web.dir: "%project.dir%/web"
     qrcode.upload_dir: '/qrcodes'
     locale: ru
+    ajax.filter.namespace.point.service: "point.services"
 
 framework:
     #esi:             ~
@@ -35,6 +36,8 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    globals:
+        ajax_filter_namespace_point_service: %ajax.filter.namespace.point.service%
 
 # Assetic Configuration
 assetic:

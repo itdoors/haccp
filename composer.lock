@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "6d2dd862c5906f474a3e556e71cf5533",
+    "hash": "6d3597f9a8a79466e440d7b3c9d704d7",
     "packages": [
         {
             "name": "aferrandini/phpqrcode",
@@ -719,6 +719,72 @@
                 "parameters management"
             ],
             "time": "2013-12-07 10:10:39"
+        },
+        {
+            "name": "itdoors/ajaxbundle",
+            "version": "dev-master",
+            "target-dir": "ITDoors/AjaxBundle",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:itdoors/AjaxBundle.git",
+                "reference": "9941a152a9f320e17f4ecb754c2d41dc94f52d02"
+            },
+            "require": {
+                "php": ">=5.3.17"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-0": {
+                    "ITDoors\\AjaxBundle": ""
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "ppecheny",
+                    "email": "pp@itdoors.com.ua"
+                }
+            ],
+            "description": "Ajax bundle",
+            "keywords": [
+                "ajax bundle"
+            ],
+            "time": "2014-03-17 14:16:53"
+        },
+        {
+            "name": "itdoors/commonbundle",
+            "version": "dev-master",
+            "target-dir": "ITDoors/CommonBundle",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:itdoors/CommonBundle.git",
+                "reference": "aabfdf6b5cc641c63dce17c014f6a89bbce7028d"
+            },
+            "require": {
+                "php": ">=5.3.17"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-0": {
+                    "ITDoors\\CommonBundle": ""
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "ppecheny",
+                    "email": "pp@itdoors.com.ua"
+                }
+            ],
+            "description": "Common bundle",
+            "keywords": [
+                "common bundle"
+            ],
+            "time": "2014-03-17 12:58:42"
         },
         {
             "name": "jdorn/sql-formatter",
@@ -1593,9 +1659,10 @@
 
     ],
     "minimum-stability": "stable",
-    "stability-flags": [
-
-    ],
+    "stability-flags": {
+        "itdoors/ajaxbundle": 20,
+        "itdoors/commonbundle": 20
+    },
     "platform": {
         "php": ">=5.3.3"
     },

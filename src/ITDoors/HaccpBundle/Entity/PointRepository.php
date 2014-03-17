@@ -4,6 +4,7 @@ namespace ITDoors\HaccpBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query;
+use Doctrine\ORM\QueryBuilder;
 
 /**
  * PointRepository
@@ -17,11 +18,12 @@ class PointRepository extends EntityRepository
      * Returns point info for list
      *
      * @param int[] $planIds
+     * @param mixed[] $filters
      * @return Query
      */
-    public function getPointsListQuery($planIds)
+    public function getPointsListQuery($planIds, $filters)
     {
-        return $this->createQueryBuilder('p')
+        $sql = $this->createQueryBuilder('p')
             ->select('p.id as id')
             ->addSelect('p.name as name')
             ->addSelect('p.imageLatitude as imageLatitude')
@@ -30,13 +32,64 @@ class PointRepository extends EntityRepository
             ->addSelect('p.mapLongitude as mapLongitude')
             ->addSelect('Contour.color as contourColor')
             ->addSelect('Contour.id as contourId')
+            ->addSelect('Contour.slug as contourSlug')
             ->addSelect('PointGroup.id as pointGroupId')
-            ->addSelect('(SELECT AVG(to_integer(ps.value)) from ITDoorsHaccpBundle:PointStatistics ps where ps.pointId = p.id) as pointAVG')
             ->leftJoin('p.Contour', 'Contour')
             ->leftJoin('p.Group', 'PointGroup')
             ->where('p.planId in (:planIds)')
-            ->setParameter(':planIds', $planIds)
+            ->setParameter(':planIds', $planIds);
+
+        $this->processFilters($sql, $filters);
+
+        return $sql
             ->getQuery();
+    }
+
+    /**
+     * Processes filters
+     *
+     * @param QueryBuilder $sql
+     * @param mixed[] $filters
+     *
+     */
+    protected function processFilters($sql, $filters)
+    {
+        if (isset($filters['serviceId']) && $filters['serviceId']) {
+            $sql
+                ->andWhere('Contour.id = :serviceId')
+                ->setParameter(':serviceId', $filters['serviceId']);
+        }
+
+        if (isset($filters['daterangecustom']['start']) &&
+            isset($filters['daterangecustom']['end']) &&
+            $filters['daterangecustom']['start'] &&
+            $filters['daterangecustom']['end']) {
+            $sql
+                ->addSelect('(
+                    SELECT
+                        AVG(to_integer(ps.value))
+                    FROM
+                        ITDoorsHaccpBundle:PointStatistics ps
+                    WHERE
+                        ps.pointId = p.id AND
+                        ps.entryDate >= :startDate AND
+                        ps.entryDate <= :endDate
+                     ) as pointAVG')
+                ->setParameter(':startDate', $filters['daterangecustom']['start'])
+                ->setParameter(':endDate', $filters['daterangecustom']['end']);
+        }
+        else
+        {
+            $sql
+                ->addSelect('(
+                    SELECT
+                        AVG(to_integer(ps.value))
+                    FROM
+                        ITDoorsHaccpBundle:PointStatistics ps
+                    WHERE
+                        ps.pointId = p.id
+                     ) as pointAVG');
+        }
     }
 
     /**

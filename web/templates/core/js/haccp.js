@@ -95,17 +95,13 @@ var HACCP = (function() {
     HACCP.prototype.getPointHtml = function(options)
     {
         var point =
-            '<a class="' + options.classNameStatistics + '-' + options.contourId + ' ' +
+            '<a class="point ' + options.classNameStatistics + '-' + options.contourSlug + ' ' +
                 ' " href="#">' +
                 '<div style="z-index: 901; position: relative;">' + options.name  + '</div>' +
-                '<div class="contour-' + options.classNameStatistics + '-' + options.contourId +
-                '"></div>' +
             '</a>';
 
         return point;
     }
-
-    HACCP.prototype.getRealPontCoordinates
 
     return new HACCP();
 })();

@@ -15,3 +15,16 @@ ITDoors\HaccpBundle\Entity\Contour:
       type: string
       length: 50
       nullable: true
+    serviceId:
+      type: integer
+      column: service_id
+      nullable: true
+    slug:
+      type: string
+      length: 50
+  manyToOne:
+    Service:
+      targetEntity: Service
+      joinColumn:
+        name: service_id
+        referencedColumnName: id

@@ -1,7 +1,0 @@
-parameters:
-#    it_doors_common.example.class: ITDoors\CommonBundle\Example
-
-services:
-#    it_doors_common.example:
-#        class: %it_doors_common.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]

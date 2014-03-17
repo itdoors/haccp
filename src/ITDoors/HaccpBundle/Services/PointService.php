@@ -34,13 +34,14 @@ class PointService
      * Returns formatted point data for list
      *
      * @param int $planId
+     * @param mixed[] $filters
      *
      * @return mixed
      */
-    public function getPointsList($planId)
+    public function getPointsList($planId, $filters)
     {
         /** @var Query $pointQuery */
-        $pointQuery = $this->repository->getPointsListQuery(array($planId));
+        $pointQuery = $this->repository->getPointsListQuery(array($planId), $filters);
 
         $pointList = $pointQuery->getResult();
 

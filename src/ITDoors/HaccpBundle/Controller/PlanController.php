@@ -2,19 +2,34 @@
 
 namespace ITDoors\HaccpBundle\Controller;
 
+use ITDoors\CommonBundle\Controller\BaseFilterController;
 use ITDoors\HaccpBundle\Services\PlanService;
 use ITDoors\HaccpBundle\Services\PointService;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
  * Class PlanController
  */
-class PlanController extends Controller
+class PlanController extends BaseFilterController
 {
     /**
      * Execute show action
      */
-    public function showAction($id)
+    public function showAction($planId)
+    {
+        /** @var PlanService $ps */
+        $ps = $this->get('plan.service');
+
+        $plan = $ps->getPlanShow($planId);
+
+        return $this->render('ITDoorsHaccpBundle:Plan:show.html.twig', array(
+            'plan' => $plan
+        ));
+    }
+
+    /**
+     * Execute map action
+     */
+    public function mapAction($planId)
     {
         /** @var PlanService $ps */
         $ps = $this->get('plan.service');
@@ -22,11 +37,15 @@ class PlanController extends Controller
         /** @var PointService $pointService */
         $pointService = $this->get('point.service');
 
-        $plan = $ps->getPlanShow($id);
+        $plan = $ps->getPlanShow($planId);
 
-        $points = $pointService->getPointsList($id);
+        $filterNamespace = $this->container->getParameter('ajax.filter.namespace.point.service');
 
-        return $this->render('ITDoorsHaccpBundle:Plan:show.html.twig', array(
+        $filters = $this->getFilters($filterNamespace);
+
+        $points = $pointService->getPointsList($planId, $filters);
+
+        return $this->render('ITDoorsHaccpBundle:Plan:map.html.twig', array(
             'plan' => $plan,
             'points' => $points
         ));

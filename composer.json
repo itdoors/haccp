@@ -6,6 +6,16 @@
     "autoload": {
         "psr-0": { "": "src/" }
     },
+    "repositories": [
+        {
+            "type": "git",
+            "url": "git@github.com:itdoors/AjaxBundle.git"
+        },
+        {
+            "type": "git",
+            "url": "git@github.com:itdoors/CommonBundle.git"
+        }
+    ],
     "require": {
         "php": ">=5.3.3",
         "symfony/symfony": "~2.4",
@@ -19,7 +29,9 @@
         "sensio/framework-extra-bundle": "~3.0",
         "sensio/generator-bundle": "~2.3",
         "incenteev/composer-parameter-handler": "~2.0",
-        "aferrandini/phpqrcode": "1.0.1"
+        "aferrandini/phpqrcode": "1.0.1",
+        "itdoors/ajaxbundle": "dev-master",
+        "itdoors/commonbundle": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [

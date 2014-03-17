@@ -1,82 +1,85 @@
 #map { height: 500px;  position: relative;}
 .my-div-icon { width: 220px; height: 120px; display: block; background-color: #1876AD; opacity: 0.5}
 
-.contour-success-3 {
-    border: 20px solid transparent;	 border-bottom: 20px solid  #3CC051;
-    background-color: transparent;
-    position: relative;
-    top: -45px;
-    left: -5px;
-    z-index: 900;
+.point {
+    width: 24px; height: 24px; display: block;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
 }
 
-.contour-warning-3 {
-    border: 20px solid transparent;	 border-bottom: 20px solid  #FCB322;
-    background-color: transparent;
-    position: relative;
-    top: -45px;
-    left: -5px;
-    z-index: 900;
-}
-
-.contour-danger-3 {
-    border: 20px solid transparent;	 border-bottom: 20px solid  #ED4E2A;
-    background-color: transparent;
-    position: relative;
-    top: -45px;
-    left: -5px;
-    z-index: 900;
-}
-
-.success, .success-1, .success-2{
+/* DERATISATION 1 */
+.success-deratisation-1 {
     background-color: #3CC051;
-    width: 24px; height: 24px; display: block;
-    font-size: 20px;
-    font-weight: bold;
-    text-align: center;
-    vertical-align: middle;
 }
-.success-3 {
-    width: 24px; height: 24px; display: block;
-    font-size: 20px;
-    font-weight: bold;
-    text-align: center;
-    vertical-align: middle;
-}
-
-.warning, .warning-1, .warning-2 {
+.warning-deratisation-1 {
     background-color: #FCB322;
-    width: 24px; height: 24px; display: block;
-    font-size: 20px;
-    font-weight: bold;
-    text-align: center;
-    vertical-align: middle;
 }
-
-.warning-3 {
-    width: 24px; height: 24px; display: block;
-    font-size: 20px;
-    font-weight: bold;
-    text-align: center;
-    vertical-align: middle;
-}
-
-.danger, .danger-1, .danger-2 {
+.danger-deratisation-1 {
     background-color: #ED4E2A;
-    width: 24px; height: 24px; display: block;
-    font-size: 20px;
-    font-weight: bold;
-    text-align: center;
-    vertical-align: middle;
 }
+/* DERATISATION 1 EOF*/
 
-.danger-3 {
-    width: 24px; height: 24px; display: block;
-    font-size: 20px;
-    font-weight: bold;
-    text-align: center;
-    vertical-align: middle;
+/* DERATISATION 2 */
+.success-deratisation-2 {
+    background-color: #3CC051;
 }
+.warning-deratisation-2 {
+    background-color: #FCB322;
+}
+.danger-deratisation-2 {
+    background-color: #ED4E2A;
+}
+/* DERATISATION 1 EOF*/
+
+/* DERATISATION 3 */
+.success-deratisation-3 {
+    background-color: #3CC051;
+}
+.warning-deratisation-3 {
+    background-color: #FCB322;
+}
+.danger-deratisation-3 {
+    background-color: #ED4E2A;
+}
+/* DERATISATION 3 EOF*/
+
+/* DISINFESTATION 1 */
+.success-disinfestation-1 {
+    background-color: #3CC051;
+}
+.warning-disinfestation-1 {
+    background-color: #FCB322;
+}
+.danger-disinfestation-1 {
+    background-color: #ED4E2A;
+}
+/* DISINFESTATION 1 EOF*/
+
+/* DISINFESTATION 2 */
+.success-disinfestation-2 {
+    background-color: #3CC051;
+}
+.warning-disinfestation-2 {
+    background-color: #FCB322;
+}
+.danger-disinfestation-2 {
+    background-color: #ED4E2A;
+}
+/* DISINFESTATION 2 EOF*/
+
+/* DISINFESTATION 3 */
+.success-disinfestation-3 {
+    background-color: #3CC051;
+}
+.warning-disinfestation-3 {
+    background-color: #FCB322;
+}
+.danger-disinfestation-3 {
+    background-color: #ED4E2A;
+}
+/* DISINFESTATION 3 EOF*/
 
 .qrcode-img{
     width: 250px;
