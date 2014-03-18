@@ -9,6 +9,7 @@ parameters:
     qrcode.upload_dir: '/qrcodes'
     locale: ru
     ajax.filter.namespace.point.service: "point.services"
+    api.v1.point.statistics.limit: "10"
 
 framework:
     #esi:             ~
@@ -36,6 +37,7 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    exception_controller: 'FOS\RestBundle\Controller\ExceptionController::showAction'
     globals:
         ajax_filter_namespace_point_service: %ajax.filter.namespace.point.service%
 
@@ -74,6 +76,7 @@ doctrine:
                 dql:
                     string_functions:
                         to_integer: ITDoors\CommonBundle\DQL\ToIntegerDQL
+                        ARRAY: ITDoors\CommonBundle\DQL\ArrayDQL
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -83,3 +86,23 @@ swiftmailer:
     password:  "%mailer_password%"
     spool:     { type: memory }
 
+sensio_framework_extra:
+    view:   { annotations: false }
+    router: { annotations: false }
+
+fos_rest:
+    allowed_methods_listener:  true
+    routing_loader:
+        default_format: json
+        include_format: false
+    view:
+        formats:
+            json: true
+        view_response_listener: force
+        failed_validation: HTTP_BAD_REQUEST
+    exception:
+        codes:
+            'Symfony\Component\Routing\Exception\ResourceNotFoundException': 404
+            'Doctrine\ORM\OptimisticLockException': HTTP_CONFLICT
+        messages:
+            'Symfony\Component\Routing\Exception\ResourceNotFoundException': true

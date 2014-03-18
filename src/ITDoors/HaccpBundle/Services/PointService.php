@@ -63,14 +63,14 @@ class PointService
     /**
      * Returns formatted point data for list
      *
-     * @param int $planId
+     * @param int $pointId
      *
      * @return mixed
      */
-    public function getPointShow($planId)
+    public function getPointShow($pointId)
     {
         /** @var Query $pointQuery */
-        $pointQuery = $this->repository->getPointShowQuery(array($planId));
+        $pointQuery = $this->repository->getPointShowQuery(array($pointId));
 
         $pointShow = $pointQuery->getSingleResult();
 

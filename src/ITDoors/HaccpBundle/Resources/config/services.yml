@@ -23,6 +23,11 @@ parameters:
 
     it_doors_haccp.form.serviceFilterType.class: ITDoors\HaccpBundle\Form\ServiceFilterType
 
+#API V1 SERVICE CLASSES
+    it_doors_haccp.point.api.v1.service.class: ITDoors\HaccpBundle\Services\PointApiV1Service
+
+    it_doors_haccp.point.statistics.api.v1.service.class: ITDoors\HaccpBundle\Services\PointStatisticsApiV1Service
+
 services:
     it_doors_haccp.plan.repository:
         class: %it_doors_haccp.plan.repository.class%
@@ -117,3 +122,19 @@ services:
         arguments: [@service_container]
         tags:
             - { name: form.type, alias: serviceFilterType }
+
+
+#API SERVICES V1
+    it_doors_haccp.point.api.v1.service:
+        class: %it_doors_haccp.point.api.v1.service.class%
+        arguments: [ @it_doors_haccp.point.repository, @point.statistics.api.v1.service ]
+
+    point.api.v1.service:
+        alias: it_doors_haccp.point.api.v1.service
+
+    it_doors_haccp.point.statistics.api.v1.service:
+        class: %it_doors_haccp.point.statistics.api.v1.service.class%
+        arguments: [ @it_doors_haccp.point.statistics.repository, %api.v1.point.statistics.limit% ]
+
+    point.statistics.api.v1.service:
+        alias: it_doors_haccp.point.statistics.api.v1.service

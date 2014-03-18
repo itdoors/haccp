@@ -131,4 +131,35 @@ class PointRepository extends EntityRepository
     {
 
     }
+
+    /**
+     * Returns data for ApiV1Get
+     *
+     * @param int[] $ids
+     *
+     * @return mixed[]
+     */
+    public function ApiV1Get($ids)
+    {
+        $sql = $this->createQueryBuilder('p')
+            ->select('p.id as id')
+            ->addSelect('p.name as number')
+            ->addSelect('PointGroup.id as groupId')
+            ->addSelect('PointGroup.name as groupName')
+            ->addSelect('Plan.id as planId')
+            ->addSelect('Plan.name as planName')
+            ->addSelect('Contour.name as contourName')
+            ->addSelect('Contour.id as contourId')
+            ->addSelect('p.installationDate as installationDate')
+            ->leftJoin('p.Group', 'PointGroup')
+            ->leftJoin('p.Plan', 'Plan')
+            ->leftJoin('p.Contour', 'Contour');
+
+        $sql->where('p.id in (:ids)')
+            ->setParameter(':ids', $ids);
+
+        return $sql
+            ->getQuery()
+            ->getResult();
+    }
 }

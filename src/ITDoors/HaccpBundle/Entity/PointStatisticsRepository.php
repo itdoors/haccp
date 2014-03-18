@@ -3,6 +3,7 @@
 namespace ITDoors\HaccpBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Query;
 
 /**
  * PointStatisticsRepository
@@ -16,12 +17,13 @@ class PointStatisticsRepository extends EntityRepository
      * Returns point statistics depending on start & end date
      *
      * @param int[] $ids
+     * @param int $limit
      * @param \DateTime $startDate
      * @param \DateTime $endDate
      *
-     * @return mixed[]
+     * @return Query
      */
-    public function getStatisticsQuery($ids, $startDate, $endDate)
+    public function getStatisticsQuery($ids, $limit = 10, $startDate = null, $endDate = null)
     {
         return $this->createQueryBuilder('ps')
             ->select('ps.id as id')
@@ -44,8 +46,23 @@ class PointStatisticsRepository extends EntityRepository
             ->leftJoin('ps.Characteristic', 'Characteristic')
             ->where('ps.pointId in (:pointIds)')
             ->orderBy('ps.id', 'DESC')
-            ->setMaxResults(10)
+            ->setMaxResults($limit)
             ->setParameter(':pointIds', $ids)
             ->getQuery();
+    }
+
+    /**
+     * Return last statistics
+     *
+     * @param int $pointId
+     * @param int $limit
+     *
+     * @return mixed[]
+     */
+    public function getLastStatistics($pointId, $limit)
+    {
+        $query = $this->getStatisticsQuery(array($pointId), $limit);
+
+        return $query->getResult();
     }
 }

@@ -1,0 +1,5 @@
+it_doors_rest_point:
+    type: rest
+    prefix: /v1
+    resource: ITDoors\RestBundle\Controller\PointController
+    name_prefix:  api_v1_

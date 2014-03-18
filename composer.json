@@ -31,7 +31,9 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "aferrandini/phpqrcode": "1.0.1",
         "itdoors/ajaxbundle": "dev-master",
-        "itdoors/commonbundle": "dev-master"
+        "itdoors/commonbundle": "dev-master",
+        "friendsofsymfony/rest-bundle": "1.3.*",
+        "jms/serializer-bundle": "0.12.*"
     },
     "scripts": {
         "post-install-cmd": [

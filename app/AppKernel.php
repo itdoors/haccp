@@ -20,6 +20,9 @@ class AppKernel extends Kernel
             new ITDoors\DashboardBundle\ITDoorsDashboardBundle(),
             new ITDoors\AjaxBundle\ITDoorsAjaxBundle(),
             new ITDoors\CommonBundle\ITDoorsCommonBundle(),
+            new JMS\SerializerBundle\JMSSerializerBundle(),
+            new FOS\RestBundle\FOSRestBundle(),
+            new ITDoors\RestBundle\ITDoorsRestBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
