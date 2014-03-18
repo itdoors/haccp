@@ -33,7 +33,8 @@
         "itdoors/ajaxbundle": "dev-master",
         "itdoors/commonbundle": "dev-master",
         "friendsofsymfony/rest-bundle": "1.3.*",
-        "jms/serializer-bundle": "0.12.*"
+        "jms/serializer-bundle": "0.12.*",
+        "nelmio/api-doc-bundle": "2.5.1"
     },
     "scripts": {
         "post-install-cmd": [

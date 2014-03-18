@@ -2,12 +2,10 @@
 
 namespace ITDoors\RestBundle\Controller;
 use FOS\RestBundle\Controller\FOSRestController;
-use FOS\RestBundle\Request\ParamFetcher;
-use ITDoors\HaccpBundle\Services\PointApiService;
 use FOS\RestBundle\Controller\Annotations as Rest;
-use FOS\RestBundle\Controller\Annotations\QueryParam;
 use ITDoors\HaccpBundle\Services\PointApiV1Service;
-use ITDoors\HaccpBundle\Services\PointService;
+
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 
 /**
  * REST API Point Controller class
@@ -19,6 +17,20 @@ class PointController extends FOSRestController
 {
     /**
      * @Rest\Get("/point/{ids}")
+     *
+     *
+     * @ApiDoc(
+     *  description="Returns a collection of Points",
+     *  requirements={
+     *      {
+     *          "name"="ids",
+     *          "dataType"="string",
+     *          "requirement"="(?:\d,)+\d",
+     *          "description"="Point Ids (comma separated)"
+     *      }
+     *  },
+     *  output="ITDoors\RestBundle\Output\Point"
+     * )
      */
     public function getPointAction($ids)
     {

@@ -106,3 +106,6 @@ fos_rest:
             'Doctrine\ORM\OptimisticLockException': HTTP_CONFLICT
         messages:
             'Symfony\Component\Routing\Exception\ResourceNotFoundException': true
+
+# NelmioApiDocBundle Configuration
+nelmio_api_doc: ~
