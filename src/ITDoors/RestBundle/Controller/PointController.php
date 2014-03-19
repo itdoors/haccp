@@ -29,7 +29,10 @@ class PointController extends FOSRestController
      *          "description"="Point Ids (comma separated)"
      *      }
      *  },
-     *  output="ITDoors\RestBundle\Output\Point"
+     *  output={
+     *      "class"="ArrayCollection<ITDoors\HaccpBundle\Entity\Point>",
+     *      "groups"={"api"}
+     *  }
      * )
      */
     public function getPointAction($ids)

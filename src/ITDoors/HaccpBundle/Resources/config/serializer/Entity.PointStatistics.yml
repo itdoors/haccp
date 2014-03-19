@@ -1,0 +1,24 @@
+ITDoors\HaccpBundle\Entity\PointStatistics:
+    exclusion_policy: ALL
+    properties:
+        id:
+            type: integer
+            exclude: true
+            groups: [api]
+            since_version: 1.0
+            until_version: 1.0
+        value:
+            type: string
+            exclude: true
+            groups: [api]
+            since_version: 1.0
+            until_version: 1.0
+        entryDate:
+            type: datetime
+            exclude: true
+            groups: [api]
+            serialized_name: entryDate
+        Characteristic:
+            exclude: true
+            groups: [api]
+            serialized_name: characteristic

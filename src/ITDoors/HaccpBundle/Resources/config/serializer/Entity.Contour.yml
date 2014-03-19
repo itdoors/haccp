@@ -1,0 +1,15 @@
+ITDoors\HaccpBundle\Entity\Contour:
+    exclusion_policy: ALL
+    properties:
+        id:
+            type: integer
+            exclude: true
+            groups: [api]
+            since_version: 1.0
+            until_version: 1.0
+        name:
+            type: string
+            exclude: true
+            groups: [api]
+            since_version: 1.0
+            until_version: 1.0

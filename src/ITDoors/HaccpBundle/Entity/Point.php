@@ -332,4 +332,49 @@ class Point
     {
         return $this->installationDate;
     }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $Statistics;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->Statistics = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add Statistics
+     *
+     * @param \ITDoors\HaccpBundle\Entity\PointStatistics $statistics
+     * @return Point
+     */
+    public function addStatistic(\ITDoors\HaccpBundle\Entity\PointStatistics $statistics)
+    {
+        $this->Statistics[] = $statistics;
+
+        return $this;
+    }
+
+    /**
+     * Remove Statistics
+     *
+     * @param \ITDoors\HaccpBundle\Entity\PointStatistics $statistics
+     */
+    public function removeStatistic(\ITDoors\HaccpBundle\Entity\PointStatistics $statistics)
+    {
+        $this->Statistics->removeElement($statistics);
+    }
+
+    /**
+     * Get Statistics
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getStatistics()
+    {
+        return $this->Statistics;
+    }
 }

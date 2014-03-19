@@ -1,0 +1,39 @@
+ITDoors\HaccpBundle\Entity\Point:
+    exclusion_policy: ALL
+    custom_accessor_order: [id, name, installationDate, Plan, Group, Contour, Statistics]
+    properties:
+        id:
+            type: integer
+            exclude: true
+            groups: [api]
+            since_version: 1.0
+            until_version: 1.0
+        name:
+            type: string
+            exclude: true
+            groups: [api]
+            since_version: 1.0
+            until_version: 1.0
+            serialized_name: number
+        installationDate:
+            type: datetime
+            exclude: true
+            groups: [api]
+            serialized_name: installationDate
+        Plan:
+            exclude: true
+            groups: [api]
+            serialized_name: plan
+            max_depth: 3
+        Contour:
+            exclude: true
+            groups: [api]
+            serialized_name: contour
+        Group:
+            exclude: true
+            groups: [api]
+            serialized_name: group
+        Statistics:
+            exclude: true
+            groups: [api]
+            serialized_name: statistics

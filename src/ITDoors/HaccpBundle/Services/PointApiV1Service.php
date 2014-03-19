@@ -70,7 +70,7 @@ class PointApiV1Service
             );
 
 
-            foreach ($statistics as $key => &$value)
+            foreach ($statistics as &$value)
             {
                 $value['characteristic'] = array();
 

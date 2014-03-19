@@ -53,3 +53,7 @@ ITDoors\HaccpBundle\Entity\Point:
       joinColumn:
         name: point_group_id
         referencedColumnName: id
+  oneToMany:
+    Statistics:
+      targetEntity: PointStatistics
+      mappedBy: Point

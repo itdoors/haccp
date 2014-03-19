@@ -1,0 +1,35 @@
+ITDoors\HaccpBundle\Entity\PointGroupCharacteristic:
+    exclusion_policy: ALL
+    properties:
+        id:
+            type: integer
+            exclude: true
+            groups: [api]
+            since_version: 1.0
+            until_version: 1.0
+        name:
+            type: string
+            exclude: true
+            groups: [api]
+            since_version: 1.0
+            until_version: 1.0
+        unit:
+            type: string
+            exclude: true
+            groups: [api]
+            since_version: 1.0
+            until_version: 1.0
+        criticalValueBottom:
+            type: string
+            exclude: true
+            groups: [api]
+            since_version: 1.0
+            until_version: 1.0
+            serialized_name: criticalValueBottom
+        criticalValueTop:
+            type: string
+            exclude: true
+            groups: [api]
+            since_version: 1.0
+            until_version: 1.0
+            serialized_name: criticalValueTop
