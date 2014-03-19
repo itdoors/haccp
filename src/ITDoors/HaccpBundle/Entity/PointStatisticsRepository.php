@@ -34,9 +34,9 @@ class PointStatisticsRepository extends EntityRepository
             ->addSelect('Characteristic.unit as characteristicUnit')
             ->addSelect('Characteristic.criticalValueTop as criticalValueTop')
             ->addSelect('Characteristic.criticalValueBottom as criticalValueBottom')
-            ->addSelect('Characteristic.criticalColorTop as criticalColorTop')
+            /*->addSelect('Characteristic.criticalColorTop as criticalColorTop')
             ->addSelect('Characteristic.criticalColorMiddle as criticalColorMiddle')
-            ->addSelect('Characteristic.criticalColorBottom as criticalColorBottom')
+            ->addSelect('Characteristic.criticalColorBottom as criticalColorBottom')*/
             /*->addSelect('
             CASE
                 WHEN (ps.value > Characteristic.criticalValueTop) THEN Characteristic.criticalColorTop
