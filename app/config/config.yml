@@ -107,5 +107,12 @@ fos_rest:
         messages:
             'Symfony\Component\Routing\Exception\ResourceNotFoundException': true
 
+# JMSSerializerBundle Configuration
+jms_serializer:
+    handlers:
+        datetime:
+            default_format: "U" # ISO8601
+            default_timezone: "UTC"
+
 # NelmioApiDocBundle Configuration
 nelmio_api_doc: ~
