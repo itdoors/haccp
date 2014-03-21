@@ -150,3 +150,46 @@
         });
     </script>
 {% endif %}
+{% if plan.type == 'tails' %}
+    <script>
+        $(document).ready(function(){
+            var windowWidth = $('#map').width();
+
+            var srcWidth = '{{  plan.imageWidth }}';
+            var srcHeight = '{{  plan.imageHeight }}';
+
+            var scale = Math.ceil(srcWidth / windowWidth);
+
+            console.log(scale);
+
+            var map = L.map('map', {
+                maxZoom: 4,
+                minZoom: 1
+            }).setView([0, 0], 1);
+
+            /*var southWest = map.unproject([0, 4096], map.getMaxZoom());
+            var northEast = map.unproject([4096, 0], map.getMaxZoom());*/
+            //map.setMaxBounds(new L.LatLngBounds(southWest, northEast));
+
+            // add an OpenStreetMap tile layer
+            L.tileLayer('http://haccp.pp/plans/1/1/' + {{ plan.id }} + '/tails/{z}/{x}/{y}.png', {
+                attribution: '',
+                tms: true,
+                noWrap: true,
+                continuousWorld: true
+            }).addTo(map);
+
+            var popup = L.popup();
+
+            function onMapClick(e) {
+
+                popup
+                    .setLatLng(e.latlng)
+                    .setContent("Координаты точки " + Math.round(e.latlng.lat) + ' ' + Math.round(e.latlng.lng))
+                    .openOn(map);
+            }
+
+            map.on('click', onMapClick);
+        });
+    </script>
+{% endif %}

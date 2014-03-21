@@ -377,4 +377,32 @@ class Plan
     {
         return $this->parentId;
     }
+    /**
+     * @var integer
+     */
+    private $maxZoom;
+
+
+    /**
+     * Set maxZoom
+     *
+     * @param integer $maxZoom
+     * @return Plan
+     */
+    public function setMaxZoom($maxZoom)
+    {
+        $this->maxZoom = $maxZoom;
+
+        return $this;
+    }
+
+    /**
+     * Get maxZoom
+     *
+     * @return integer 
+     */
+    public function getMaxZoom()
+    {
+        return $this->maxZoom;
+    }
 }

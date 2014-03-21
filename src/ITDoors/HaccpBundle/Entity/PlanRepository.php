@@ -31,6 +31,7 @@ class PlanRepository extends EntityRepository
             ->addSelect('p.type as type')
             ->addSelect('p.latitude as latitude')
             ->addSelect('p.longitude as longitude')
+            ->addSelect('p.maxZoom as maxZoom')
             ->addSelect('parent.id as parentId')
             ->addSelect('parent.name as parentName')
             ->addSelect('companyObject.companyId as companyId')

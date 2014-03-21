@@ -43,6 +43,10 @@ ITDoors\HaccpBundle\Entity\Plan:
       type: integer
       nullable: true
       column: parent_id
+    maxZoom:
+      type: integer
+      nullable: true
+      column: max_zoom
   oneToMany:
     children:
       targetEntity: Plan
