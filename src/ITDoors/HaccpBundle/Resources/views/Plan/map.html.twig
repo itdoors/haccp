@@ -172,7 +172,7 @@
             //map.setMaxBounds(new L.LatLngBounds(southWest, northEast));
 
             // add an OpenStreetMap tile layer
-            L.tileLayer('http://haccp.pp/plans/1/1/' + {{ plan.id }} + '/tails/{z}/{x}/{y}.png', {
+            L.tileLayer('/plans/1/1/' + {{ plan.id }} + '/tails/{z}/{x}/{y}.png', {
                 attribution: '',
                 tms: true,
                 noWrap: true,
