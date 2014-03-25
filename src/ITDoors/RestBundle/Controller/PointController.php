@@ -5,6 +5,7 @@ use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use ITDoors\HaccpBundle\Services\PointApiV1Service;
 
+use ITDoors\HaccpBundle\Services\PointStatisticsApiV1Service;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 
 /**
@@ -41,6 +42,51 @@ class PointController extends FOSRestController
         $ps = $this->container->get('point.api.v1.service');
 
         $data = $ps->get($ids);
+        $view = $this->view($data, 200);
+
+        return $this->handleView($view);
+    }
+
+    /**
+     * @Rest\Get("/point/{id}/statistics/{startDate}/{endDate}")
+     *
+     * @ApiDoc(
+     *  description="Returns a collection of PointStatistics",
+     *  requirements={
+     *      {
+     *          "name"="id",
+     *          "dataType"="integer",
+     *          "requirement"="+\d",
+     *          "description"="Point Id"
+     *      },
+     *      {
+     *          "name"="startDate",
+     *          "dataType"="integer",
+     *          "requirement"="+\d",
+     *          "description"="Start date in unix timestamp"
+     *      },
+     *      {
+     *          "name"="endDate",
+     *          "dataType"="integer",
+     *          "requirement"="+\d",
+     *          "description"="End date in unix timestamp"
+     *      }
+     *  },
+     *  output={
+     *      "class"="ArrayCollection<ITDoors\HaccpBundle\Entity\PointStatistics>",
+     *      "groups"={"api"}
+     *  }
+     * )
+     */
+    public function getPointStatisticsAction($id, $startDate, $endDate)
+    {
+        $startDateU = new \DateTime();
+        $endDateU = new \DateTime();
+
+        /** @var PointStatisticsApiV1Service $pss*/
+        $pss = $this->container->get('point.statistics.api.v1.service');
+
+        $data = $pss->getRangeStatistics($id, $startDateU->setTimestamp($startDate), $endDateU->setTimestamp($endDate));
         $view = $this->view($data, 200);
 
         return $this->handleView($view);

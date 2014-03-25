@@ -25,7 +25,7 @@ class PointStatisticsRepository extends EntityRepository
      */
     public function getStatisticsQuery($ids, $limit = 10, $startDate = null, $endDate = null)
     {
-        return $this->createQueryBuilder('ps')
+        $sql = $this->createQueryBuilder('ps')
             ->select('ps.id as id')
             ->addSelect('ps.value as value')
             ->addSelect('ps.entryDate as entryDate')
@@ -34,21 +34,29 @@ class PointStatisticsRepository extends EntityRepository
             ->addSelect('Characteristic.unit as characteristicUnit')
             ->addSelect('Characteristic.criticalValueTop as criticalValueTop')
             ->addSelect('Characteristic.criticalValueBottom as criticalValueBottom')
-            /*->addSelect('Characteristic.criticalColorTop as criticalColorTop')
-            ->addSelect('Characteristic.criticalColorMiddle as criticalColorMiddle')
-            ->addSelect('Characteristic.criticalColorBottom as criticalColorBottom')*/
-            /*->addSelect('
-            CASE
-                WHEN (ps.value > Characteristic.criticalValueTop) THEN Characteristic.criticalColorTop
-                WHEN (ps.value > Characteristic.criticalValueBottom) THEN Characteristic.criticalColorMiddle
-                ELSE Characteristic.criticalColorBottom
-            END as pointColor')*/
-            ->leftJoin('ps.Characteristic', 'Characteristic')
-            ->where('ps.pointId in (:pointIds)')
-            ->orderBy('ps.id', 'DESC')
-            ->setMaxResults($limit)
+            ->leftJoin('ps.Characteristic', 'Characteristic');
+
+        if ($limit)
+        {
+            $sql
+                ->setMaxResults($limit);
+        }
+
+        if ($startDate && $endDate)
+        {
+            $sql
+                ->andWhere('ps.entryDate >= :startDate')
+                ->andWhere('ps.entryDate <= :endDate')
+                ->setParameter(':startDate', $startDate)
+                ->setParameter(':endDate', $endDate);
+        }
+
+        $sql
+            ->andWhere('ps.pointId in (:pointIds)')
             ->setParameter(':pointIds', $ids)
-            ->getQuery();
+            ->orderBy('ps.id', 'DESC');
+
+        return $sql->getQuery();
     }
 
     /**
@@ -62,6 +70,22 @@ class PointStatisticsRepository extends EntityRepository
     public function getLastStatistics($pointId, $limit)
     {
         $query = $this->getStatisticsQuery(array($pointId), $limit);
+
+        return $query->getResult();
+    }
+
+    /**
+     * Returns statistics by range
+     *
+     * @param int $pointId
+     * @param \DateTime $startDate
+     * @param \DateTime $endDate
+     *
+     * @return mixed[]
+     */
+    public function getRangeStatistics($pointId, \DateTime $startDate, \DateTime $endDate)
+    {
+        $query = $this->getStatisticsQuery(array($pointId), null, $startDate, $endDate);
 
         return $query->getResult();
     }

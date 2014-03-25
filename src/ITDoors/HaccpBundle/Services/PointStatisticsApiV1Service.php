@@ -40,4 +40,20 @@ class PointStatisticsApiV1Service
 
         return $statistics;
     }
+
+    /**
+     * Returns statistics by range
+     *
+     * @param int $pointId
+     * @param \DateTime $startDate
+     * @param \DateTime $endDate
+     *
+     * @return mixed[]
+     */
+    public function getRangeStatistics($pointId, \DateTime $startDate, \DateTime $endDate)
+    {
+        $statistics = $this->repository->getRangeStatistics($pointId, $startDate, $endDate);
+
+        return $statistics;
+    }
 }
