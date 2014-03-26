@@ -405,4 +405,12 @@ class Plan
     {
         return $this->maxZoom;
     }
+
+    /**
+     * __toString()
+     */
+    public function __toString()
+    {
+        return $this->getName();
+    }
 }

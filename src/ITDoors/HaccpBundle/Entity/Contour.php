@@ -164,4 +164,12 @@ class Contour
     {
         return $this->slug;
     }
+
+    /**
+     * __toString()
+     */
+    public function __toString()
+    {
+        return $this->getName();
+    }
 }

@@ -89,6 +89,7 @@
             {% for point in points  %}
 
             var myIcon = L.divIcon({
+                className: 'icon-bait-station',
                 html: HACCP.getPointHtml({
                     classNameStatistics: '{{ point.classNameStatistics }}',
                     value: '{{ point.pointAVG }}',

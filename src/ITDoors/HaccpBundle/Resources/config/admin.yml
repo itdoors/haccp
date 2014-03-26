@@ -1,0 +1,40 @@
+#Sonata ADMIN
+parameters:
+    it_doors_haccp.point.admin.class: ITDoors\HaccpBundle\Admin\PointAdmin
+    it_doors_haccp.plan.admin.class: ITDoors\HaccpBundle\Admin\PlanAdmin
+    it_doors_haccp.point.group.admin.class: ITDoors\HaccpBundle\Admin\PointGroupAdmin
+
+#Sonata ADMIN
+services:
+    sonata.admin.point:
+        class: %it_doors_haccp.point.admin.class%
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "HACCP", label: "Point" }
+        arguments:
+            - ~
+            - ITDoors\HaccpBundle\Entity\Point
+            - ~
+        calls:
+            - [ setTranslationDomain, [ITDoorsHaccpBundle]]
+
+    sonata.admin.plan:
+        class: %it_doors_haccp.plan.admin.class%
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "HACCP", label: "Plan" }
+        arguments:
+            - ~
+            - ITDoors\HaccpBundle\Entity\Plan
+            - ~
+        calls:
+            - [ setTranslationDomain, [ITDoorsHaccpBundle]]
+
+    sonata.admin.point.group:
+        class: %it_doors_haccp.point.group.admin.class%
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "HACCP", label: "Point Group" }
+        arguments:
+            - ~
+            - ITDoors\HaccpBundle\Entity\PointGroup
+            - ~
+        calls:
+            - [ setTranslationDomain, [ITDoorsHaccpBundle]]

@@ -95,10 +95,13 @@ var HACCP = (function() {
     HACCP.prototype.getPointHtml = function(options)
     {
         var point =
-            '<a class="point ' + options.classNameStatistics + '-' + options.contourSlug + ' ' +
+            '<a class="label ' + options.classNameStatistics + '-' + options.contourSlug + ' ' +
                 ' " href="#">' +
-                '<div style="z-index: 901; position: relative;">' + options.name  + '</div>' +
+                '<i class="fa fa-inbox"></i>' +
+                '' + options.name  + '' +
             '</a>';
+
+        //<a class="label label-warning" href=""><i class="fa fa-inbox"></i>1</a>
 
         return point;
     }
