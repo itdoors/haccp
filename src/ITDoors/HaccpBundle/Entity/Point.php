@@ -377,4 +377,12 @@ class Point
     {
         return $this->Statistics;
     }
+
+    /**
+     * __toString()
+     */
+    public function __toString()
+    {
+        return $this->getName() . ' ' . $this->getGroup() . ' ' . $this->getContour();
+    }
 }

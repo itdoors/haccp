@@ -360,4 +360,12 @@ class PointGroupCharacteristic
     {
         return $this->criticalColorMiddle;
     }
+
+    /**
+     * __toString()
+     */
+    public function __toString()
+    {
+        return $this->getName();
+    }
 }

@@ -3,6 +3,9 @@ parameters:
     it_doors_haccp.point.admin.class: ITDoors\HaccpBundle\Admin\PointAdmin
     it_doors_haccp.plan.admin.class: ITDoors\HaccpBundle\Admin\PlanAdmin
     it_doors_haccp.point.group.admin.class: ITDoors\HaccpBundle\Admin\PointGroupAdmin
+    it_doors_haccp.contour.admin.class: ITDoors\HaccpBundle\Admin\ContourAdmin
+    it_doors_haccp.point.group.characteristic.admin.class: ITDoors\HaccpBundle\Admin\PointGroupCharacteristicAdmin
+    it_doors_haccp.point.statistics.admin.class: ITDoors\HaccpBundle\Admin\PointStatisticsAdmin
 
 #Sonata ADMIN
 services:
@@ -35,6 +38,39 @@ services:
         arguments:
             - ~
             - ITDoors\HaccpBundle\Entity\PointGroup
+            - ~
+        calls:
+            - [ setTranslationDomain, [ITDoorsHaccpBundle]]
+
+    sonata.admin.contour:
+        class: %it_doors_haccp.contour.admin.class%
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "HACCP", label: "Contour" }
+        arguments:
+            - ~
+            - ITDoors\HaccpBundle\Entity\Contour
+            - ~
+        calls:
+            - [ setTranslationDomain, [ITDoorsHaccpBundle]]
+
+    sonata.admin.point.group.characteristic:
+        class: %it_doors_haccp.point.group.characteristic.admin.class%
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "HACCP", label: "Characteristic" }
+        arguments:
+            - ~
+            - ITDoors\HaccpBundle\Entity\PointGroupCharacteristic
+            - ~
+        calls:
+            - [ setTranslationDomain, [ITDoorsHaccpBundle]]
+
+    sonata.admin.point.statistics:
+        class: %it_doors_haccp.point.statistics.admin.class%
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "HACCP", label: "Statistics" }
+        arguments:
+            - ~
+            - ITDoors\HaccpBundle\Entity\PointStatistics
             - ~
         calls:
             - [ setTranslationDomain, [ITDoorsHaccpBundle]]

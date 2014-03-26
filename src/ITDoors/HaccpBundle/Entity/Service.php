@@ -52,4 +52,12 @@ class Service
     {
         return $this->name;
     }
+
+    /**
+     * __toString()
+     */
+    public function __toString()
+    {
+        return $this->getName();
+    }
 }
