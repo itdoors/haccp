@@ -25,6 +25,7 @@ ITDoors\HaccpBundle\Entity\PointGroupCharacteristic:
             groups: [apiFull]
             since_version: 1.0
             until_version: 1.0
+            serialized_name: dataType
         criticalValueBottom:
             type: string
             exclude: true
