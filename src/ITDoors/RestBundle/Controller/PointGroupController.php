@@ -5,6 +5,7 @@ use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use ITDoors\HaccpBundle\Services\PointGroupApiV1Service;
 use JMS\Serializer\SerializationContext;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 
 /**
  * REST API PointGroup Controller class

@@ -6,6 +6,7 @@ use FOS\RestBundle\Controller\Annotations as Rest;
 use ITDoors\HaccpBundle\Services\PointApiV1Service;
 
 use ITDoors\HaccpBundle\Services\PointStatisticsApiV1Service;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
