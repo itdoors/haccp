@@ -1,13 +1,26 @@
 <?php
 
 namespace ITDoors\HaccpBundle\Services;
+use Doctrine\ORM\EntityManager;
+use ITDoors\HaccpBundle\Entity\Point;
+use ITDoors\HaccpBundle\Entity\PointGroupCharacteristicRepository;
+use ITDoors\HaccpBundle\Entity\PointRepository;
+use ITDoors\HaccpBundle\Entity\PointStatistics;
 use ITDoors\HaccpBundle\Entity\PointStatisticsRepository;
+use Symfony\Component\DependencyInjection\Container;
+use Symfony\Component\Form\Form;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * PointService Class
  */
 class PointStatisticsApiV1Service
 {
+    /**
+     * @var Container $container
+     */
+    protected $container;
+
     /**
      * @var PointStatisticsRepository $repository
      */
@@ -21,8 +34,9 @@ class PointStatisticsApiV1Service
     /**
      * __construct
      */
-    public function __construct(PointStatisticsRepository $repository, $baseStatisticsLimit)
+    public function __construct(Container $container, PointStatisticsRepository $repository, $baseStatisticsLimit)
     {
+        $this->container = $container;
         $this->repository = $repository;
         $this->baseStatisticsLimit = $baseStatisticsLimit;
     }
@@ -55,5 +69,58 @@ class PointStatisticsApiV1Service
         $statistics = $this->repository->getRangeStatistics($pointId, $startDate, $endDate);
 
         return $statistics;
+    }
+
+    /**
+     * Persists statistics info
+     *
+     * @param int $id
+     * @param Request $request
+     *
+     * @return mixed[]
+     */
+    public function postPointStatistics($id, Request $request)
+    {
+        /** @var EntityManager $em */
+        $em = $this->container->get('doctrine.orm.entity_manager');
+
+        /** @var Form $form */
+        $form = $this->container->get('form.factory')->create('pointStatisticsApiForm');
+
+        /** @var PointRepository $pr */
+        $pr = $this->container->get('point.repository');
+
+        /** @var PointGroupCharacteristicRepository $pgcr */
+        //$pgcr = $this->container->get('point.group.characteristic.repository');
+
+        /** @var Point $point */
+        $point = $pr->find($id);
+
+        $form->handleRequest($request);
+
+        /** @var PointStatistics $pointStatistics */
+        $pointStatistics = $form->getData();
+
+        // Request data TEMP
+        $dataRequest = $request->request->get($form->getName());
+        $createdAt = new \DateTime();
+        $createdAt->setTimestamp($dataRequest['createdAt']);
+        $entryDate = new \DateTime();
+        $entryDate->setTimestamp($dataRequest['entryDate']);
+
+        $pointStatistics->setCreatedAt($createdAt);
+        $pointStatistics->setEntryDate($entryDate);
+
+        //$characteristic = $pgcr->find($dataRequest['characteristics'])
+        // EOF Request data TEMP
+
+        $pointStatistics->setPoint($point);
+
+        $em->persist($pointStatistics);
+        $em->flush();
+
+        $em->refresh($pointStatistics);
+
+        return $pointStatistics;
     }
 }

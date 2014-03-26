@@ -3,6 +3,7 @@
 namespace ITDoors\HaccpBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Query;
 
 /**
  * PointGroupCharacteristicRepository
@@ -12,4 +13,19 @@ use Doctrine\ORM\EntityRepository;
  */
 class PointGroupCharacteristicRepository extends EntityRepository
 {
+    /**
+     * Returns Characteristics by GroupId
+     *
+     * @param int $groupId
+     *
+     * @return Query
+     */
+    public function getCharacteristicsQueryByGroupId($groupId)
+    {
+        return $this->createQueryBuilder('pgc')
+            ->select('pgc')
+            ->where('pgc.groupId = :groupId')
+            ->setParameter(':groupId', $groupId)
+            ->getQuery();
+    }
 }

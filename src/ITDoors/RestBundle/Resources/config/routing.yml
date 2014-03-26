@@ -1,5 +1,11 @@
 it_doors_rest_point:
     type: rest
-    prefix: /v1
+    prefix: /v1/point
     resource: ITDoors\RestBundle\Controller\PointController
+    name_prefix:  api_v1_
+
+it_doors_rest_point_group:
+    type: rest
+    prefix: /v1/point.group
+    resource: ITDoors\RestBundle\Controller\PointGroupController
     name_prefix:  api_v1_

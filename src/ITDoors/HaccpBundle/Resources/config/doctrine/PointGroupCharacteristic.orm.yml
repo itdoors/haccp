@@ -56,6 +56,9 @@ ITDoors\HaccpBundle\Entity\PointGroupCharacteristic:
       length: 20
       nullable: true
       column: critical_color_botton
+    groupId:
+      type: integer
+      column: point_group_id
   manyToOne:
     group:
       targetEntity: PointGroup

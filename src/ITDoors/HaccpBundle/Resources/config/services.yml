@@ -28,6 +28,10 @@ parameters:
 
     it_doors_haccp.point.statistics.api.v1.service.class: ITDoors\HaccpBundle\Services\PointStatisticsApiV1Service
 
+    it_doors_haccp.point.group.api.v1.service.class: ITDoors\HaccpBundle\Services\PointGroupApiV1Service
+
+    it_doors_haccp.form.pointStatisticsApiForm.class: ITDoors\HaccpBundle\Form\PointStatisticsApiForm
+
 services:
     it_doors_haccp.plan.repository:
         class: %it_doors_haccp.plan.repository.class%
@@ -134,7 +138,19 @@ services:
 
     it_doors_haccp.point.statistics.api.v1.service:
         class: %it_doors_haccp.point.statistics.api.v1.service.class%
-        arguments: [ @it_doors_haccp.point.statistics.repository, %api.v1.point.statistics.limit% ]
+        arguments: [ @service_container, @it_doors_haccp.point.statistics.repository, %api.v1.point.statistics.limit% ]
 
     point.statistics.api.v1.service:
         alias: it_doors_haccp.point.statistics.api.v1.service
+
+    it_doors_haccp.form.pointStatisticsApiType:
+        class: %it_doors_haccp.form.pointStatisticsApiForm.class%
+        tags:
+            - { name: form.type, alias: pointStatisticsApiForm }
+
+    it_doors_haccp.point.group.api.v1.service:
+        class: %it_doors_haccp.point.group.api.v1.service.class%
+        arguments: [ @service_container ]
+
+    point.group.api.v1.service:
+        alias: it_doors_haccp.point.group.api.v1.service

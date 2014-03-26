@@ -156,21 +156,10 @@
         $(document).ready(function(){
             var windowWidth = $('#map').width();
 
-            var srcWidth = '{{  plan.imageWidth }}';
-            var srcHeight = '{{  plan.imageHeight }}';
-
-            var scale = Math.ceil(srcWidth / windowWidth);
-
-            console.log(scale);
-
             var map = L.map('map', {
                 maxZoom: 4,
                 minZoom: 1
             }).setView([0, 0], 1);
-
-            /*var southWest = map.unproject([0, 4096], map.getMaxZoom());
-            var northEast = map.unproject([4096, 0], map.getMaxZoom());*/
-            //map.setMaxBounds(new L.LatLngBounds(southWest, northEast));
 
             // add an OpenStreetMap tile layer
             L.tileLayer('/plans/1/1/' + {{ plan.id }} + '/tails/{z}/{x}/{y}.png', {
@@ -179,6 +168,32 @@
                 noWrap: true,
                 continuousWorld: true
             }).addTo(map);
+
+            {% for point in points  %}
+
+            var myIcon = L.divIcon({
+                className: 'icon-bait-station',
+                html: HACCP.getPointHtml({
+                    classNameStatistics: '{{ point.classNameStatistics }}',
+                    value: '{{ point.pointAVG }}',
+                    name: '{{ point.name }}',
+                    contourSlug: '{{ point.contourSlug }}'
+                })
+            });
+
+            var pointLat = {{ point.imageLatitude }};
+            var pointLng = {{ point.imageLongitude }};
+
+            var marker = L.marker(new L.LatLng(pointLat , pointLng), {
+                icon: myIcon
+            });
+
+            marker.addTo(map);
+
+            marker.on('click', function(e){
+                HACCP.ajaxModal('Контрольная точка ' + '{{ point.name }}', '#ajax-modal', '{{ path('point_show_ajax', { id : point.id }) }}');
+            });
+            {% endfor %}
 
             var popup = L.popup();
 

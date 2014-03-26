@@ -158,7 +158,7 @@ class PointService
      */
     public function getStatisticsColor($statistics)
     {
-        if ($statistics['value'] > $statistics['criticalValueTop'])
+        /*if ($statistics['value'] > $statistics['criticalValueTop'])
         {
             return $statistics['criticalColorTop'];
         }
@@ -168,7 +168,9 @@ class PointService
             return $statistics['criticalColorMiddle'];
         }
 
-        return $statistics['criticalColorBottom'];
+        return $statistics['criticalColorBottom'];*/
+
+        return '';
     }
 
     /**

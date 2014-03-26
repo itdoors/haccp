@@ -6,7 +6,7 @@ use FOS\RestBundle\Controller\Annotations as Rest;
 use ITDoors\HaccpBundle\Services\PointApiV1Service;
 
 use ITDoors\HaccpBundle\Services\PointStatisticsApiV1Service;
-use Nelmio\ApiDocBundle\Annotation\ApiDoc;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * REST API Point Controller class
@@ -17,7 +17,7 @@ use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 class PointController extends FOSRestController
 {
     /**
-     * @Rest\Get("/point/{ids}")
+     * @Rest\Get("/{ids}")
      *
      *
      * @ApiDoc(
@@ -48,7 +48,7 @@ class PointController extends FOSRestController
     }
 
     /**
-     * @Rest\Get("/point/{id}/statistics/{startDate}/{endDate}")
+     * @Rest\Get("/{id}/statistics/{startDate}/{endDate}")
      *
      * @ApiDoc(
      *  description="Returns a collection of PointStatistics",
@@ -88,6 +88,39 @@ class PointController extends FOSRestController
 
         $data = $pss->getRangeStatistics($id, $startDateU->setTimestamp($startDate), $endDateU->setTimestamp($endDate));
         $view = $this->view($data, 200);
+
+        return $this->handleView($view);
+    }
+
+    /**
+     *
+     * @Rest\Post("/{id}/statistics")
+     *
+     * @ApiDoc(
+     *  description="Returns PointStatistic",
+     *  requirements={
+     *      {
+     *          "name"="id",
+     *          "dataType"="integer",
+     *          "requirement"="+\d",
+     *          "description"="Point Id"
+     *      }
+     * },
+     * input="ITDoors\HaccpBundle\Form\PointStatisticsApiForm",
+     * output={
+     *      "class"="ITDoors\HaccpBundle\Entity\PointStatistics",
+     *      "groups"={"api"}
+     *  }
+     * )
+     */
+    public function postPointStatisticsAction($id, Request $request)
+    {
+        /** @var PointStatisticsApiV1Service $pss*/
+        $pss = $this->container->get('point.statistics.api.v1.service');
+
+        $data = $pss->postPointStatistics($id, $request);
+
+        $view = $this->view($data, 201);
 
         return $this->handleView($view);
     }

@@ -368,4 +368,32 @@ class PointGroupCharacteristic
     {
         return $this->getName();
     }
+    /**
+     * @var integer
+     */
+    private $groupId;
+
+
+    /**
+     * Set groupId
+     *
+     * @param integer $groupId
+     * @return PointGroupCharacteristic
+     */
+    public function setGroupId($groupId)
+    {
+        $this->groupId = $groupId;
+
+        return $this;
+    }
+
+    /**
+     * Get groupId
+     *
+     * @return integer 
+     */
+    public function getGroupId()
+    {
+        return $this->groupId;
+    }
 }

@@ -4,32 +4,46 @@ ITDoors\HaccpBundle\Entity\PointGroupCharacteristic:
         id:
             type: integer
             exclude: true
-            groups: [api]
+            groups: [api, apiFull]
             since_version: 1.0
             until_version: 1.0
         name:
             type: string
             exclude: true
-            groups: [api]
+            groups: [api, apiFull]
             since_version: 1.0
             until_version: 1.0
         unit:
             type: string
             exclude: true
-            groups: [api]
+            groups: [api, apiFull]
             since_version: 1.0
             until_version: 1.0
         criticalValueBottom:
             type: string
             exclude: true
-            groups: [api]
+            groups: [api, apiFull]
             since_version: 1.0
             until_version: 1.0
             serialized_name: criticalValueBottom
         criticalValueTop:
             type: string
             exclude: true
-            groups: [api]
+            groups: [api, apiFull]
             since_version: 1.0
             until_version: 1.0
             serialized_name: criticalValueTop
+        allowValueMax:
+            type: string
+            exclude: true
+            groups: [apiFull]
+            since_version: 1.0
+            until_version: 1.0
+            serialized_name: allowValueMax
+        allowValueMin:
+            type: string
+            exclude: true
+            groups: [apiFull]
+            since_version: 1.0
+            until_version: 1.0
+            serialized_name: allowValueMin
