@@ -19,6 +19,12 @@ ITDoors\HaccpBundle\Entity\PointGroupCharacteristic:
             groups: [api, apiFull]
             since_version: 1.0
             until_version: 1.0
+        dataType:
+            type: string
+            exclude: true
+            groups: [apiFull]
+            since_version: 1.0
+            until_version: 1.0
         criticalValueBottom:
             type: string
             exclude: true
