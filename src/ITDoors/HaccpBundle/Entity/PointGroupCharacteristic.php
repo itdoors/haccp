@@ -396,4 +396,32 @@ class PointGroupCharacteristic
     {
         return $this->groupId;
     }
+    /**
+     * @var string
+     */
+    private $widgetType;
+
+
+    /**
+     * Set widgetType
+     *
+     * @param string $widgetType
+     * @return PointGroupCharacteristic
+     */
+    public function setWidgetType($widgetType)
+    {
+        $this->widgetType = $widgetType;
+
+        return $this;
+    }
+
+    /**
+     * Get widgetType
+     *
+     * @return string 
+     */
+    public function getWidgetType()
+    {
+        return $this->widgetType;
+    }
 }

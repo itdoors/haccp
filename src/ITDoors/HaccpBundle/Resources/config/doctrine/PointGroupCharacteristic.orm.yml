@@ -21,6 +21,11 @@ ITDoors\HaccpBundle\Entity\PointGroupCharacteristic:
       type: string
       length: 20
       column: data_type
+    widgetType:
+      type: string
+      length: 20
+      nullable: true
+      column: widget_type
     allowValueMax:
       type: string
       length: 20

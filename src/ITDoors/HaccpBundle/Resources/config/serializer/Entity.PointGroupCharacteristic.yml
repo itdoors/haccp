@@ -26,6 +26,13 @@ ITDoors\HaccpBundle\Entity\PointGroupCharacteristic:
             since_version: 1.0
             until_version: 1.0
             serialized_name: dataType
+        widgetType:
+            type: string
+            exclude: true
+            groups: [apiFull]
+            since_version: 1.0
+            until_version: 1.0
+            serialized_name: widgetType
         criticalValueBottom:
             type: string
             exclude: true
