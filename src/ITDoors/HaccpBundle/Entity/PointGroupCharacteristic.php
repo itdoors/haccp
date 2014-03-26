@@ -396,32 +396,32 @@ class PointGroupCharacteristic
     {
         return $this->groupId;
     }
+
     /**
      * @var string
      */
-    private $widgetType;
-
+    private $inputType;
 
     /**
-     * Set widgetType
+     * Set inputType
      *
-     * @param string $widgetType
+     * @param string $inputType
      * @return PointGroupCharacteristic
      */
-    public function setWidgetType($widgetType)
+    public function setInputType($inputType)
     {
-        $this->widgetType = $widgetType;
+        $this->inputType = $inputType;
 
         return $this;
     }
 
     /**
-     * Get widgetType
+     * Get inputType
      *
      * @return string 
      */
-    public function getWidgetType()
+    public function getInputType()
     {
-        return $this->widgetType;
+        return $this->inputType;
     }
 }
