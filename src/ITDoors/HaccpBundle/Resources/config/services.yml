@@ -23,6 +23,8 @@ parameters:
 
     it_doors_haccp.form.serviceFilterType.class: ITDoors\HaccpBundle\Form\ServiceFilterType
 
+    it_doors_haccp.log.service.class: ITDoors\HaccpBundle\Services\LogService
+
 #API V1 SERVICE CLASSES
     it_doors_haccp.point.api.v1.service.class: ITDoors\HaccpBundle\Services\PointApiV1Service
 
@@ -154,3 +156,10 @@ services:
 
     point.group.api.v1.service:
         alias: it_doors_haccp.point.group.api.v1.service
+
+    it_doors_haccp.log.service:
+        class: %it_doors_haccp.log.service.class%
+        arguments: [ @service_container ]
+
+    log.service:
+        alias: it_doors_haccp.log.service

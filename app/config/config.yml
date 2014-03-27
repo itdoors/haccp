@@ -11,6 +11,7 @@ parameters:
     locale: ru
     ajax.filter.namespace.point.service: "point.services"
     api.v1.point.statistics.limit: "10"
+    log.file.path: "%project.dir%/log.txt"
 
 framework:
     #esi:             ~
