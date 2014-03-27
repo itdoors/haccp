@@ -181,8 +181,8 @@
                 })
             });
 
-            var pointLat = {% if point.imageLatitude %}{{ point.imageLatitude }}{% else %}0{% endif %};
-            var pointLng = {% if point.imageLongitude %}{{ point.imageLongitude }}{% else %}0{% endif %};
+            var pointLat = {% if point.imageLatitude is not sameas(false) %}{{ point.imageLatitude }}{% else %}0{% endif %};
+            var pointLng = {% if point.imageLongitude is not sameas(false)  %}{{ point.imageLongitude }}{% else %}0{% endif %};
 
             var marker = L.marker(new L.LatLng(pointLat , pointLng), {
                 icon: myIcon
