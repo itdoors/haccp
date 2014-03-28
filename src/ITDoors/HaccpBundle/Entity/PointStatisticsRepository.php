@@ -20,10 +20,11 @@ class PointStatisticsRepository extends EntityRepository
      * @param int $limit
      * @param \DateTime $startDate
      * @param \DateTime $endDate
+     * @param int[] $statisticsIds
      *
      * @return Query
      */
-    public function getStatisticsQuery($ids, $limit = 10, $startDate = null, $endDate = null)
+    public function getStatisticsQuery($ids, $limit = 10, $startDate = null, $endDate = null, $statisticsIds = array())
     {
         $sql = $this->createQueryBuilder('ps')
             ->select('ps.id as id')
@@ -51,6 +52,13 @@ class PointStatisticsRepository extends EntityRepository
                 ->setParameter(':endDate', $endDate);
         }
 
+        if (sizeof($statisticsIds))
+        {
+            $sql
+                ->andWhere('ps.id in (:statisticsIds)')
+                ->setParameter(':statisticsIds', $statisticsIds);
+        }
+
         $sql
             ->andWhere('ps.pointId in (:pointIds)')
             ->setParameter(':pointIds', $ids)
@@ -75,17 +83,33 @@ class PointStatisticsRepository extends EntityRepository
     }
 
     /**
+     * Returns statistics Query by range
+     *
+     * @param int $pointId
+     * @param \DateTime $startDate
+     * @param \DateTime $endDate
+     * @param int[] $statisticsIds
+     *
+     * @return Query
+     */
+    public function getRangeStatisticsQuery($pointId, $startDate, $endDate, $statisticsIds = array())
+    {
+        return $this->getStatisticsQuery(array($pointId), null, $startDate, $endDate, $statisticsIds);
+    }
+
+    /**
      * Returns statistics by range
      *
      * @param int $pointId
      * @param \DateTime $startDate
      * @param \DateTime $endDate
+     * @param int[] $statisticsIds
      *
      * @return mixed[]
      */
-    public function getRangeStatistics($pointId, \DateTime $startDate, \DateTime $endDate)
+    public function getRangeStatistics($pointId, \DateTime $startDate, \DateTime $endDate, $statisticsIds = array())
     {
-        $query = $this->getStatisticsQuery(array($pointId), null, $startDate, $endDate);
+        $query = $this->getRangeStatisticsQuery($pointId, $startDate, $endDate, $statisticsIds);
 
         return $query->getResult();
     }

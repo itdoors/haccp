@@ -68,7 +68,50 @@ class PointStatisticsApiV1Service
     {
         $statistics = $this->repository->getRangeStatistics($pointId, $startDate, $endDate);
 
+        $this->formatStatistics($statistics);
+
         return $statistics;
+    }
+
+    /**
+     * Format Statistics to api output
+     *
+     * @param mixed[] $statistics
+     *
+     * @return mixed[]
+     */
+    public function formatStatistics(&$statistics)
+    {
+        foreach ($statistics as &$value)
+        {
+            $this->formatStatisticsRecord($value);
+        }
+    }
+
+    /**
+     * Format Statistics to api output
+     *
+     * @param mixed[] $value
+     *
+     * @return mixed[]
+     */
+    public function formatStatisticsRecord(&$value)
+    {
+        $value['characteristic'] = array();
+
+        $value['characteristic']['id'] = $value['characteristicId'];
+        $value['characteristic']['name'] = $value['characteristicName'];
+        $value['characteristic']['unit'] = $value['characteristicUnit'];
+        $value['characteristic']['criticalValueBottom'] = $value['criticalValueBottom'];
+        $value['characteristic']['criticalValueTop'] = $value['criticalValueTop'];
+
+        unset(
+            $value['characteristicId'],
+            $value['characteristicName'],
+            $value['characteristicUnit'],
+            $value['criticalValueBottom'],
+            $value['criticalValueTop']
+        );
     }
 
     /**
@@ -90,9 +133,6 @@ class PointStatisticsApiV1Service
         /** @var PointRepository $pr */
         $pr = $this->container->get('point.repository');
 
-        /** @var PointGroupCharacteristicRepository $pgcr */
-        //$pgcr = $this->container->get('point.group.characteristic.repository');
-
         /** @var Point $point */
         $point = $pr->find($id);
 
@@ -111,7 +151,6 @@ class PointStatisticsApiV1Service
         $pointStatistics->setCreatedAt($createdAt);
         $pointStatistics->setEntryDate($entryDate);
 
-        //$characteristic = $pgcr->find($dataRequest['characteristics'])
         // EOF Request data TEMP
 
         $pointStatistics->setPoint($point);
@@ -121,6 +160,15 @@ class PointStatisticsApiV1Service
 
         $em->refresh($pointStatistics);
 
-        return $pointStatistics;
+        /** @var PointStatisticsRepository $psr */
+        $psr = $this->container->get('point.statistics.repository');
+
+        $statisticsQuery = $psr->getRangeStatisticsQuery($point->getId(), null, null, array($pointStatistics->getId()));
+
+        $result = $statisticsQuery->getSingleResult();
+
+        $this->formatStatisticsRecord($result);
+
+        return $result;
     }
 }
