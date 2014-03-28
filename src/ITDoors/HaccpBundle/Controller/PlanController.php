@@ -43,11 +43,11 @@ class PlanController extends BaseFilterController
 
         $filters = $this->getFilters($filterNamespace);
 
-        $points = $pointService->getPointsList($planId, $filters);
+        $pointsByContours = $pointService->getPointsList($planId, $filters);
 
         return $this->render('ITDoorsHaccpBundle:Plan:map.html.twig', array(
             'plan' => $plan,
-            'points' => $points
+            'contours' => $pointsByContours
         ));
     }
 }

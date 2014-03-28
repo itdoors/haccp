@@ -5,6 +5,7 @@ use Doctrine\ORM\Query;
 use ITDoors\HaccpBundle\Entity\PointRepository;
 use ITDoors\HaccpBundle\Entity\PointStatisticsRepository;
 use Symfony\Component\DependencyInjection\Container;
+use Symfony\Component\Routing\Router;
 
 /**
  * PointService Class
@@ -57,7 +58,68 @@ class PointService
             $point['classNameStatistics'] = $classNameStatistics;
         }
 
-        return $pointList;
+        $this->formatPointsForView($pointList);
+
+        $result = $this->combinePointsByContours($pointList);
+
+        return $result;
+    }
+
+    /**
+     * Formats point coordinates for view depends on plan.type
+     *
+     * @param mixed[] $points
+     *
+     */
+    public function formatPointsForView(&$points)
+    {
+        /** @var Router $router*/
+        $router = $this->container->get('router');
+
+        foreach ($points as &$point)
+        {
+            $point['lat'] = $point['imageLatitude'];
+            $point['lng'] = $point['imageLongitude'];
+
+            $point['url'] = $router->generate('point_show_ajax', array('id' => $point['id']));
+
+            if ($point['planType'] == PlanService::PLAN_TYPE_MAP)
+            {
+                $point['lat'] = $point['mapLatitude'];
+                $point['lng'] = $point['mapLongitude'];
+            }
+
+            unset(
+                $point['imageLatitude'],
+                $point['imageLongitude'],
+                $point['mapLatitude'],
+                $point['mapLongitude']
+            );
+        }
+    }
+
+    /**
+     * Combines points by contours for js
+     *
+     * @param mixed[] $points
+     *
+     * @return mixed[]
+     */
+    public function combinePointsByContours($points)
+    {
+        $pointsByContours = array();
+
+        foreach ($points as $point)
+        {
+            if (!isset($pointsByContours[$point['contourSlug']]))
+            {
+                $pointsByContours[$point['contourSlug']] = array();
+            }
+
+            $pointsByContours[$point['contourSlug']][] = $point;
+        }
+
+        return $pointsByContours;
     }
 
     /**

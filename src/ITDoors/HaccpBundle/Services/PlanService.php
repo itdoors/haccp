@@ -12,6 +12,7 @@ class PlanService
 {
     const PLAN_TYPE_MAP = 'map';
     const PLAN_TYPE_IMAGE = 'image';
+    const PLAN_TYPE_TAILS = 'tails';
 
     /**
      * @var PlanRepository $repository

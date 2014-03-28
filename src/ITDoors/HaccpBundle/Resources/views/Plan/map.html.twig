@@ -1,5 +1,15 @@
 <div id="map"></div>
-{% if plan.type == 'map' %}
+<script type="text/javascript">
+    $(document).ready(function(){
+        var options = {
+            plan: {{ plan|json_encode|raw }},
+            contours: {{ contours|json_encode|raw }}
+        };
+
+        HACCPMAP.init(options);
+    });
+</script>
+{# {% if plan.type == 'map' %}
     <script>
         $(document).ready(function(){
             var map = L.map('map').setView(new L.LatLng({{ plan.latitude }},{{ plan.longitude }}), 17);
@@ -240,4 +250,4 @@
             map.on('click', onMapClick);
         });
     </script>
-{% endif %}
+{% endif %} #}

@@ -54,4 +54,23 @@ class ContourService
 
         return $result;
     }
+
+    /**
+     * Return contour slug choices
+     *
+     * @return mixed[]
+     */
+    public function getContourSlugChoices()
+    {
+        /** @var Contour[] $contours */
+        $contours = $this->repository->findAll();
+
+        $result = array();
+
+        foreach ($contours as $contour) {
+            $result[$contour->getSlug()] = $contour->getName();
+        }
+
+        return $result;
+    }
 }

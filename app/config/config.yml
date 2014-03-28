@@ -11,6 +11,7 @@ parameters:
     qrcode.upload_dir: '/qrcodes'
     locale: ru
     ajax.filter.namespace.point.service: "point.services"
+    ajax.filter.namespace.point.contour: "point.contour"
     api.v1.point.statistics.limit: "10"
     log.file.path: "%project.dir%/log.txt"
 
@@ -43,6 +44,7 @@ twig:
     exception_controller: 'FOS\RestBundle\Controller\ExceptionController::showAction'
     globals:
         ajax_filter_namespace_point_service: %ajax.filter.namespace.point.service%
+        ajax_filter_namespace_point_contour: %ajax.filter.namespace.point.contour%
         projectVersion: %project.version%
 
 # Assetic Configuration

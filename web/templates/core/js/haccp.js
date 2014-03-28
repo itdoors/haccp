@@ -14,14 +14,14 @@ var HACCP = (function() {
 
     function HACCP(){
         this.params = {};
-    };
+    }
 
     HACCP.prototype.init = function(options)
     {
         this.params = $.extend(defaults, options);
 
         this.params.loadingImgPath = this.params.assetsDir + 'templates/metronic/img/ajax-loading.gif';
-    }
+    };
 
     HACCP.prototype.ajaxModal = function(title, targetId, url)
     {
@@ -48,7 +48,7 @@ var HACCP = (function() {
         });
 
         target.modal();
-    }
+    };
 
     HACCP.prototype.getModalHeader = function(title)
     {
@@ -60,51 +60,7 @@ var HACCP = (function() {
         '<div class="modal-body" style="height: 500px;">LOADING...</div>';
 
         return header;
-    }
-
-    HACCP.prototype.getPopupHtml = function(options)
-    {
-        var content =
-            '<div class="btn-group">' +
-                '<button data-toggle="dropdown" type="button" class="btn default btn-sm dropdown-toggle">' +
-                '<i class="fa fa-building-o"></i> План 1 <i class="fa fa-angle-down"></i>' +
-                '<br>' +
-                    '<span class="badge badge-success"> 2 </span>' +
-                    '<span class="badge badge-warning"> 7 </span>' +
-                    '<span class="badge badge-important"> 2 </span>' +
-                '</button>' +
-                '<ul role="menu" class="dropdown-menu">';
-
-        for (key in options.plans)
-        {
-            var plan = options.plans[key];
-
-            content += '<li>' +
-                    '<a href="' + plan.url + '">' +
-                        plan.name +
-                    '</a>' +
-                '</li>';
-        }
-        content +=
-                '</ul>' +
-            '</div>';
-
-        return content;
-    }
-
-    HACCP.prototype.getPointHtml = function(options)
-    {
-        var point =
-            '<a class="label ' + options.classNameStatistics + '-' + options.contourSlug + ' ' +
-                ' " href="#">' +
-                '<i class="fa fa-inbox"></i>' +
-                '' + options.name  + '' +
-            '</a>';
-
-        //<a class="label label-warning" href=""><i class="fa fa-inbox"></i>1</a>
-
-        return point;
-    }
+    };
 
     return new HACCP();
 })();

@@ -18,6 +18,11 @@
         {% if plan.name %}
             <li><a href="{{ path('plan_show', { planId: plan.id }) }}">{{ plan.name }}</a></li>
         {% endif %}
+        <li>
+            {{ ajax_filter_render_short('contourFilterType', ajax_filter_namespace_point_contour, {
+                "contourFilterType_contour": "HACCPMAP.onContourRefresh"
+            }) }}
+        </li>
         <li class="pull-right">
             <div style="margin-top: -7px; margin-right:-60px; float: right;" class="col-md-11">
                 {{ ajax_filter_render_short('serviceFilterType', ajax_filter_namespace_point_service, {

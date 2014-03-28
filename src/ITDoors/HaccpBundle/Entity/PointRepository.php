@@ -34,8 +34,10 @@ class PointRepository extends EntityRepository
             ->addSelect('Contour.id as contourId')
             ->addSelect('Contour.slug as contourSlug')
             ->addSelect('PointGroup.id as pointGroupId')
+            ->addSelect('Plan.type as planType')
             ->leftJoin('p.Contour', 'Contour')
             ->leftJoin('p.Group', 'PointGroup')
+            ->leftJoin('p.Plan', 'Plan')
             ->where('p.planId in (:planIds)')
             ->setParameter(':planIds', $planIds);
 
