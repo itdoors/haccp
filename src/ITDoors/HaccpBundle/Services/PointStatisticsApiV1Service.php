@@ -3,7 +3,6 @@
 namespace ITDoors\HaccpBundle\Services;
 use Doctrine\ORM\EntityManager;
 use ITDoors\HaccpBundle\Entity\Point;
-use ITDoors\HaccpBundle\Entity\PointGroupCharacteristicRepository;
 use ITDoors\HaccpBundle\Entity\PointRepository;
 use ITDoors\HaccpBundle\Entity\PointStatistics;
 use ITDoors\HaccpBundle\Entity\PointStatisticsRepository;
