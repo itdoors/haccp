@@ -154,7 +154,6 @@
 {% if plan.type == 'tails' %}
     <script>
         $(document).ready(function(){
-            var windowWidth = $('#map').width();
 
             var map = L.map('map', {
                 maxZoom: 4,
@@ -169,31 +168,65 @@
                 continuousWorld: true
             }).addTo(map);
 
+            var markers = [];
+
             {% for point in points  %}
 
-            var myIcon = L.divIcon({
-                className: 'icon-bait-station',
-                html: HACCP.getPointHtml({
-                    classNameStatistics: '{{ point.classNameStatistics }}',
-                    value: '{{ point.pointAVG }}',
-                    name: '{{ point.name }}',
-                    contourSlug: '{{ point.contourSlug }}'
-                })
-            });
+                var myIcon = L.divIcon({
+                    className: 'icon-bait-station',
+                    html: HACCP.getPointHtml({
+                        classNameStatistics: '{{ point.classNameStatistics }}',
+                        value: '{{ point.pointAVG }}',
+                        name: '{{ point.name }}',
+                        contourSlug: '{{ point.contourSlug }}'
+                    })
+                });
 
-            var pointLat = {{ point.imageLatitude ? point.imageLatitude : 0 }};
-            var pointLng = {{ point.imageLongitude ? point.imageLongitude : 0 }}
+                var pointLat = {{ point.imageLatitude ? point.imageLatitude : 0 }};
+                var pointLng = {{ point.imageLongitude ? point.imageLongitude : 0 }};
 
-            var marker = L.marker(new L.LatLng(pointLat , pointLng), {
-                icon: myIcon
-            });
+                var pointMarker = L.marker(new L.LatLng(pointLat , pointLng), {
+                    icon: myIcon
+                });
 
-            marker.addTo(map);
+                var contour;
 
-            marker.on('click', function(e){
-                HACCP.ajaxModal('Контрольная точка ' + '{{ point.name }}', '#ajax-modal', '{{ path('point_show_ajax', { id : point.id }) }}');
-            });
+                if (!markers[{{ point.contourId }}])
+                {
+                    contour = new L.MarkerClusterGroup({
+                        spiderfyOnMaxZoom : false,
+                        showCoverageOnHover: false,
+                        zoomToBoundsOnClick: false,
+                        iconCreateFunction: function (cluster) {
+                            var childCount = cluster.getChildCount();
+
+                            var c = ' marker-cluster-' + '{{ point.contourSlug }}';
+
+                            return new L.DivIcon({ html: '<div><span>' + childCount + '</span></div>', className: 'marker-cluster' + c, iconSize: new L.Point(40, 40) });
+                        }
+                    });
+                }
+                else {
+                    contour = markers[{{ point.contourId }}];
+                }
+
+                contour.addLayer(pointMarker);
+
+                markers[{{ point.contourId }}] = contour;
+
+                pointMarker.on('click', function(e){
+                    HACCP.ajaxModal('Контрольная точка ' + '{{ point.name }}', '#ajax-modal', '{{ path('point_show_ajax', { id : point.id }) }}');
+                });
+
             {% endfor %}
+
+            for (key in markers)
+            {
+                if (markers.hasOwnProperty(key))
+                {
+                    map.addLayer(markers[key]);
+                }
+            }
 
             var popup = L.popup();
 

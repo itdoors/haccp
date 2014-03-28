@@ -81,13 +81,6 @@ class PointStatisticsApiV1Service
      */
     public function postPointStatistics($id, Request $request)
     {
-        // LOG
-        /** @var LogService $ls */
-        $ls = $this->container->get('log.service');
-        $data = print_r($request->request, true);
-        $ls->write($data);
-        // EOF LOG
-
         /** @var EntityManager $em */
         $em = $this->container->get('doctrine.orm.entity_manager');
 
