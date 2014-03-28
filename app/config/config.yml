@@ -4,6 +4,7 @@ imports:
     - { resource: @ITDoorsHaccpBundle/Resources/config/admin.yml }
 
 parameters:
+    project.version: 0.02
     plan.upload_dir: '/plans'
     project.dir: '/var/www/vhosts/itdoors.com.ua/subdomains/haccp'
     project.web.dir: "%project.dir%/web"
@@ -42,6 +43,7 @@ twig:
     exception_controller: 'FOS\RestBundle\Controller\ExceptionController::showAction'
     globals:
         ajax_filter_namespace_point_service: %ajax.filter.namespace.point.service%
+        projectVersion: %project.version%
 
 # Assetic Configuration
 assetic:

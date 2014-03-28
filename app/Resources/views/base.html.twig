@@ -40,11 +40,11 @@
 		<link href="{{ asset('templates/metronic/css/plugins.css') }}" rel="stylesheet" type="text/css"/>
 		<link href="{{ asset('templates/metronic/css/pages/tasks.css') }}" rel="stylesheet" type="text/css"/>
 		<link href="{{ asset('templates/metronic/css/themes/default.css') }}" rel="stylesheet" type="text/css" id="style_color"/>
-		<link href="{{ asset('templates/metronic/css/custom.css') }}" rel="stylesheet" type="text/css"/>
+		<link href="{{ asset('templates/metronic/css/custom.css?v=' ~ projectVersion) }}" rel="stylesheet" type="text/css"/>
 	{% endblock %}
 	<!-- END THEME STYLES -->
     <script src="{{ asset('templates/core/js/jquery-1.11.0.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('templates/core/js/haccp.js?v=0.01') }}" type="text/javascript"></script>
+    <script src="{{ asset('templates/core/js/haccp.js?v=' ~ projectVersion) }}" type="text/javascript"></script>
     <link href="{{ asset('templates/core/css/style.css') }}" rel="stylesheet" type="text/css"/>
 	<link rel="shortcut icon" href="favicon.ico" />
 
