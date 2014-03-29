@@ -80,8 +80,7 @@ class PointRepository extends EntityRepository
                 ->setParameter(':startDate', $filters['daterangecustom']['start'])
                 ->setParameter(':endDate', $filters['daterangecustom']['end']);
         }
-        else
-        {
+        else {
             $sql
                 ->addSelect('(
                     SELECT
@@ -91,6 +90,14 @@ class PointRepository extends EntityRepository
                     WHERE
                         ps.pointId = p.id
                      ) as pointAVG');
+        }
+
+        if (isset($filters['contourId']) && $filters['contourId']) {
+            $contourIds = explode(',', $filters['contourId']);
+
+            $sql
+                ->andWhere('Contour.id in (:contourIds)')
+                ->setParameter(':contourIds', $contourIds);
         }
     }
 

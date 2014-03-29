@@ -42,4 +42,24 @@ class PlanRepository extends EntityRepository
             ->setParameter(':ids', $ids)
             ->getQuery();
     }
+
+    /**
+     * Get Children Query
+     *
+     * @params int[] $parentIds
+     */
+    public function getChildrenQuery($parentIds)
+    {
+        return $this->createQueryBuilder('p')
+            ->select('p.id as id')
+            ->addSelect('p.name as name')
+            ->addSelect('p.type as type')
+            ->addSelect('p.parentLatitudeTopLeft as parentLatitudeTopLeft')
+            ->addSelect('p.parentLongitudeTopLeft as parentLongitudeTopLeft')
+            ->addSelect('p.parentLatitudeBottomRight as parentLatitudeBottomRight')
+            ->addSelect('p.parentLongitudeBottomRight as parentLongitudeBottomRight')
+            ->where('p.parentId in (:parentIds)')
+            ->setParameter(':parentIds', $parentIds)
+            ->getQuery();
+    }
 }

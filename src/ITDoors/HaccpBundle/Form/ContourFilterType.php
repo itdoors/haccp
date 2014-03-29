@@ -6,6 +6,7 @@ use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Routing\Router;
 
 /**
  * Contour filter form
@@ -37,16 +38,15 @@ class ContourFilterType extends AbstractType
         $cs = $this->container->get('contour.service');
 
         $builder
-            ->add('contour', 'choice', array(
-                'empty_value' => '',
-                'choices' => $cs->getContourSlugChoices(),
+            ->add('contourId', 'hidden', array(
                 'attr' => array(
                     'class_outer' => 'col-md-5',
                     'class' => 'itdoors-select2 can-be-reseted',
+                    'data-choices'  => json_encode($cs->getContourChoices()),
                     'data-params' => json_encode(array(
                         'minimumInputLength' => 0,
                         'allowClear' => true,
-                        //'multiple' => true,
+                        'multiple' => true,
                         'width' => '200px'
                     )),
                     'placeholder' => 'All Contours'

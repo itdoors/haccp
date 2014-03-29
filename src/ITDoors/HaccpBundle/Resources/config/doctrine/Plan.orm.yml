@@ -43,6 +43,22 @@ ITDoors\HaccpBundle\Entity\Plan:
       type: integer
       nullable: true
       column: parent_id
+    parentLatitudeTopLeft:
+      type: string
+      length: 50
+      nullable: true
+    parentLongitudeTopLeft:
+      type: string
+      length: 50
+      nullable: true
+    parentLatitudeBottomRight:
+      type: string
+      length: 50
+      nullable: true
+    parentLongitudeBottomRight:
+      type: string
+      length: 50
+      nullable: true
     maxZoom:
       type: integer
       nullable: true

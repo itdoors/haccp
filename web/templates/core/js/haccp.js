@@ -1,40 +1,42 @@
-var HACCP = (function() {
+var Haccp = (function() {
 
     var defaults = {
-/*        ajaxFormClass: 'ajax-form',
-        ajaxDeleteClass: 'ajax-delete',
-        ajaxFormEntityClass: 'ajax-form-entity',
-        ajaxFormCancelBtnClass: 'sd-cancel-btn',
-        ajaxMoreInfoClass: 'more-info',
-        ajaxFormUrl: '',
-        ajaxDeleteUrl: '',*/
         assetsDir: '',
         loadingImgPath: ''
     };
 
-    function HACCP(){
+    function Haccp(){
         this.params = {};
     }
 
-    HACCP.prototype.init = function(options)
-    {
+    /**
+     * Init
+     *
+     * @param {Object} options
+     */
+    Haccp.prototype.init = function(options) {
         this.params = $.extend(defaults, options);
 
         this.params.loadingImgPath = this.params.assetsDir + 'templates/metronic/img/ajax-loading.gif';
     };
 
-    HACCP.prototype.ajaxModal = function(title, targetId, url)
-    {
-        var selfHACCP = this;
+    /**
+     * Load Modal window
+     *
+     * @param {String} title
+     * @param {String} targetId
+     * @param {String} url
+     */
+    Haccp.prototype.ajaxModal = function(title, targetId, url) {
+        var selfHaccp = this;
 
         var target = $(targetId);
 
-        if (!target.length || !url)
-        {
+        if (!target.length || !url) {
             return;
         }
 
-        target.html(selfHACCP.getModalHeader(title));
+        target.html(selfHaccp.getModalHeader(title));
 
         var modalBodyLoading = target.find('.modal-body');
 
@@ -50,8 +52,14 @@ var HACCP = (function() {
         target.modal();
     };
 
-    HACCP.prototype.getModalHeader = function(title)
-    {
+    /**
+     * Generates Header for Modal window
+     *
+     * @param {String} title
+     *
+     * @return {String}
+     */
+    Haccp.prototype.getModalHeader = function(title) {
         var header =
         '<div class="modal-header">' +
             '<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>' +
@@ -62,5 +70,5 @@ var HACCP = (function() {
         return header;
     };
 
-    return new HACCP();
+    return new Haccp();
 })();

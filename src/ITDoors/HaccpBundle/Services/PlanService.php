@@ -4,6 +4,8 @@ namespace ITDoors\HaccpBundle\Services;
 use Doctrine\ORM\Query;
 use ITDoors\HaccpBundle\Entity\Plan;
 use ITDoors\HaccpBundle\Entity\PlanRepository;
+use Symfony\Component\DependencyInjection\Container;
+use Symfony\Component\Routing\Router;
 
 /**
  * PlanService Class
@@ -13,6 +15,11 @@ class PlanService
     const PLAN_TYPE_MAP = 'map';
     const PLAN_TYPE_IMAGE = 'image';
     const PLAN_TYPE_TAILS = 'tails';
+
+    /**
+     * @var Container $container
+     */
+    protected $container;
 
     /**
      * @var PlanRepository $repository
@@ -27,8 +34,9 @@ class PlanService
     /**
      * __construct
      */
-    public function __construct(PlanRepository $repository, $uploadDir)
+    public function __construct(Container $container, PlanRepository $repository, $uploadDir)
     {
+        $this->container = $container;
         $this->repository = $repository;
         $this->uploadDir = $uploadDir;
     }
@@ -50,6 +58,30 @@ class PlanService
         $planShow['imageFullPath'] = $this->getImageFullPath($planShow);
 
         return $planShow;
+    }
+
+    /**
+     * Returns formatted plan data for show
+     *
+     * @param int $id
+     *
+     * @return mixed
+     */
+    public function getPlanChildren($id)
+    {
+        /** @var Router $router */
+        $router = $this->container->get('router');
+
+        /** @var Query $planQuery */
+        $planQuery = $this->repository->getChildrenQuery(array($id));
+
+        $children = $planQuery->getResult();
+
+        foreach ($children as &$child) {
+            $child['url'] = $router->generate('plan_show', array('planId' => $child['id']));
+        }
+
+        return $children;
     }
 
     /**

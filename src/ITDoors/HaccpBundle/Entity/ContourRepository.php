@@ -12,4 +12,20 @@ use Doctrine\ORM\EntityRepository;
  */
 class ContourRepository extends EntityRepository
 {
+    /**
+     * Find contours by ids
+     *
+     * @param int[] $ids
+     *
+     * @return Contour[]
+     */
+    public function findByIds($ids)
+    {
+        return $this->createQueryBuilder('c')
+            ->where('c.id in (:ids)')
+            ->setParameter(':ids', $ids)
+            ->getQuery()
+            ->getResult();
+    }
+
 }

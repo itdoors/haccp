@@ -17,6 +17,11 @@ class PlanAdmin extends Admin
     {
         $formMapper
             ->add('name')
+            ->add('parent')
+            ->add('parentLatitudeTopLeft')
+            ->add('parentLongitudeTopLeft')
+            ->add('parentLatitudeBottomRight')
+            ->add('parentLongitudeBottomRight')
         ;
     }
 
@@ -25,6 +30,7 @@ class PlanAdmin extends Admin
     {
         $datagridMapper
             ->add('name')
+            ->add('parent')
         ;
     }
 
@@ -34,6 +40,11 @@ class PlanAdmin extends Admin
         $listMapper
             ->addIdentifier('id')
             ->add('name')
+            ->add('parent')
+            ->add('parentLatitudeTopLeft')
+            ->add('parentLongitudeTopLeft')
+            ->add('parentLatitudeBottomRight')
+            ->add('parentLongitudeBottomRight')
         ;
     }
 }

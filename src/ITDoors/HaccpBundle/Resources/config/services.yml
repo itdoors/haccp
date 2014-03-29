@@ -47,7 +47,7 @@ services:
 
     it_doors_haccp.plan.service:
         class: %it_doors_haccp.plan.service.class%
-        arguments: [ @it_doors_haccp.plan.repository, %plan.upload_dir% ]
+        arguments: [ @service_container, @it_doors_haccp.plan.repository, %plan.upload_dir% ]
 
     plan.service:
         alias: it_doors_haccp.plan.service

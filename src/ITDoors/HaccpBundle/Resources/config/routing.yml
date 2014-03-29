@@ -1,11 +1,22 @@
+# PLAN
 plan_show:
-    pattern:  /plan/show/{planId}.html
+    pattern:  /plan/show/{planId}
     defaults: { _controller: ITDoorsHaccpBundle:Plan:show }
 
 plan_map:
-    pattern:  /plan/map/{planId}.html
+    pattern:  /plan/map/{planId}
     defaults: { _controller: ITDoorsHaccpBundle:Plan:map }
-#POINT ROUTE
+
+# POINT
 point_show_ajax:
-    pattern:  /ajax/point/show/{id}.html
+    pattern:  /ajax/point/show/{id}
     defaults: { _controller: ITDoorsHaccpBundle:Point:showAjax }
+
+# CONTOUR
+contour_choices_ajax:
+    pattern:  /ajax/contour/choices
+    defaults: { _controller: ITDoorsHaccpBundle:Contour:choicesAjax }
+
+contour_choices_by_ids_ajax:
+    pattern:  /ajax/contour/choices/ids
+    defaults: { _controller: ITDoorsHaccpBundle:Contour:choicesByIdsAjax }

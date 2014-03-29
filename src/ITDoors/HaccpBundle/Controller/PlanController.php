@@ -38,10 +38,15 @@ class PlanController extends BaseFilterController
         $pointService = $this->get('point.service');
 
         $plan = $ps->getPlanShow($planId);
+        $plan['children'] = $ps->getPlanChildren($planId);
 
-        $filterNamespace = $this->container->getParameter('ajax.filter.namespace.point.service');
+        $filterServiceNamespace = $this->container->getParameter('ajax.filter.namespace.point.service');
+        $filterContourNamespace = $this->container->getParameter('ajax.filter.namespace.point.contour');
 
-        $filters = $this->getFilters($filterNamespace);
+        $filtersService = $this->getFilters($filterServiceNamespace) ? $this->getFilters($filterServiceNamespace) : array();
+        $filtersContour = $this->getFilters($filterContourNamespace) ? $this->getFilters($filterContourNamespace) : array();
+
+        $filters = array_merge($filtersService, $filtersContour);
 
         $pointsByContours = $pointService->getPointsList($planId, $filters);
 

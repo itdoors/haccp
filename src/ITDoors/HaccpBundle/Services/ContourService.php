@@ -73,4 +73,32 @@ class ContourService
 
         return $result;
     }
+
+    /**
+     * Return contour choices
+     *
+     * @param int[] $ids
+     *
+     * @return mixed[]
+     */
+    public function getContourChoices($ids = array())
+    {
+        if (sizeof($ids)) {
+            $contours = $this->repository->findByIds($ids);
+        } else {
+            $contours = $this->repository->findAll();
+        }
+
+        $result = array();
+
+        /** @var Contour[] $contours */
+        foreach ($contours as $contour) {
+            $result[] = array(
+                'id' => $contour->getId(),
+                'text' =>(string) $contour->getName()
+            );
+        }
+
+        return $result;
+    }
 }

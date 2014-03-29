@@ -805,7 +805,7 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:itdoors/AjaxBundle.git",
-                "reference": "12e91531006da683752c45b0fca9c3e028f5644c"
+                "reference": "d1ba65d7959d74babec58c21e99d511a69d1f323"
             },
             "type": "symfony-bundle",
             "autoload": {
@@ -826,7 +826,7 @@
             "keywords": [
                 "ajax bundle"
             ],
-            "time": "2014-03-17 22:04:22"
+            "time": "2014-03-29 16:08:46"
         },
         {
             "name": "itdoors/commonbundle",

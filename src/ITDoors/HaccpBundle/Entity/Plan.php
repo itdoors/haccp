@@ -413,4 +413,117 @@ class Plan
     {
         return $this->getName();
     }
+
+    /**
+     * @var string
+     */
+    private $parentLatitudeTopLeft;
+
+    /**
+     * @var string
+     */
+    private $parentLongitudeTopLeft;
+
+    /**
+     * @var string
+     */
+    private $parentLatitudeBottomRight;
+
+    /**
+     * @var string
+     */
+    private $parentLongitudeBottomRight;
+
+
+    /**
+     * Set parentLatitudeTopLeft
+     *
+     * @param string $parentLatitudeTopLeft
+     * @return Plan
+     */
+    public function setParentLatitudeTopLeft($parentLatitudeTopLeft)
+    {
+        $this->parentLatitudeTopLeft = $parentLatitudeTopLeft;
+
+        return $this;
+    }
+
+    /**
+     * Get parentLatitudeTopLeft
+     *
+     * @return string 
+     */
+    public function getParentLatitudeTopLeft()
+    {
+        return $this->parentLatitudeTopLeft;
+    }
+
+    /**
+     * Set parentLongitudeTopLeft
+     *
+     * @param string $parentLongitudeTopLeft
+     * @return Plan
+     */
+    public function setParentLongitudeTopLeft($parentLongitudeTopLeft)
+    {
+        $this->parentLongitudeTopLeft = $parentLongitudeTopLeft;
+
+        return $this;
+    }
+
+    /**
+     * Get parentLongitudeTopLeft
+     *
+     * @return string 
+     */
+    public function getParentLongitudeTopLeft()
+    {
+        return $this->parentLongitudeTopLeft;
+    }
+
+    /**
+     * Set parentLatitudeBottomRight
+     *
+     * @param string $parentLatitudeBottomRight
+     * @return Plan
+     */
+    public function setParentLatitudeBottomRight($parentLatitudeBottomRight)
+    {
+        $this->parentLatitudeBottomRight = $parentLatitudeBottomRight;
+
+        return $this;
+    }
+
+    /**
+     * Get parentLatitudeBottomRight
+     *
+     * @return string 
+     */
+    public function getParentLatitudeBottomRight()
+    {
+        return $this->parentLatitudeBottomRight;
+    }
+
+    /**
+     * Set parentLongitudeBottomRight
+     *
+     * @param string $parentLongitudeBottomRight
+     * @return Plan
+     */
+    public function setParentLongitudeBottomRight($parentLongitudeBottomRight)
+    {
+        $this->parentLongitudeBottomRight = $parentLongitudeBottomRight;
+
+        return $this;
+    }
+
+    /**
+     * Get parentLongitudeBottomRight
+     *
+     * @return string 
+     */
+    public function getParentLongitudeBottomRight()
+    {
+        return $this->parentLongitudeBottomRight;
+    }
 }
