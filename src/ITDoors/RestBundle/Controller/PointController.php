@@ -39,7 +39,7 @@ class PointController extends FOSRestController
      */
     public function getPointAction($ids)
     {
-        /** @var PointApiV1Service $ps*/
+        /** @var PointApiV1Service $ps */
         $ps = $this->container->get('point.api.v1.service');
 
         $data = $ps->get($ids);

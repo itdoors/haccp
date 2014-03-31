@@ -97,6 +97,8 @@ sensio_framework_extra:
     router: { annotations: false }
 
 fos_rest:
+    serializer:
+        serialize_null: true
     allowed_methods_listener:  true
     routing_loader:
         default_format: json
