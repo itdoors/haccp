@@ -37,23 +37,37 @@ class ServiceFilterType extends AbstractType
         $cs = $this->container->get('contour.service');
 
         $builder
+            ->add('contourId', 'hidden', array(
+                'attr' => array(
+                    'class_outer' => 'col-md-4',
+                    'class' => 'itdoors-select2 can-be-reseted',
+                    'data-choices'  => json_encode($cs->getContourChoices()),
+                    'data-params' => json_encode(array(
+                        'minimumInputLength' => 0,
+                        'allowClear' => true,
+                        'multiple' => true,
+                        'width' => '340px'
+                    )),
+                    'placeholder' => 'All Contours'
+                )
+            ))
             ->add('serviceId', 'choice', array(
                 'empty_value' => '',
                 'choices' => $cs->getServiceChoices(),
                 'attr' => array(
-                    'class_outer' => 'col-md-5',
+                    'class_outer' => 'col-md-2',
                     'class' => 'itdoors-select2 can-be-reseted',
                     'data-params' => json_encode(array(
                         'minimumInputLength' => 0,
                         'allowClear' => true,
-                        'width' => '200px'
+                        'width' => '170px'
                     )),
                     'placeholder' => 'All Services'
                 )
             ))
             ->add('daterangecustom', 'daterangecustom', array(
                 'attr' => array(
-                    'class_outer' => 'col-md-7'
+                    'class_outer' => 'col-md-3'
                 )
             ));
     }
