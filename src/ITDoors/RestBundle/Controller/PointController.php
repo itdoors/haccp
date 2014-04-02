@@ -87,7 +87,45 @@ class PointController extends FOSRestController
         /** @var PointStatisticsApiV1Service $pss*/
         $pss = $this->container->get('point.statistics.api.v1.service');
 
-        $data = $pss->getRangeStatistics($id, $startDateU->setTimestamp($startDate), $endDateU->setTimestamp($endDate));
+        $endDateObject = intval($endDate) ? $endDateU->setTimestamp($endDate) : null;
+
+        $data = $pss->getRangeStatistics($id, $startDateU->setTimestamp($startDate), $endDateObject);
+        $view = $this->view($data, 200);
+
+        return $this->handleView($view);
+    }
+
+    /**
+     * @Rest\Get("/{id}/statistics/{lastPointId}")
+     *
+     * @ApiDoc(
+     *  description="Returns a collection of PointStatistics",
+     *  requirements={
+     *      {
+     *          "name"="id",
+     *          "dataType"="integer",
+     *          "requirement"="+\d",
+     *          "description"="Point Id"
+     *      },
+     *      {
+     *          "name"="lastPointId",
+     *          "dataType"="integer",
+     *          "requirement"="+\d",
+     *          "description"="Last Point Id"
+     *      }
+     *  },
+     *  output={
+     *      "class"="ArrayCollection<ITDoors\HaccpBundle\Entity\PointStatistics>",
+     *      "groups"={"api"}
+     *  }
+     * )
+     */
+    public function getPointStatisticsMoreAction($id, $lastPointId)
+    {
+        /** @var PointStatisticsApiV1Service $pss*/
+        $pss = $this->container->get('point.statistics.api.v1.service');
+
+        $data = $pss->getMoreStatistics($id, $lastPointId);
         $view = $this->view($data, 200);
 
         return $this->handleView($view);

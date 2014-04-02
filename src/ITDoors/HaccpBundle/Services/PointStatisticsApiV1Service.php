@@ -49,7 +49,12 @@ class PointStatisticsApiV1Service
      */
     public function getLastStatistics($pointId)
     {
-        $statistics = $this->repository->getLastStatistics($pointId, $this->baseStatisticsLimit);
+        $statisticOptions = array(
+            'pointIds' => array($pointId),
+            'limit' => $this->baseStatisticsLimit
+        );
+
+        $statistics = $this->repository->getStatistics($statisticOptions);
 
         return $statistics;
     }
@@ -63,13 +68,80 @@ class PointStatisticsApiV1Service
      *
      * @return mixed[]
      */
-    public function getRangeStatistics($pointId, \DateTime $startDate, \DateTime $endDate)
+    public function getRangeStatistics($pointId, $startDate, $endDate)
     {
-        $statistics = $this->repository->getRangeStatistics($pointId, $startDate, $endDate);
+        $statisticOptions = array(
+            'pointIds' => array($pointId),
+            'startDate' => $startDate,
+            'limit' => $this->baseStatisticsLimit + 1
+        );
+
+        if ($endDate) {
+            $statisticOptions['endDate'] = $endDate;
+        }
+
+        $statistics = $this->repository->getStatistics($statisticOptions);
 
         $this->formatStatistics($statistics);
 
-        return $statistics;
+        $result = $this->formatStatisticsWithMore($statistics);
+
+        return $result;
+    }
+
+    /**
+     * Returns more statistics less then {$lastPointId}
+     *
+     * @param int $pointId
+     * @param int $lastPointId
+     *
+     * @return mixed[]
+     */
+    public function getMoreStatistics($pointId, $lastPointId = null)
+    {
+        $statisticOptions = array(
+            'pointIds' => array($pointId),
+            'lastPointId' => intval($lastPointId),
+            'limit' => $this->baseStatisticsLimit + 1
+        );
+
+        $statistics = $this->repository->getStatistics($statisticOptions);
+
+        $this->formatStatistics($statistics);
+
+        $result = $this->formatStatisticsWithMore($statistics);
+
+        return $result;
+    }
+
+    /**
+     * Format Statistics to api output with "show more" param
+     *
+     * @param mixed[] $statistics
+     *
+     * @return mixed[] -1 $statistics element
+     */
+    public function formatStatisticsWithMore(&$statistics)
+    {
+        $result = array(
+            'more' => false,
+            //'entryDate' => null
+        );
+
+        if (sizeof($statistics) > $this->baseStatisticsLimit) {
+            $result['more'] = true;
+
+            $lastStatisticsIndex = sizeof($statistics) - 1;
+
+            if (isset($statistics[$lastStatisticsIndex])) {
+
+                unset($statistics[$lastStatisticsIndex]);
+            }
+        }
+
+        $result['statistics'] = $statistics;
+
+        return $result;
     }
 
     /**
@@ -162,7 +234,12 @@ class PointStatisticsApiV1Service
         /** @var PointStatisticsRepository $psr */
         $psr = $this->container->get('point.statistics.repository');
 
-        $statisticsQuery = $psr->getRangeStatisticsQuery($point->getId(), null, null, array($pointStatistics->getId()));
+        $statisticOptions = array(
+            'pointId' => array($point->getId()),
+            'statisticIds' => array($pointStatistics->getId())
+        );
+
+        $statisticsQuery = $psr->getStatisticsQuery($statisticOptions);
 
         $result = $statisticsQuery->getSingleResult();
 

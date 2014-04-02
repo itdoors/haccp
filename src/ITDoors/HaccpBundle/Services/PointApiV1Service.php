@@ -40,14 +40,15 @@ class PointApiV1Service
         /** @var PointRepository $pr*/
         $pr = $this->repository;
 
+        /** @var PointStatisticsApiV1Service $psv1s */
+        $psv1s = $this->pointStatisticsApiV1Service;
+
         $ids = explode(',', $ids);
 
         $points = $pr->ApiV1Get($ids);
 
         foreach ($points as $key => &$point)
         {
-            $statistics = $this->pointStatisticsApiV1Service->getLastStatistics($point['id']);
-
             $point['plan'] = array();
             $point['plan']['id'] = $point['planId'];
             $point['plan']['name'] = $point['planName'];
@@ -69,25 +70,10 @@ class PointApiV1Service
                 $points[$key]['contourName']
             );
 
+            /*$statistics = $psv1s->getLastStatistics($point['id']);
+            $psv1s->formatStatistics($statistics);*/
 
-            foreach ($statistics as &$value)
-            {
-                $value['characteristic'] = array();
-
-                $value['characteristic']['id'] = $value['characteristicId'];
-                $value['characteristic']['name'] = $value['characteristicName'];
-                $value['characteristic']['unit'] = $value['characteristicUnit'];
-                $value['characteristic']['criticalValueBottom'] = $value['criticalValueBottom'];
-                $value['characteristic']['criticalValueTop'] = $value['criticalValueTop'];
-
-                unset(
-                    $value['characteristicId'],
-                    $value['characteristicName'],
-                    $value['characteristicUnit'],
-                    $value['criticalValueBottom'],
-                    $value['criticalValueTop']
-                );
-            }
+            $statistics = $psv1s->getMoreStatistics($point['id']);
 
             $point['statistics'] = $statistics;
         }

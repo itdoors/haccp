@@ -12,7 +12,7 @@ parameters:
     locale: ru
     ajax.filter.namespace.point.service: "point.services"
     ajax.filter.namespace.point.contour: "point.contour"
-    api.v1.point.statistics.limit: "10"
+    api.v1.point.statistics.limit: 2
     log.file.path: "%project.dir%/log.txt"
 
 framework:

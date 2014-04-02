@@ -14,17 +14,19 @@ use Doctrine\ORM\Query;
 class PointStatisticsRepository extends EntityRepository
 {
     /**
-     * Returns point statistics depending on start & end date
+     * @var int
+     */
+    protected $baseStatisticsLimit;
+
+    /**
+     * Returns point statistics Query depending on options
      *
-     * @param int[] $ids
-     * @param int $limit
-     * @param \DateTime $startDate
-     * @param \DateTime $endDate
-     * @param int[] $statisticsIds
+     * @param mixed[] $options
      *
      * @return Query
      */
-    public function getStatisticsQuery($ids, $limit = 10, $startDate = null, $endDate = null, $statisticsIds = array())
+    //public function getStatisticsQuery($ids, $limit = 10, $startDate = null, $endDate = null, $statisticsIds = array())
+    public function getStatisticsQuery($options)
     {
         $sql = $this->createQueryBuilder('ps')
             ->select('ps.id as id')
@@ -37,79 +39,62 @@ class PointStatisticsRepository extends EntityRepository
             ->addSelect('Characteristic.criticalValueBottom as criticalValueBottom')
             ->leftJoin('ps.Characteristic', 'Characteristic');
 
-        if ($limit)
-        {
-            $sql
-                ->setMaxResults($limit);
-        }
-
-        if ($startDate && $endDate)
-        {
+        // Start date
+        if (isset($options['startDate']) && $options['startDate']) {
             $sql
                 ->andWhere('ps.entryDate >= :startDate')
-                ->andWhere('ps.entryDate <= :endDate')
-                ->setParameter(':startDate', $startDate)
-                ->setParameter(':endDate', $endDate);
+                ->setParameter(':startDate', $options['startDate']);
         }
 
-        if (sizeof($statisticsIds))
-        {
+        // End date
+        if (isset($options['endDate']) && $options['endDate']) {
+            $sql
+                ->andWhere('ps.entryDate <= :endDate')
+                ->setParameter(':endDate', $options['endDate']);
+        }
+
+        // Specific statistic Ids
+        if (isset($options['statisticsIds']) && sizeof($options['statisticsIds'])) {
             $sql
                 ->andWhere('ps.id in (:statisticsIds)')
-                ->setParameter(':statisticsIds', $statisticsIds);
+                ->setParameter(':statisticsIds', $options['statisticsIds']);
+        }
+
+        // Point Ids
+        if (isset($options['pointIds']) && is_array($options['pointIds'])) {
+            $sql
+                ->andWhere('ps.pointId in (:pointIds)')
+                ->setParameter(':pointIds', $options['pointIds']);
+        }
+
+        if (isset($options['limit']) && $options['limit']) {
+            $sql
+                ->setMaxResults($options['limit']);
+        }
+
+        if (isset($options['lastPointId']) && $options['lastPointId']) {
+            $sql
+                ->andWhere('ps.id < :lastPointId')
+                ->setParameter(':lastPointId', $options['lastPointId']);
         }
 
         $sql
-            ->andWhere('ps.pointId in (:pointIds)')
-            ->setParameter(':pointIds', $ids)
-            ->orderBy('ps.id', 'DESC');
+            ->orderBy('ps.entryDate', 'DESC')
+            ->addOrderBy('ps.id', 'DESC');
 
         return $sql->getQuery();
     }
 
     /**
-     * Return last statistics
+     * Returns point statistics depending on options
      *
-     * @param int $pointId
-     * @param int $limit
-     *
-     * @return mixed[]
-     */
-    public function getLastStatistics($pointId, $limit)
-    {
-        $query = $this->getStatisticsQuery(array($pointId), $limit);
-
-        return $query->getResult();
-    }
-
-    /**
-     * Returns statistics Query by range
-     *
-     * @param int $pointId
-     * @param \DateTime $startDate
-     * @param \DateTime $endDate
-     * @param int[] $statisticsIds
-     *
-     * @return Query
-     */
-    public function getRangeStatisticsQuery($pointId, $startDate, $endDate, $statisticsIds = array())
-    {
-        return $this->getStatisticsQuery(array($pointId), null, $startDate, $endDate, $statisticsIds);
-    }
-
-    /**
-     * Returns statistics by range
-     *
-     * @param int $pointId
-     * @param \DateTime $startDate
-     * @param \DateTime $endDate
-     * @param int[] $statisticsIds
+     * @param mixed[] $options
      *
      * @return mixed[]
      */
-    public function getRangeStatistics($pointId, \DateTime $startDate, \DateTime $endDate, $statisticsIds = array())
+    public function getStatistics($options)
     {
-        $query = $this->getRangeStatisticsQuery($pointId, $startDate, $endDate, $statisticsIds);
+        $query = $this->getStatisticsQuery($options);
 
         return $query->getResult();
     }

@@ -22,7 +22,6 @@ parameters:
     it_doors_haccp.service.repository.entity: ITDoors\HaccpBundle\Entity\Service
 
     it_doors_haccp.form.serviceFilterType.class: ITDoors\HaccpBundle\Form\ServiceFilterType
-    it_doors_haccp.form.contourFilterType.class: ITDoors\HaccpBundle\Form\ContourFilterType
 
     it_doors_haccp.log.service.class: ITDoors\HaccpBundle\Services\LogService
 
@@ -129,13 +128,6 @@ services:
         arguments: [@service_container]
         tags:
             - { name: form.type, alias: serviceFilterType }
-
-    it_doors_haccp.form.contourFilterType:
-        class: %it_doors_haccp.form.contourFilterType.class%
-        arguments: [@service_container]
-        tags:
-            - { name: form.type, alias: contourFilterType }
-
 
 #API SERVICES V1
     it_doors_haccp.point.api.v1.service:
