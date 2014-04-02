@@ -236,7 +236,7 @@ class PointStatisticsApiV1Service
 
         $statisticOptions = array(
             'pointId' => array($point->getId()),
-            'statisticIds' => array($pointStatistics->getId())
+            'statisticsIds' => array($pointStatistics->getId())
         );
 
         $statisticsQuery = $psr->getStatisticsQuery($statisticOptions);
