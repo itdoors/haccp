@@ -195,8 +195,12 @@ class PointService
         /** @var PointStatisticsRepository $psr */
         $psr = $this->container->get('point.statistics.repository');
 
+        $optionsStatistics = array(
+            'pointIds' => array($id)
+        );
+
         /** @var Query $statisticsQuery */
-        $statisticsQuery = $psr->getStatisticsQuery(array($id), $startDate, $endDate);
+        $statisticsQuery = $psr->getStatisticsQuery($optionsStatistics);
 
         $statistics = $statisticsQuery
             ->getResult();
