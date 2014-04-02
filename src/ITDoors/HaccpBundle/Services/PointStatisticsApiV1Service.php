@@ -65,16 +65,21 @@ class PointStatisticsApiV1Service
      * @param int $pointId
      * @param \DateTime $startDate
      * @param \DateTime $endDate
+     * @param int $lastStatisticId
      *
      * @return mixed[]
      */
-    public function getRangeStatistics($pointId, $startDate, $endDate)
+    public function getRangeStatistics($pointId, $startDate, $endDate, $lastStatisticId = null)
     {
         $statisticOptions = array(
             'pointIds' => array($pointId),
             'startDate' => $startDate,
             'limit' => $this->baseStatisticsLimit + 1
         );
+
+        if (intval($lastStatisticId)) {
+            $statisticOptions['lastStatisticId'] = intval($lastStatisticId);
+        }
 
         if ($endDate) {
             $statisticOptions['endDate'] = $endDate;

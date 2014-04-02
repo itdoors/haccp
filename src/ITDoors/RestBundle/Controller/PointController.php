@@ -79,7 +79,7 @@ class PointController extends FOSRestController
      *  }
      * )
      */
-    public function getPointStatisticsAction($id, $startDate, $endDate)
+    public function getPointStatisticsRangeAction($id, $startDate, $endDate, $lastStatisticId = null)
     {
         $startDateU = new \DateTime();
         $endDateU = new \DateTime();
@@ -89,10 +89,52 @@ class PointController extends FOSRestController
 
         $endDateObject = intval($endDate) ? $endDateU->setTimestamp($endDate) : null;
 
-        $data = $pss->getRangeStatistics($id, $startDateU->setTimestamp($startDate), $endDateObject);
+        $data = $pss->getRangeStatistics($id, $startDateU->setTimestamp($startDate), $endDateObject, $lastStatisticId);
         $view = $this->view($data, 200);
 
         return $this->handleView($view);
+    }
+
+    /**
+     * @Rest\Get("/{id}/statistics/{startDate}/{endDate}/{lastStatisticId}")
+     *
+     * @ApiDoc(
+     *  description="Returns a collection of PointStatistics",
+     *  requirements={
+     *      {
+     *          "name"="id",
+     *          "dataType"="integer",
+     *          "requirement"="+\d",
+     *          "description"="Point Id"
+     *      },
+     *      {
+     *          "name"="startDate",
+     *          "dataType"="integer",
+     *          "requirement"="+\d",
+     *          "description"="Start date in unix timestamp"
+     *      },
+     *      {
+     *          "name"="endDate",
+     *          "dataType"="integer",
+     *          "requirement"="+\d",
+     *          "description"="End date in unix timestamp"
+     *      },
+     *      {
+     *          "name"="lastStatisticId",
+     *          "dataType"="integer",
+     *          "requirement"="+\d",
+     *          "description"="Last Point Id"
+     *      }
+     *  },
+     *  output={
+     *      "class"="ArrayCollection<ITDoors\HaccpBundle\Entity\PointStatistics>",
+     *      "groups"={"api"}
+     *  }
+     * )
+     */
+    public function getPointStatisticsRangeMoreAction($id, $startDate, $endDate, $lastStatisticId)
+    {
+        return $this->getPointStatisticsRangeAction($id, $startDate, $endDate, $lastStatisticId);
     }
 
     /**
