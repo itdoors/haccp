@@ -96,7 +96,7 @@ class PointController extends FOSRestController
     }
 
     /**
-     * @Rest\Get("/{id}/statistics/{lastPointId}")
+     * @Rest\Get("/{id}/statistics/{lastStatisticId}")
      *
      * @ApiDoc(
      *  description="Returns a collection of PointStatistics",
@@ -108,7 +108,7 @@ class PointController extends FOSRestController
      *          "description"="Point Id"
      *      },
      *      {
-     *          "name"="lastPointId",
+     *          "name"="lastStatisticId",
      *          "dataType"="integer",
      *          "requirement"="+\d",
      *          "description"="Last Point Id"
@@ -120,12 +120,12 @@ class PointController extends FOSRestController
      *  }
      * )
      */
-    public function getPointStatisticsMoreAction($id, $lastPointId)
+    public function getPointStatisticsMoreAction($id, $lastStatisticId)
     {
         /** @var PointStatisticsApiV1Service $pss*/
         $pss = $this->container->get('point.statistics.api.v1.service');
 
-        $data = $pss->getMoreStatistics($id, $lastPointId);
+        $data = $pss->getMoreStatistics($id, $lastStatisticId);
         $view = $this->view($data, 200);
 
         return $this->handleView($view);

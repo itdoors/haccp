@@ -72,10 +72,10 @@ class PointStatisticsRepository extends EntityRepository
                 ->setMaxResults($options['limit']);
         }
 
-        if (isset($options['lastPointId']) && $options['lastPointId']) {
+        if (isset($options['lastStatisticId']) && $options['lastStatisticId']) {
             $sql
-                ->andWhere('ps.id < :lastPointId')
-                ->setParameter(':lastPointId', $options['lastPointId']);
+                ->andWhere('ps.id < :lastStatisticId')
+                ->setParameter(':lastStatisticId', $options['lastStatisticId']);
         }
 
         $sql

@@ -90,18 +90,18 @@ class PointStatisticsApiV1Service
     }
 
     /**
-     * Returns more statistics less then {$lastPointId}
+     * Returns more statistics less then {lastStatisticsId}
      *
      * @param int $pointId
-     * @param int $lastPointId
+     * @param int $lastStatisticId
      *
      * @return mixed[]
      */
-    public function getMoreStatistics($pointId, $lastPointId = null)
+    public function getMoreStatistics($pointId, $lastStatisticId = null)
     {
         $statisticOptions = array(
             'pointIds' => array($pointId),
-            'lastPointId' => intval($lastPointId),
+            'lastStatisticId' => intval($lastStatisticId),
             'limit' => $this->baseStatisticsLimit + 1
         );
 
