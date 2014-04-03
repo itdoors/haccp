@@ -138,6 +138,30 @@ class PointController extends FOSRestController
     }
 
     /**
+     * @Rest\Get("/{id}/statistics")
+     *
+     * @ApiDoc(
+     *  description="Returns a collection of PointStatistics",
+     *  requirements={
+     *      {
+     *          "name"="id",
+     *          "dataType"="integer",
+     *          "requirement"="+\d",
+     *          "description"="Point Id"
+     *      }
+     *  },
+     *  output={
+     *      "class"="ArrayCollection<ITDoors\HaccpBundle\Entity\PointStatistics>",
+     *      "groups"={"api"}
+     *  }
+     * )
+     */
+    public function getPointStatisticsAction($id)
+    {
+        return $this->getPointStatisticsMoreAction($id, null);
+    }
+
+    /**
      * @Rest\Get("/{id}/statistics/{lastStatisticId}")
      *
      * @ApiDoc(
