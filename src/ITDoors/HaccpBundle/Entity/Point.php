@@ -115,6 +115,16 @@ class Point
     private $Group;
 
     /**
+     * @var \ITDoors\HaccpBundle\Entity\PointStatus
+     *
+     * @ORM\ManyToOne(targetEntity="ITDoors\HaccpBundle\Entity\PointStatus")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="status_id", referencedColumnName="id")
+     * })
+     */
+    private $Status;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -425,5 +435,28 @@ class Point
     public function __toString()
     {
         return $this->getName() . ' ' . $this->getGroup() . ' ' . $this->getContour();
+    }
+
+    /**
+     * Set Status
+     *
+     * @param \ITDoors\HaccpBundle\Entity\PointStatus $status
+     * @return Point
+     */
+    public function setStatus(\ITDoors\HaccpBundle\Entity\PointStatus $status = null)
+    {
+        $this->Status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get Status
+     *
+     * @return \ITDoors\HaccpBundle\Entity\PointStatus 
+     */
+    public function getStatus()
+    {
+        return $this->Status;
     }
 }

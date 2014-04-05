@@ -1,6 +1,7 @@
 #Sonata ADMIN
 parameters:
     it_doors_haccp.point.admin.class: ITDoors\HaccpBundle\Admin\PointAdmin
+    it_doors_haccp.point.status.admin.class: ITDoors\HaccpBundle\Admin\PointStatusAdmin
     it_doors_haccp.plan.admin.class: ITDoors\HaccpBundle\Admin\PlanAdmin
     it_doors_haccp.point.group.admin.class: ITDoors\HaccpBundle\Admin\PointGroupAdmin
     it_doors_haccp.contour.admin.class: ITDoors\HaccpBundle\Admin\ContourAdmin
@@ -16,6 +17,17 @@ services:
         arguments:
             - ~
             - ITDoors\HaccpBundle\Entity\Point
+            - ~
+        calls:
+            - [ setTranslationDomain, [ITDoorsHaccpBundle]]
+
+    sonata.admin.point.status:
+        class: %it_doors_haccp.point.status.admin.class%
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "HACCP", label: "PointStatus" }
+        arguments:
+            - ~
+            - ITDoors\HaccpBundle\Entity\PointStatus
             - ~
         calls:
             - [ setTranslationDomain, [ITDoorsHaccpBundle]]
