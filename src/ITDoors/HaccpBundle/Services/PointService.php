@@ -2,6 +2,7 @@
 
 namespace ITDoors\HaccpBundle\Services;
 use Doctrine\ORM\Query;
+use ITDoors\HaccpBundle\Entity\Point;
 use ITDoors\HaccpBundle\Entity\PointRepository;
 use ITDoors\HaccpBundle\Entity\PointStatisticsRepository;
 use Symfony\Component\DependencyInjection\Container;
@@ -367,5 +368,27 @@ class PointService
         );
 
         return json_encode($pointInfo);
+    }
+
+    /**
+     * Get characteristics depending on pointId
+     *
+     * @param int $pointId
+     *
+     * @return mixed[]
+     */
+    public function getCharacteristics($pointId)
+    {
+        /** @var Point $point */
+        $point = $this->repository->find($pointId);
+
+        $groupId = $point->getGroup()->getId();
+
+        /** @var PointGroupApiV1Service $pgs */
+        $pgs = $this->container->get('point.group.api.v1.service');
+
+        $data = $pgs->getCharacteristics($groupId);
+
+        return $data;
     }
 }

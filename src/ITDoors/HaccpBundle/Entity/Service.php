@@ -6,18 +6,28 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Service
+ *
+ * @ORM\Table(name="service")
+ * @ORM\Entity(repositoryClass="ITDoors\HaccpBundle\Entity\ServiceRepository")
  */
 class Service
 {
     /**
      * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=50)
      */
     private $name;
+
 
 
     /**

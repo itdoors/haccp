@@ -9,8 +9,12 @@ plan_map:
 
 # POINT
 point_show_ajax:
-    pattern:  /ajax/point/show/{id}
+    pattern:  /ajax/point/{id}
     defaults: { _controller: ITDoorsHaccpBundle:Point:showAjax }
+
+point_statistics_show_ajax:
+    pattern:  /ajax/point/{id}/statistics
+    defaults: { _controller: ITDoorsHaccpBundle:Point:statisticsAjax }
 
 # CONTOUR
 contour_choices_ajax:

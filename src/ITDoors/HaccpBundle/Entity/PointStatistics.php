@@ -6,48 +6,76 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * PointStatistics
+ *
+ * @ORM\Table(name="point_statistics")
+ * @ORM\Entity(repositoryClass="ITDoors\HaccpBundle\Entity\PointStatisticsRepository")
  */
 class PointStatistics
 {
     /**
      * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
      * @var \DateTime
+     *
+     * @ORM\Column(name="created_at", type="datetime")
      */
     private $createdAt;
 
     /**
      * @var \DateTime
+     *
+     * @ORM\Column(name="entry_date", type="datetime")
      */
     private $entryDate;
 
     /**
      * @var integer
+     *
+     * @ORM\Column(name="point_id", type="integer")
      */
     private $pointId;
 
     /**
      * @var integer
+     *
+     * @ORM\Column(name="characteristic_id", type="integer")
      */
     private $characteristicId;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="value", type="string", length=50)
      */
     private $value;
 
     /**
      * @var \ITDoors\HaccpBundle\Entity\PointGroupCharacteristic
+     *
+     * @ORM\ManyToOne(targetEntity="ITDoors\HaccpBundle\Entity\PointGroupCharacteristic")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="characteristic_id", referencedColumnName="id")
+     * })
      */
     private $Characteristic;
 
     /**
      * @var \ITDoors\HaccpBundle\Entity\Point
+     *
+     * @ORM\ManyToOne(targetEntity="ITDoors\HaccpBundle\Entity\Point", inversedBy="Statistics")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="point_id", referencedColumnName="id")
+     * })
      */
     private $Point;
+
 
 
     /**

@@ -126,46 +126,34 @@
                         <!--<div class="row">
                         <div class="col-md-12">-->
                         {#<p>Удалять и редактировать можно только в текущем месяце для инспектора и куратора. Админ может в любом. Все пишем в историю.</p>#}
-                        <div class="table-responsive ">
-                            <table class="table table-condensed table-hover ">
-                                <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Дата инспекции</th>
-                                    <th>Показатель</th>
-                                    <th>Значение</th> <!--добавляем ед.измерения-->
-                                    <th>Статус</th>
-                                    <th>Инспектор</th>
-                                    <th></th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                {% for item in statistics %}
-                                <tr>
-                                    <td>{{ item.id }}</td>
-                                    <td>{{ item.entryDate|date('d.m.Y') }}</td>
-                                    <td>{{ item.characteristicName }}</td>
-                                    <td>{{ item.value }} {{ item.characteristicUnit }}</td>
-                                    <td>
-                                        <span class="label label-sm {{ item.className }}">{{ item.text }}</span>
-                                    </td>
-                                    <td>Михайличенко</td>
-                                    <td>
-                                        <a class="btn default btn-xs purple" href="#">
-                                            <i class="fa fa-edit"></i>
-                                        </a>
-                                        <a class="btn default btn-xs purple" href="#">
-                                            <i class="fa fa-trash-o"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                                {% endfor %}
-                                </tbody>
-                            </table>
+                        <div class="table-responsive">
+                            <a class="btn green" id="statistics-add-btn" href="#"><i class="fa fa-plus"></i>Добавить</a>
+                            {{ ajax_form_render_btn({
+                                'selector' : '#statistics-add-btn',
+                                'formType' : 'pointStatisticsType',
+                                'successFunctions' : {
+                                    'point-statistics-holder' : 'ITDoorsAjax.updateList'
+                                },
+                                'serviceDefault' : {
+                                    'alias' : 'point.statistics.service',
+                                    'method' : 'addFormDefaults'
+                                },
+                                'serviceSave' : {
+                                    'alias' : 'point.statistics.service',
+                                    'method' : 'saveForm'
+                                },
+                                'defaults' : {
+                                    'pointId' : point.id
+                                },
+                                'target' : '#statistics-add-holder'
+                            }) }}
+                            <div id="statistics-add-holder" style="display: none"></div>
+                            <div id="point-statistics-holder" data-url="{{ path('point_statistics_show_ajax', { id : point.id }) }}">
+                                {{ render(controller('ITDoorsHaccpBundle:Point:StatisticsAjax', { id : point.id })) }}
+                            </div>
                         </div>
                         <!--</div>
                         </div>-->
-                        <a class="btn green" href="#"><i class="fa fa-plus"></i>Добавить</a>
                         <div class="btn-group">
                             <a data-toggle="dropdown" href="#" class="btn purple">
                                 <i class="fa fa-user"></i> Параметры <i class="fa fa-angle-down"></i>

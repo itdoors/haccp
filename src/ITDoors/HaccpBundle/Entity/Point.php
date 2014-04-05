@@ -6,63 +6,121 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Point
+ *
+ * @ORM\Table(name="point")
+ * @ORM\Entity(repositoryClass="ITDoors\HaccpBundle\Entity\PointRepository")
  */
 class Point
 {
     /**
      * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=50)
      */
     private $name;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="installationDate", type="date", nullable=true)
+     */
+    private $installationDate;
+
+    /**
      * @var string
+     *
+     * @ORM\Column(name="imageLatitude", type="string", length=50, nullable=true)
      */
     private $imageLatitude;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="imageLongitude", type="string", length=50, nullable=true)
      */
     private $imageLongitude;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="mapLatitude", type="string", length=50, nullable=true)
      */
     private $mapLatitude;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="mapLongitude", type="string", length=50, nullable=true)
      */
     private $mapLongitude;
 
     /**
      * @var integer
+     *
+     * @ORM\Column(name="contour_id", type="integer", nullable=true)
      */
     private $contourId;
 
     /**
      * @var integer
+     *
+     * @ORM\Column(name="plan_id", type="integer")
      */
     private $planId;
 
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\OneToMany(targetEntity="ITDoors\HaccpBundle\Entity\PointStatistics", mappedBy="Point")
+     */
+    private $Statistics;
+
+    /**
      * @var \ITDoors\HaccpBundle\Entity\Plan
+     *
+     * @ORM\ManyToOne(targetEntity="ITDoors\HaccpBundle\Entity\Plan")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="plan_id", referencedColumnName="id")
+     * })
      */
     private $Plan;
 
     /**
      * @var \ITDoors\HaccpBundle\Entity\Contour
+     *
+     * @ORM\ManyToOne(targetEntity="ITDoors\HaccpBundle\Entity\Contour")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="contour_id", referencedColumnName="id")
+     * })
      */
     private $Contour;
 
     /**
      * @var \ITDoors\HaccpBundle\Entity\PointGroup
+     *
+     * @ORM\ManyToOne(targetEntity="ITDoors\HaccpBundle\Entity\PointGroup")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="point_group_id", referencedColumnName="id")
+     * })
      */
     private $Group;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->Statistics = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
 
     /**
@@ -96,6 +154,29 @@ class Point
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Set installationDate
+     *
+     * @param \DateTime $installationDate
+     * @return Point
+     */
+    public function setInstallationDate($installationDate)
+    {
+        $this->installationDate = $installationDate;
+
+        return $this;
+    }
+
+    /**
+     * Get installationDate
+     *
+     * @return \DateTime 
+     */
+    public function getInstallationDate()
+    {
+        return $this->installationDate;
     }
 
     /**
@@ -237,6 +318,39 @@ class Point
     }
 
     /**
+     * Add Statistics
+     *
+     * @param \ITDoors\HaccpBundle\Entity\PointStatistics $statistics
+     * @return Point
+     */
+    public function addStatistic(\ITDoors\HaccpBundle\Entity\PointStatistics $statistics)
+    {
+        $this->Statistics[] = $statistics;
+
+        return $this;
+    }
+
+    /**
+     * Remove Statistics
+     *
+     * @param \ITDoors\HaccpBundle\Entity\PointStatistics $statistics
+     */
+    public function removeStatistic(\ITDoors\HaccpBundle\Entity\PointStatistics $statistics)
+    {
+        $this->Statistics->removeElement($statistics);
+    }
+
+    /**
+     * Get Statistics
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getStatistics()
+    {
+        return $this->Statistics;
+    }
+
+    /**
      * Set Plan
      *
      * @param \ITDoors\HaccpBundle\Entity\Plan $plan
@@ -303,79 +417,6 @@ class Point
     public function getGroup()
     {
         return $this->Group;
-    }
-    /**
-     * @var \DateTime
-     */
-    private $installationDate;
-
-
-    /**
-     * Set installationDate
-     *
-     * @param \DateTime $installationDate
-     * @return Point
-     */
-    public function setInstallationDate($installationDate)
-    {
-        $this->installationDate = $installationDate;
-
-        return $this;
-    }
-
-    /**
-     * Get installationDate
-     *
-     * @return \DateTime 
-     */
-    public function getInstallationDate()
-    {
-        return $this->installationDate;
-    }
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $Statistics;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->Statistics = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Add Statistics
-     *
-     * @param \ITDoors\HaccpBundle\Entity\PointStatistics $statistics
-     * @return Point
-     */
-    public function addStatistic(\ITDoors\HaccpBundle\Entity\PointStatistics $statistics)
-    {
-        $this->Statistics[] = $statistics;
-
-        return $this;
-    }
-
-    /**
-     * Remove Statistics
-     *
-     * @param \ITDoors\HaccpBundle\Entity\PointStatistics $statistics
-     */
-    public function removeStatistic(\ITDoors\HaccpBundle\Entity\PointStatistics $statistics)
-    {
-        $this->Statistics->removeElement($statistics);
-    }
-
-    /**
-     * Get Statistics
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getStatistics()
-    {
-        return $this->Statistics;
     }
 
     /**

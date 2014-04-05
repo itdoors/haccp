@@ -9,6 +9,8 @@ web/uploads/*
 web/qrcodes/*
 #web/plans/*
 web/bundles/*
+web/coverage/*
+web/coverage
 .idea/
 
 # Configuration files

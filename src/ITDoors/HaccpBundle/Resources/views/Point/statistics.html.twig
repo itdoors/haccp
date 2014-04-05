@@ -1,0 +1,35 @@
+<table class="table table-condensed table-hover ">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Дата инспекции</th>
+        <th>Показатель</th>
+        <th>Значение</th> <!--добавляем ед.измерения-->
+        <th>Статус</th>
+        <th>Инспектор</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for item in statistics %}
+        <tr>
+            <td>{{ item.id }}</td>
+            <td>{{ item.entryDate|date('d.m.Y') }}</td>
+            <td>{{ item.characteristicName }}</td>
+            <td>{{ item.value }} {{ item.characteristicUnit }}</td>
+            <td>
+                <span class="label label-sm {{ item.className }}">{{ item.text }}</span>
+            </td>
+            <td>Михайличенко</td>
+            <td>
+                <a class="btn default btn-xs purple" href="#">
+                    <i class="fa fa-edit"></i>
+                </a>
+                <a class="btn default btn-xs purple" href="#">
+                    <i class="fa fa-trash-o"></i>
+                </a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

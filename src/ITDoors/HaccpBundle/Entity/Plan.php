@@ -6,41 +6,143 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Plan
+ *
+ * @ORM\Table(name="plan")
+ * @ORM\Entity(repositoryClass="ITDoors\HaccpBundle\Entity\PlanRepository")
  */
 class Plan
 {
     /**
      * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=50)
      */
     private $name;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="image_src", type="string", length=50, nullable=true)
      */
     private $imageSrc;
 
     /**
      * @var integer
+     *
+     * @ORM\Column(name="image_width", type="integer", nullable=true)
+     */
+    private $imageWidth;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="image_height", type="integer", nullable=true)
+     */
+    private $imageHeight;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="latitude", type="string", length=50, nullable=true)
+     */
+    private $latitude;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="longitude", type="string", length=50, nullable=true)
+     */
+    private $longitude;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="company_object_id", type="integer")
      */
     private $companyObjectId;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="type", type="string", length=20, nullable=true)
+     */
+    private $type;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="parent_id", type="integer", nullable=true)
+     */
+    private $parentId;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="parentLatitudeTopLeft", type="string", length=50, nullable=true)
+     */
+    private $parentLatitudeTopLeft;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="parentLongitudeTopLeft", type="string", length=50, nullable=true)
+     */
+    private $parentLongitudeTopLeft;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="parentLatitudeBottomRight", type="string", length=50, nullable=true)
+     */
+    private $parentLatitudeBottomRight;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="parentLongitudeBottomRight", type="string", length=50, nullable=true)
+     */
+    private $parentLongitudeBottomRight;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="max_zoom", type="integer", nullable=true)
+     */
+    private $maxZoom;
+
+    /**
      * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\OneToMany(targetEntity="ITDoors\HaccpBundle\Entity\Plan", mappedBy="parent")
      */
     private $children;
 
     /**
      * @var \ITDoors\HaccpBundle\Entity\CompanyObject
+     *
+     * @ORM\ManyToOne(targetEntity="ITDoors\HaccpBundle\Entity\CompanyObject")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="company_object_id", referencedColumnName="id")
+     * })
      */
     private $companyObject;
 
     /**
      * @var \ITDoors\HaccpBundle\Entity\Plan
+     *
+     * @ORM\ManyToOne(targetEntity="ITDoors\HaccpBundle\Entity\Plan", inversedBy="children")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="parent_id", referencedColumnName="id")
+     * })
      */
     private $parent;
 
@@ -51,6 +153,7 @@ class Plan
     {
         $this->children = new \Doctrine\Common\Collections\ArrayCollection();
     }
+
 
     /**
      * Get id
@@ -109,118 +212,6 @@ class Plan
     }
 
     /**
-     * Set companyObjectId
-     *
-     * @param integer $companyObjectId
-     * @return Plan
-     */
-    public function setCompanyObjectId($companyObjectId)
-    {
-        $this->companyObjectId = $companyObjectId;
-
-        return $this;
-    }
-
-    /**
-     * Get companyObjectId
-     *
-     * @return integer 
-     */
-    public function getCompanyObjectId()
-    {
-        return $this->companyObjectId;
-    }
-
-    /**
-     * Add children
-     *
-     * @param \ITDoors\HaccpBundle\Entity\Plan $children
-     * @return Plan
-     */
-    public function addChild(\ITDoors\HaccpBundle\Entity\Plan $children)
-    {
-        $this->children[] = $children;
-
-        return $this;
-    }
-
-    /**
-     * Remove children
-     *
-     * @param \ITDoors\HaccpBundle\Entity\Plan $children
-     */
-    public function removeChild(\ITDoors\HaccpBundle\Entity\Plan $children)
-    {
-        $this->children->removeElement($children);
-    }
-
-    /**
-     * Get children
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getChildren()
-    {
-        return $this->children;
-    }
-
-    /**
-     * Set companyObject
-     *
-     * @param \ITDoors\HaccpBundle\Entity\CompanyObject $companyObject
-     * @return Plan
-     */
-    public function setCompanyObject(\ITDoors\HaccpBundle\Entity\CompanyObject $companyObject = null)
-    {
-        $this->companyObject = $companyObject;
-
-        return $this;
-    }
-
-    /**
-     * Get companyObject
-     *
-     * @return \ITDoors\HaccpBundle\Entity\CompanyObject 
-     */
-    public function getCompanyObject()
-    {
-        return $this->companyObject;
-    }
-
-    /**
-     * Set parent
-     *
-     * @param \ITDoors\HaccpBundle\Entity\Plan $parent
-     * @return Plan
-     */
-    public function setParent(\ITDoors\HaccpBundle\Entity\Plan $parent = null)
-    {
-        $this->parent = $parent;
-
-        return $this;
-    }
-
-    /**
-     * Get parent
-     *
-     * @return \ITDoors\HaccpBundle\Entity\Plan 
-     */
-    public function getParent()
-    {
-        return $this->parent;
-    }
-    /**
-     * @var integer
-     */
-    private $imageWidth;
-
-    /**
-     * @var integer
-     */
-    private $imageHeight;
-
-
-    /**
      * Set imageWidth
      *
      * @param integer $imageWidth
@@ -265,21 +256,6 @@ class Plan
     {
         return $this->imageHeight;
     }
-    /**
-     * @var string
-     */
-    private $latitude;
-
-    /**
-     * @var string
-     */
-    private $longitude;
-
-    /**
-     * @var string
-     */
-    private $type;
-
 
     /**
      * Set latitude
@@ -328,6 +304,29 @@ class Plan
     }
 
     /**
+     * Set companyObjectId
+     *
+     * @param integer $companyObjectId
+     * @return Plan
+     */
+    public function setCompanyObjectId($companyObjectId)
+    {
+        $this->companyObjectId = $companyObjectId;
+
+        return $this;
+    }
+
+    /**
+     * Get companyObjectId
+     *
+     * @return integer 
+     */
+    public function getCompanyObjectId()
+    {
+        return $this->companyObjectId;
+    }
+
+    /**
      * Set type
      *
      * @param string $type
@@ -349,11 +348,6 @@ class Plan
     {
         return $this->type;
     }
-    /**
-     * @var integer
-     */
-    private $parentId;
-
 
     /**
      * Set parentId
@@ -377,63 +371,6 @@ class Plan
     {
         return $this->parentId;
     }
-    /**
-     * @var integer
-     */
-    private $maxZoom;
-
-
-    /**
-     * Set maxZoom
-     *
-     * @param integer $maxZoom
-     * @return Plan
-     */
-    public function setMaxZoom($maxZoom)
-    {
-        $this->maxZoom = $maxZoom;
-
-        return $this;
-    }
-
-    /**
-     * Get maxZoom
-     *
-     * @return integer 
-     */
-    public function getMaxZoom()
-    {
-        return $this->maxZoom;
-    }
-
-    /**
-     * __toString()
-     */
-    public function __toString()
-    {
-        return $this->getName();
-    }
-
-    /**
-     * @var string
-     */
-    private $parentLatitudeTopLeft;
-
-    /**
-     * @var string
-     */
-    private $parentLongitudeTopLeft;
-
-    /**
-     * @var string
-     */
-    private $parentLatitudeBottomRight;
-
-    /**
-     * @var string
-     */
-    private $parentLongitudeBottomRight;
-
 
     /**
      * Set parentLatitudeTopLeft
@@ -525,5 +462,115 @@ class Plan
     public function getParentLongitudeBottomRight()
     {
         return $this->parentLongitudeBottomRight;
+    }
+
+    /**
+     * Set maxZoom
+     *
+     * @param integer $maxZoom
+     * @return Plan
+     */
+    public function setMaxZoom($maxZoom)
+    {
+        $this->maxZoom = $maxZoom;
+
+        return $this;
+    }
+
+    /**
+     * Get maxZoom
+     *
+     * @return integer 
+     */
+    public function getMaxZoom()
+    {
+        return $this->maxZoom;
+    }
+
+    /**
+     * Add children
+     *
+     * @param \ITDoors\HaccpBundle\Entity\Plan $children
+     * @return Plan
+     */
+    public function addChild(\ITDoors\HaccpBundle\Entity\Plan $children)
+    {
+        $this->children[] = $children;
+
+        return $this;
+    }
+
+    /**
+     * Remove children
+     *
+     * @param \ITDoors\HaccpBundle\Entity\Plan $children
+     */
+    public function removeChild(\ITDoors\HaccpBundle\Entity\Plan $children)
+    {
+        $this->children->removeElement($children);
+    }
+
+    /**
+     * Get children
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getChildren()
+    {
+        return $this->children;
+    }
+
+    /**
+     * Set companyObject
+     *
+     * @param \ITDoors\HaccpBundle\Entity\CompanyObject $companyObject
+     * @return Plan
+     */
+    public function setCompanyObject(\ITDoors\HaccpBundle\Entity\CompanyObject $companyObject = null)
+    {
+        $this->companyObject = $companyObject;
+
+        return $this;
+    }
+
+    /**
+     * Get companyObject
+     *
+     * @return \ITDoors\HaccpBundle\Entity\CompanyObject 
+     */
+    public function getCompanyObject()
+    {
+        return $this->companyObject;
+    }
+
+    /**
+     * Set parent
+     *
+     * @param \ITDoors\HaccpBundle\Entity\Plan $parent
+     * @return Plan
+     */
+    public function setParent(\ITDoors\HaccpBundle\Entity\Plan $parent = null)
+    {
+        $this->parent = $parent;
+
+        return $this;
+    }
+
+    /**
+     * Get parent
+     *
+     * @return \ITDoors\HaccpBundle\Entity\Plan 
+     */
+    public function getParent()
+    {
+        return $this->parent;
+    }
+
+    /**
+     * __toString()
+     */
+    public function __toString()
+    {
+        return $this->getName();
     }
 }

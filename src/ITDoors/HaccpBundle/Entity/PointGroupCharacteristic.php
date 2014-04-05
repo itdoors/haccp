@@ -6,68 +6,122 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * PointGroupCharacteristic
+ *
+ * @ORM\Table(name="point_group_characteristic")
+ * @ORM\Entity(repositoryClass="ITDoors\HaccpBundle\Entity\PointGroupCharacteristicRepository")
  */
 class PointGroupCharacteristic
 {
     /**
      * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=50)
      */
     private $name;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="description", type="text", nullable=true)
      */
     private $description;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="unit", type="string", length=20)
      */
     private $unit;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="data_type", type="string", length=20)
      */
     private $dataType;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="input_type", type="string", length=20, nullable=true)
+     */
+    private $inputType;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="allow_value_max", type="string", length=20, nullable=true)
      */
     private $allowValueMax;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="allow_value_min", type="string", length=20, nullable=true)
      */
     private $allowValueMin;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="critical_value_top", type="string", length=20, nullable=true)
      */
     private $criticalValueTop;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="critical_value_bottom", type="string", length=20, nullable=true)
      */
     private $criticalValueBottom;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="critical_color_top", type="string", length=20, nullable=true)
      */
     private $criticalColorTop;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="critical_color_middle", type="string", length=20, nullable=true)
+     */
+    private $criticalColorMiddle;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="critical_color_botton", type="string", length=20, nullable=true)
      */
     private $criticalColorBottom;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="point_group_id", type="integer")
+     */
+    private $groupId;
+
+    /**
      * @var \ITDoors\HaccpBundle\Entity\PointGroup
+     *
+     * @ORM\ManyToOne(targetEntity="ITDoors\HaccpBundle\Entity\PointGroup")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="point_group_id", referencedColumnName="id")
+     * })
      */
     private $group;
+
 
 
     /**
@@ -170,6 +224,29 @@ class PointGroupCharacteristic
     public function getDataType()
     {
         return $this->dataType;
+    }
+
+    /**
+     * Set inputType
+     *
+     * @param string $inputType
+     * @return PointGroupCharacteristic
+     */
+    public function setInputType($inputType)
+    {
+        $this->inputType = $inputType;
+
+        return $this;
+    }
+
+    /**
+     * Get inputType
+     *
+     * @return string 
+     */
+    public function getInputType()
+    {
+        return $this->inputType;
     }
 
     /**
@@ -288,57 +365,6 @@ class PointGroupCharacteristic
     }
 
     /**
-     * Set criticalColorBottom
-     *
-     * @param string $criticalColorBottom
-     * @return PointGroupCharacteristic
-     */
-    public function setCriticalColorBottom($criticalColorBottom)
-    {
-        $this->criticalColorBottom = $criticalColorBottom;
-
-        return $this;
-    }
-
-    /**
-     * Get criticalColorBottom
-     *
-     * @return string 
-     */
-    public function getCriticalColorBottom()
-    {
-        return $this->criticalColorBottom;
-    }
-
-    /**
-     * Set group
-     *
-     * @param \ITDoors\HaccpBundle\Entity\PointGroup $group
-     * @return PointGroupCharacteristic
-     */
-    public function setGroup(\ITDoors\HaccpBundle\Entity\PointGroup $group = null)
-    {
-        $this->group = $group;
-
-        return $this;
-    }
-
-    /**
-     * Get group
-     *
-     * @return \ITDoors\HaccpBundle\Entity\PointGroup 
-     */
-    public function getGroup()
-    {
-        return $this->group;
-    }
-    /**
-     * @var string
-     */
-    private $criticalColorMiddle;
-
-
-    /**
      * Set criticalColorMiddle
      *
      * @param string $criticalColorMiddle
@@ -362,17 +388,27 @@ class PointGroupCharacteristic
     }
 
     /**
-     * __toString()
+     * Set criticalColorBottom
+     *
+     * @param string $criticalColorBottom
+     * @return PointGroupCharacteristic
      */
-    public function __toString()
+    public function setCriticalColorBottom($criticalColorBottom)
     {
-        return $this->getName();
-    }
-    /**
-     * @var integer
-     */
-    private $groupId;
+        $this->criticalColorBottom = $criticalColorBottom;
 
+        return $this;
+    }
+
+    /**
+     * Get criticalColorBottom
+     *
+     * @return string 
+     */
+    public function getCriticalColorBottom()
+    {
+        return $this->criticalColorBottom;
+    }
 
     /**
      * Set groupId
@@ -398,30 +434,33 @@ class PointGroupCharacteristic
     }
 
     /**
-     * @var string
-     */
-    private $inputType;
-
-    /**
-     * Set inputType
+     * Set group
      *
-     * @param string $inputType
+     * @param \ITDoors\HaccpBundle\Entity\PointGroup $group
      * @return PointGroupCharacteristic
      */
-    public function setInputType($inputType)
+    public function setGroup(\ITDoors\HaccpBundle\Entity\PointGroup $group = null)
     {
-        $this->inputType = $inputType;
+        $this->group = $group;
 
         return $this;
     }
 
     /**
-     * Get inputType
+     * Get group
      *
-     * @return string 
+     * @return \ITDoors\HaccpBundle\Entity\PointGroup 
      */
-    public function getInputType()
+    public function getGroup()
     {
-        return $this->inputType;
+        return $this->group;
+    }
+
+    /**
+     * __toString()
+     */
+    public function __toString()
+    {
+        return $this->getName();
     }
 }

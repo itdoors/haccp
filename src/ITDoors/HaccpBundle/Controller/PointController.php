@@ -20,10 +20,22 @@ class PointController extends Controller
 
         $point = $pointService->getPointShow(array($id));
 
-        $statistics = $pointService->getStatistics($id);
-
         return $this->render('ITDoorsHaccpBundle:Point:showAjax.html.twig', array(
             'point' => $point,
+        ));
+    }
+
+    /**
+     * Statistics list
+     */
+    public function statisticsAjaxAction($id)
+    {
+        /** @var PointService $pointService */
+        $pointService = $this->get('point.service');
+
+        $statistics = $pointService->getStatistics($id);
+
+        return $this->render('ITDoorsHaccpBundle:Point:statistics.html.twig', array(
             'statistics' => $statistics
         ));
     }

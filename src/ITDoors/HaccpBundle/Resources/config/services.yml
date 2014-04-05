@@ -9,6 +9,7 @@ parameters:
 
     it_doors_haccp.point.statistics.repository.class: ITDoors\HaccpBundle\Entity\PointStatisticsRepository
     it_doors_haccp.point.statistics.repository.entity: ITDoors\HaccpBundle\Entity\PointStatistics
+    it_doors_haccp.point.statistics.service.class: ITDoors\HaccpBundle\Services\PointStatisticsService
 
     it_doors_haccp.point.group.characteristic.repository.class: ITDoors\HaccpBundle\Entity\PointGroupCharacteristicRepository
     it_doors_haccp.point.group.characteristic.repository.entity: ITDoors\HaccpBundle\Entity\PointGroupCharacteristic
@@ -33,6 +34,8 @@ parameters:
     it_doors_haccp.point.group.api.v1.service.class: ITDoors\HaccpBundle\Services\PointGroupApiV1Service
 
     it_doors_haccp.form.pointStatisticsApiForm.class: ITDoors\HaccpBundle\Form\PointStatisticsApiForm
+
+    it_doors_haccp.form.pointStatisticsType.class: ITDoors\HaccpBundle\Form\PointStatisticsType
 
 services:
     it_doors_haccp.plan.repository:
@@ -75,6 +78,13 @@ services:
 
     point.statistics.repository:
         alias: it_doors_haccp.point.statistics.repository
+
+    it_doors_haccp.point.statistics.service:
+        class: %it_doors_haccp.point.statistics.service.class%
+        arguments: [ @service_container ]
+
+    point.statistics.service:
+        alias: it_doors_haccp.point.statistics.service
 
     it_doors_haccp.point.group.characteristic.repository:
         class: %it_doors_haccp.point.group.characteristic.repository.class%
@@ -128,6 +138,13 @@ services:
         arguments: [@service_container]
         tags:
             - { name: form.type, alias: serviceFilterType }
+
+    it_doors_haccp.form.pointStatisticsType:
+        class: %it_doors_haccp.form.pointStatisticsType.class%
+        arguments: [@service_container]
+        tags:
+            - { name: form.type, alias: pointStatisticsType }
+
 
 #API SERVICES V1
     it_doors_haccp.point.api.v1.service:

@@ -6,18 +6,28 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * PointGroup
+ *
+ * @ORM\Table(name="point_group")
+ * @ORM\Entity(repositoryClass="ITDoors\HaccpBundle\Entity\PointGroupRepository")
  */
 class PointGroup
 {
     /**
      * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=50)
      */
     private $name;
+
 
 
     /**
