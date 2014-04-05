@@ -26,6 +26,9 @@ class PointAdmin extends Admin
             ->add('Group', 'entity', array(
                 'class' => 'ITDoors\HaccpBundle\Entity\PointGroup'
             ))
+            ->add('Status', 'entity', array(
+                'class' => 'ITDoors\HaccpBundle\Entity\PointStatus'
+            ))
             ->add('installationDate')
             ->add('imageLatitude')
             ->add('imageLongitude')
@@ -42,6 +45,7 @@ class PointAdmin extends Admin
             ->add('Plan')
             ->add('Contour')
             ->add('Group')
+            ->add('Status')
         ;
     }
 
@@ -54,6 +58,7 @@ class PointAdmin extends Admin
             ->add('Contour')
             ->add('Plan')
             ->add('Group')
+            ->add('Status')
             ->add('installationDate')
             ->add('imageLatitude')
             ->add('imageLongitude')

@@ -61,13 +61,21 @@ class PointApiV1Service
             $point['contour']['id'] = $point['contourId'];
             $point['contour']['name'] = $point['contourName'];
 
+            $point['status'] = array();
+            $point['status']['id'] = $point['statusId'];
+            $point['status']['slug'] = $point['statusSlug'];
+            $point['status']['name'] = $point['statusName'];
+
             unset(
                 $points[$key]['planId'],
                 $points[$key]['planName'],
                 $points[$key]['groupId'],
                 $points[$key]['groupName'],
                 $points[$key]['contourId'],
-                $points[$key]['contourName']
+                $points[$key]['contourName'],
+                $point['statusId'],
+                $point['statusSlug'],
+                $point['statusName']
             );
 
             /*$statistics = $psv1s->getLastStatistics($point['id']);

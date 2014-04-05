@@ -229,4 +229,37 @@ class PointController extends FOSRestController
 
         return $this->handleView($view);
     }
+
+    /**
+     *
+     * @Rest\Post("/{id}/status")
+     *
+     * @ApiDoc(
+     *  description="Returns PointStatistic",
+     *  requirements={
+     *      {
+     *          "name"="id",
+     *          "dataType"="integer",
+     *          "requirement"="+\d",
+     *          "description"="Point Id"
+     *      }
+     * },
+     * input="ITDoors\HaccpBundle\Form\PointStatusApiForm",
+     * output={
+     *      "class"="ITDoors\HaccpBundle\Entity\Point",
+     *      "groups"={"api"}
+     *  }
+     * )
+     */
+    public function postPointStatusAction($id, Request $request)
+    {
+        /** @var PointStatisticsApiV1Service $pss*/
+        $pss = $this->container->get('point.statistics.api.v1.service');
+
+        $data = $pss->postPointStatus($id, $request);
+
+        $view = $this->view($data, 201);
+
+        return $this->handleView($view);
+    }
 }

@@ -6,6 +6,7 @@ use ITDoors\HaccpBundle\Entity\Point;
 use ITDoors\HaccpBundle\Entity\PointRepository;
 use ITDoors\HaccpBundle\Entity\PointStatistics;
 use ITDoors\HaccpBundle\Entity\PointStatisticsRepository;
+use ITDoors\HaccpBundle\Entity\PointStatusRepository;
 use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
@@ -251,5 +252,43 @@ class PointStatisticsApiV1Service
         $this->formatStatisticsRecord($result);
 
         return $result;
+    }
+
+    /**
+     * Persists status info
+     *
+     * @param int $id
+     * @param Request $request
+     *
+     * @return mixed[]
+     */
+    public function postPointStatus($id, Request $request)
+    {
+        /** @var EntityManager $em */
+        $em = $this->container->get('doctrine.orm.entity_manager');
+
+        /** @var PointRepository $pr */
+        $pr = $this->container->get('point.repository');
+
+        /** @var PointStatusRepository $psr */
+        $psr = $this->container->get('point.status.repository');
+
+        /** @var Point $point */
+        $point = $pr->find($id);
+
+        $requestData = $request->request->get('pointStatusApiForm');
+
+        $status = $psr->find($requestData['statusId']);
+
+        // EOF Request data TEMP
+
+        $point->setStatus($status);
+
+        $em->persist($point);
+        $em->flush();
+
+        $em->refresh($point);
+
+        return null;
     }
 }

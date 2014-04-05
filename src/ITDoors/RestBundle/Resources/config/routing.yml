@@ -9,3 +9,9 @@ it_doors_rest_point_group:
     prefix: /v1/point.group
     resource: ITDoors\RestBundle\Controller\PointGroupController
     name_prefix:  api_v1_
+
+it_doors_rest_point_status:
+    type: rest
+    prefix: /v1/point.status
+    resource: ITDoors\RestBundle\Controller\PointStatusController
+    name_prefix:  api_v1_

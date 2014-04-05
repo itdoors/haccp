@@ -119,9 +119,12 @@ class PointRepository extends EntityRepository
             ->addSelect('Contour.name as contourName')
             ->addSelect('Plan.name as objectName')
             ->addSelect('Plan.type as planType')
+            ->addSelect('Status.id as statusId')
+            ->addSelect('Status.name as statusName')
             ->leftJoin('p.Contour', 'Contour')
             ->leftJoin('p.Group', 'PointGroup')
             ->leftJoin('p.Plan', 'Plan')
+            ->leftJoin('p.Status', 'Status')
             ->where('p.id in (:pointIds)')
             ->setParameter(':pointIds', $pointIds)
             ->getQuery();
@@ -160,9 +163,13 @@ class PointRepository extends EntityRepository
             ->addSelect('Contour.name as contourName')
             ->addSelect('Contour.id as contourId')
             ->addSelect('p.installationDate as installationDate')
+            ->addSelect('Status.id as statusId')
+            ->addSelect('Status.slug as statusSlug')
+            ->addSelect('Status.name as statusName')
             ->leftJoin('p.Group', 'PointGroup')
             ->leftJoin('p.Plan', 'Plan')
-            ->leftJoin('p.Contour', 'Contour');
+            ->leftJoin('p.Contour', 'Contour')
+            ->leftJoin('p.Status', 'Status');
 
         $sql->where('p.id in (:ids)')
             ->setParameter(':ids', $ids);
