@@ -229,7 +229,8 @@ var HaccpMap = (function() {
                         classNameStatistics: point.classNameStatistics,
                         value: point.pointAVG,
                         name: point.name,
-                        contourSlug: contourSlug
+                        contourSlug: contourSlug,
+                        contourLevel: point.contourLevel
                     })
                 });
 
@@ -313,7 +314,7 @@ var HaccpMap = (function() {
     HaccpMap.prototype.getPointHtml = function(options) {
         var point =
             '<a class="label ' + options.classNameStatistics + '-' + options.contourSlug + ' ' +
-                ' " href="#">1' +
+                ' " href="#">' + options.contourLevel + '' +
                 '<i class="fa fa-inbox"></i>' +
                 '' + options.name  + '' +
                 '</a>';
