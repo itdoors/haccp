@@ -59,6 +59,13 @@ class Contour
      */
     private $Service;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="level", type="integer", nullable=true)
+     */
+    private $level;
+
 
 
     /**
@@ -192,5 +199,28 @@ class Contour
     public function __toString()
     {
         return $this->getName();
+    }
+
+    /**
+     * Set level
+     *
+     * @param integer $level
+     * @return Contour
+     */
+    public function setLevel($level)
+    {
+        $this->level = $level;
+
+        return $this;
+    }
+
+    /**
+     * Get level
+     *
+     * @return integer 
+     */
+    public function getLevel()
+    {
+        return $this->level;
     }
 }

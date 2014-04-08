@@ -313,7 +313,7 @@ var HaccpMap = (function() {
     HaccpMap.prototype.getPointHtml = function(options) {
         var point =
             '<a class="label ' + options.classNameStatistics + '-' + options.contourSlug + ' ' +
-                ' " href="#">' +
+                ' " href="#">1' +
                 '<i class="fa fa-inbox"></i>' +
                 '' + options.name  + '' +
                 '</a>';

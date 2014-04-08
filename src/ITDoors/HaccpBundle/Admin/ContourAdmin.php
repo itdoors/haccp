@@ -19,6 +19,7 @@ class ContourAdmin extends Admin
             ->add('name')
             ->add('Service')
             ->add('slug')
+            ->add('level')
         ;
     }
 
@@ -39,6 +40,7 @@ class ContourAdmin extends Admin
             ->add('name')
             ->add('Service')
             ->add('slug')
+            ->add('level')
         ;
     }
 }
