@@ -107,7 +107,7 @@
                 <div class="tab-content">
                     <div id="portlet_tab1" class="tab-pane active">
                         <div class="row">
-                            <label class="col-md-4 control-label">Веберите дату</label>
+                            <label class="col-md-4 control-label">{#Веберите дату#}</label>
                             <div class="col-md-6">
                                 <!-- вставляем adwanced data ranges components_pickers.html
                                 По умолчанию текущий месяц.
@@ -115,12 +115,9 @@
 
                                 Либо вставляем Months Only и показываем по умолчанию только текцщий месяц.
                                 -->
-                                <div class="btn default" id="reportrange">
-                                    <i class="fa fa-calendar"></i>
-                                    &nbsp;
-                                    <span>January 25, 2014 - February 23, 2014</span>
-                                    <b class="fa fa-angle-down"></b>
-                                </div>
+                                {#{{ ajax_filter_render_short('pointStatisticsDateRangeType', ajax_filter_namespace_point_statistics ~ point.id, {
+                                    "point-statistics-holder": "ITDoorsAjax.updateList"
+                                }) }}#}
                             </div>
                         </div>
                         <!--<div class="row">

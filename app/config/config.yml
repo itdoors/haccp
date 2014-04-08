@@ -12,7 +12,8 @@ parameters:
     locale: ru
     ajax.filter.namespace.point.service: "point.services"
     ajax.filter.namespace.point.contour: "point.contour"
-    api.v1.point.statistics.limit: 2
+    ajax.filter.namespace.point.statistics: "point.statistics"
+    api.v1.point.statistics.limit: 5
     log.file.path: "%project.dir%/log.txt"
 
 framework:
@@ -45,6 +46,7 @@ twig:
     globals:
         ajax_filter_namespace_point_service: %ajax.filter.namespace.point.service%
         ajax_filter_namespace_point_contour: %ajax.filter.namespace.point.contour%
+        ajax_filter_namespace_point_statistics: %ajax.filter.namespace.point.statistics%
         projectVersion: %project.version%
 
 # Assetic Configuration

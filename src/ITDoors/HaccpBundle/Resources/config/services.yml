@@ -26,6 +26,7 @@ parameters:
     it_doors_haccp.service.repository.entity: ITDoors\HaccpBundle\Entity\Service
 
     it_doors_haccp.form.serviceFilterType.class: ITDoors\HaccpBundle\Form\ServiceFilterType
+    it_doors_haccp.form.pointStatisticsDateRangeType.class: ITDoors\HaccpBundle\Form\PointStatisticsDateRangeType
 
     it_doors_haccp.log.service.class: ITDoors\HaccpBundle\Services\LogService
 
@@ -152,6 +153,12 @@ services:
         arguments: [@service_container]
         tags:
             - { name: form.type, alias: serviceFilterType }
+
+    it_doors_haccp.form.pointStatisticsDateRangeType:
+        class: %it_doors_haccp.form.pointStatisticsDateRangeType.class%
+        arguments: [@service_container]
+        tags:
+            - { name: form.type, alias: pointStatisticsDateRangeType }
 
     it_doors_haccp.form.pointStatisticsType:
         class: %it_doors_haccp.form.pointStatisticsType.class%
