@@ -199,7 +199,7 @@ var HaccpMap = (function() {
             // If cluster is not defined
             if (!_clusters[contourSlug]) {
                 _clusters[contourSlug] = new L.MarkerClusterGroup({
-                    disableClusteringAtZoom: _plan.maxZoom,
+                    disableClusteringAtZoom: _plan.maxClusterZoom,
                     spiderfyOnMaxZoom : false,
                     showCoverageOnHover: false,
                     contourSlug: contourSlug,

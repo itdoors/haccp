@@ -37,6 +37,13 @@ class ServiceFilterType extends AbstractType
         $cs = $this->container->get('contour.service');
 
         $builder
+            ->add('clusterization', 'checkbox', array(
+                'attr' => array(
+                    'class_outer' => 'col-md-2',
+                ),
+                'data' => true,
+                'label' => 'Clusterization'
+            ))
             ->add('contourId', 'hidden', array(
                 'attr' => array(
                     'class_outer' => 'col-md-4',

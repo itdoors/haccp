@@ -48,6 +48,14 @@ class PlanController extends BaseFilterController
 
         $filters = array_merge($filtersService, $filtersContour);
 
+        $plan['maxClusterZoom'] = $plan['maxZoom'];
+
+        // Temporary hack
+        if (isset($filters['clusterization']) && !$filters['clusterization']) {
+            $plan['maxClusterZoom'] = -1;
+        }
+        // eof Temporary hack
+
         $pointsByContours = $pointService->getPointsList($planId, $filters);
 
         return $this->render('ITDoorsHaccpBundle:Plan:map.html.twig', array(
