@@ -17,11 +17,16 @@ class PlanAdmin extends Admin
     {
         $formMapper
             ->add('name')
+            ->add('CompanyObject', 'entity', array(
+                'class' => 'ITDoors\HaccpBundle\Entity\CompanyObject'
+            ))
             ->add('parent')
             ->add('parentLatitudeTopLeft')
             ->add('parentLongitudeTopLeft')
             ->add('parentLatitudeBottomRight')
             ->add('parentLongitudeBottomRight')
+            ->add('type')
+            ->add('maxZoom')
         ;
     }
 
@@ -45,6 +50,8 @@ class PlanAdmin extends Admin
             ->add('parentLongitudeTopLeft')
             ->add('parentLatitudeBottomRight')
             ->add('parentLongitudeBottomRight')
+            ->add('type')
+            ->add('maxZoom')
         ;
     }
 }

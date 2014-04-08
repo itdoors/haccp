@@ -379,7 +379,7 @@ var HaccpMap = (function() {
     HaccpMap.prototype.onMapClick = function(e) {
         L.popup()
             .setLatLng(e.latlng)
-            .setContent("Координаты точки " + e.latlng.lat * _scale + ' ' + e.latlng.lng * _scale)
+            .setContent("Координаты точки " + Math.round(e.latlng.lat * _scale) + '; ' + Math.round(e.latlng.lng * _scale))
             .openOn(_map);
     };
 

@@ -36,9 +36,9 @@
         "jms/serializer-bundle": "0.12.*",
         "nelmio/api-doc-bundle": "2.5.1",
         "sonata-project/admin-bundle": "dev-master",
-        "sonata-project/doctrine-orm-admin-bundle": "dev-master",
         "phpunit/phpunit": "4.0.*",
-        "doctrine/doctrine-fixtures-bundle": "2.2.*"
+        "doctrine/doctrine-fixtures-bundle": "2.2.*",
+        "sonata-project/doctrine-orm-admin-bundle": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [
