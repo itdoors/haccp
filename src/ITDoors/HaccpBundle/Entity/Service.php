@@ -28,12 +28,10 @@ class Service
      */
     private $name;
 
-
-
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -44,6 +42,7 @@ class Service
      * Set name
      *
      * @param string $name
+     *
      * @return Service
      */
     public function setName($name)
@@ -56,7 +55,7 @@ class Service
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -65,6 +64,8 @@ class Service
 
     /**
      * __toString()
+     *
+     * @return string
      */
     public function __toString()
     {

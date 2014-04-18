@@ -25,19 +25,18 @@ class PointStatisticsRepository extends EntityRepository
      *
      * @return Query
      */
-    //public function getStatisticsQuery($ids, $limit = 10, $startDate = null, $endDate = null, $statisticsIds = array())
     public function getStatisticsQuery($options)
     {
         $sql = $this->createQueryBuilder('ps')
             ->select('ps.id as id')
             ->addSelect('ps.value as value')
             ->addSelect('ps.entryDate as entryDate')
-            ->addSelect('Characteristic.id as characteristicId')
-            ->addSelect('Characteristic.name as characteristicName')
-            ->addSelect('Characteristic.unit as characteristicUnit')
-            ->addSelect('Characteristic.criticalValueTop as criticalValueTop')
-            ->addSelect('Characteristic.criticalValueBottom as criticalValueBottom')
-            ->leftJoin('ps.Characteristic', 'Characteristic');
+            ->addSelect('characteristic.id as characteristicId')
+            ->addSelect('characteristic.name as characteristicName')
+            ->addSelect('characteristic.unit as characteristicUnit')
+            ->addSelect('characteristic.criticalValueTop as criticalValueTop')
+            ->addSelect('characteristic.criticalValueBottom as criticalValueBottom')
+            ->leftJoin('ps.characteristic', 'characteristic');
 
         // Start date
         if (isset($options['startDate']) && $options['startDate']) {

@@ -12,6 +12,8 @@ class ContourController extends BaseFilterController
 {
     /**
      * Returns all contour choices
+     *
+     * @return string
      */
     public function choicesAjaxAction()
     {

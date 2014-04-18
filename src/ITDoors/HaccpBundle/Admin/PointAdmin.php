@@ -17,24 +17,23 @@ class PointAdmin extends Admin
     {
         $formMapper
             ->add('name')
-            ->add('Contour', 'entity', array(
+            ->add('contour', 'entity', array(
                 'class' => 'ITDoors\HaccpBundle\Entity\Contour'
             ))
-            ->add('Plan', 'entity', array(
+            ->add('plan', 'entity', array(
                 'class' => 'ITDoors\HaccpBundle\Entity\Plan'
             ))
-            ->add('Group', 'entity', array(
+            ->add('group', 'entity', array(
                 'class' => 'ITDoors\HaccpBundle\Entity\PointGroup'
             ))
-            ->add('Status', 'entity', array(
+            ->add('status', 'entity', array(
                 'class' => 'ITDoors\HaccpBundle\Entity\PointStatus'
             ))
             ->add('installationDate')
             ->add('imageLatitude')
             ->add('imageLongitude')
             ->add('mapLatitude')
-            ->add('mapLongitude')
-        ;
+            ->add('mapLongitude');
     }
 
     // Fields to be shown on filter forms
@@ -42,11 +41,10 @@ class PointAdmin extends Admin
     {
         $datagridMapper
             ->add('name')
-            ->add('Plan')
-            ->add('Contour')
-            ->add('Group')
-            ->add('Status')
-        ;
+            ->add('plan')
+            ->add('contour')
+            ->add('group')
+            ->add('status');
     }
 
     // Fields to be shown on lists
@@ -55,15 +53,14 @@ class PointAdmin extends Admin
         $listMapper
             ->addIdentifier('id')
             ->add('name')
-            ->add('Contour')
-            ->add('Plan')
-            ->add('Group')
-            ->add('Status')
+            ->add('contour')
+            ->add('plan')
+            ->add('group')
+            ->add('status')
             ->add('installationDate')
             ->add('imageLatitude')
             ->add('imageLongitude')
             ->add('mapLatitude')
-            ->add('mapLongitude')
-        ;
+            ->add('mapLongitude');
     }
 }

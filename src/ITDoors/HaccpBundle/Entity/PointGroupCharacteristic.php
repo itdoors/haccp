@@ -122,12 +122,10 @@ class PointGroupCharacteristic
      */
     private $group;
 
-
-
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -138,6 +136,7 @@ class PointGroupCharacteristic
      * Set name
      *
      * @param string $name
+     *
      * @return PointGroupCharacteristic
      */
     public function setName($name)
@@ -150,7 +149,7 @@ class PointGroupCharacteristic
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -161,6 +160,7 @@ class PointGroupCharacteristic
      * Set description
      *
      * @param string $description
+     *
      * @return PointGroupCharacteristic
      */
     public function setDescription($description)
@@ -173,7 +173,7 @@ class PointGroupCharacteristic
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -184,6 +184,7 @@ class PointGroupCharacteristic
      * Set unit
      *
      * @param string $unit
+     *
      * @return PointGroupCharacteristic
      */
     public function setUnit($unit)
@@ -196,7 +197,7 @@ class PointGroupCharacteristic
     /**
      * Get unit
      *
-     * @return string 
+     * @return string
      */
     public function getUnit()
     {
@@ -207,6 +208,7 @@ class PointGroupCharacteristic
      * Set dataType
      *
      * @param string $dataType
+     *
      * @return PointGroupCharacteristic
      */
     public function setDataType($dataType)
@@ -219,7 +221,7 @@ class PointGroupCharacteristic
     /**
      * Get dataType
      *
-     * @return string 
+     * @return string
      */
     public function getDataType()
     {
@@ -230,6 +232,7 @@ class PointGroupCharacteristic
      * Set inputType
      *
      * @param string $inputType
+     *
      * @return PointGroupCharacteristic
      */
     public function setInputType($inputType)
@@ -242,7 +245,7 @@ class PointGroupCharacteristic
     /**
      * Get inputType
      *
-     * @return string 
+     * @return string
      */
     public function getInputType()
     {
@@ -253,6 +256,7 @@ class PointGroupCharacteristic
      * Set allowValueMax
      *
      * @param string $allowValueMax
+     *
      * @return PointGroupCharacteristic
      */
     public function setAllowValueMax($allowValueMax)
@@ -265,7 +269,7 @@ class PointGroupCharacteristic
     /**
      * Get allowValueMax
      *
-     * @return string 
+     * @return string
      */
     public function getAllowValueMax()
     {
@@ -276,6 +280,7 @@ class PointGroupCharacteristic
      * Set allowValueMin
      *
      * @param string $allowValueMin
+     *
      * @return PointGroupCharacteristic
      */
     public function setAllowValueMin($allowValueMin)
@@ -288,7 +293,7 @@ class PointGroupCharacteristic
     /**
      * Get allowValueMin
      *
-     * @return string 
+     * @return string
      */
     public function getAllowValueMin()
     {
@@ -299,6 +304,7 @@ class PointGroupCharacteristic
      * Set criticalValueTop
      *
      * @param string $criticalValueTop
+     *
      * @return PointGroupCharacteristic
      */
     public function setCriticalValueTop($criticalValueTop)
@@ -311,7 +317,7 @@ class PointGroupCharacteristic
     /**
      * Get criticalValueTop
      *
-     * @return string 
+     * @return string
      */
     public function getCriticalValueTop()
     {
@@ -322,6 +328,7 @@ class PointGroupCharacteristic
      * Set criticalValueBottom
      *
      * @param string $criticalValueBottom
+     *
      * @return PointGroupCharacteristic
      */
     public function setCriticalValueBottom($criticalValueBottom)
@@ -334,7 +341,7 @@ class PointGroupCharacteristic
     /**
      * Get criticalValueBottom
      *
-     * @return string 
+     * @return string
      */
     public function getCriticalValueBottom()
     {
@@ -345,6 +352,7 @@ class PointGroupCharacteristic
      * Set criticalColorTop
      *
      * @param string $criticalColorTop
+     *
      * @return PointGroupCharacteristic
      */
     public function setCriticalColorTop($criticalColorTop)
@@ -357,7 +365,7 @@ class PointGroupCharacteristic
     /**
      * Get criticalColorTop
      *
-     * @return string 
+     * @return string
      */
     public function getCriticalColorTop()
     {
@@ -368,6 +376,7 @@ class PointGroupCharacteristic
      * Set criticalColorMiddle
      *
      * @param string $criticalColorMiddle
+     *
      * @return PointGroupCharacteristic
      */
     public function setCriticalColorMiddle($criticalColorMiddle)
@@ -380,7 +389,7 @@ class PointGroupCharacteristic
     /**
      * Get criticalColorMiddle
      *
-     * @return string 
+     * @return string
      */
     public function getCriticalColorMiddle()
     {
@@ -391,6 +400,7 @@ class PointGroupCharacteristic
      * Set criticalColorBottom
      *
      * @param string $criticalColorBottom
+     *
      * @return PointGroupCharacteristic
      */
     public function setCriticalColorBottom($criticalColorBottom)
@@ -403,7 +413,7 @@ class PointGroupCharacteristic
     /**
      * Get criticalColorBottom
      *
-     * @return string 
+     * @return string
      */
     public function getCriticalColorBottom()
     {
@@ -414,6 +424,7 @@ class PointGroupCharacteristic
      * Set groupId
      *
      * @param integer $groupId
+     *
      * @return PointGroupCharacteristic
      */
     public function setGroupId($groupId)
@@ -426,7 +437,7 @@ class PointGroupCharacteristic
     /**
      * Get groupId
      *
-     * @return integer 
+     * @return integer
      */
     public function getGroupId()
     {
@@ -437,6 +448,7 @@ class PointGroupCharacteristic
      * Set group
      *
      * @param \ITDoors\HaccpBundle\Entity\PointGroup $group
+     *
      * @return PointGroupCharacteristic
      */
     public function setGroup(\ITDoors\HaccpBundle\Entity\PointGroup $group = null)
@@ -449,7 +461,7 @@ class PointGroupCharacteristic
     /**
      * Get group
      *
-     * @return \ITDoors\HaccpBundle\Entity\PointGroup 
+     * @return \ITDoors\HaccpBundle\Entity\PointGroup
      */
     public function getGroup()
     {
@@ -458,6 +470,8 @@ class PointGroupCharacteristic
 
     /**
      * __toString()
+     *
+     * @return string
      */
     public function __toString()
     {

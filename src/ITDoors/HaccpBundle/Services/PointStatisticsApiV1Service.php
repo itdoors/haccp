@@ -6,6 +6,7 @@ use ITDoors\HaccpBundle\Entity\Point;
 use ITDoors\HaccpBundle\Entity\PointRepository;
 use ITDoors\HaccpBundle\Entity\PointStatistics;
 use ITDoors\HaccpBundle\Entity\PointStatisticsRepository;
+use ITDoors\HaccpBundle\Entity\PointStatus;
 use ITDoors\HaccpBundle\Entity\PointStatusRepository;
 use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\Form\Form;
@@ -32,7 +33,11 @@ class PointStatisticsApiV1Service
     protected $baseStatisticsLimit;
 
     /**
-     * __construct
+     * __construct()
+     *
+     * @param Container                 $container
+     * @param PointStatisticsRepository $repository
+     * @param string                    $baseStatisticsLimit
      */
     public function __construct(Container $container, PointStatisticsRepository $repository, $baseStatisticsLimit)
     {
@@ -63,10 +68,10 @@ class PointStatisticsApiV1Service
     /**
      * Returns statistics by range
      *
-     * @param int $pointId
+     * @param int       $pointId
      * @param \DateTime $startDate
      * @param \DateTime $endDate
-     * @param int $lastStatisticId
+     * @param int       $lastStatisticId
      *
      * @return mixed[]
      */
@@ -123,7 +128,7 @@ class PointStatisticsApiV1Service
     /**
      * Format Statistics to api output with "show more" param
      *
-     * @param mixed[] $statistics
+     * @param mixed[] &$statistics
      *
      * @return mixed[] -1 $statistics element
      */
@@ -153,14 +158,13 @@ class PointStatisticsApiV1Service
     /**
      * Format Statistics to api output
      *
-     * @param mixed[] $statistics
+     * @param mixed[] &$statistics
      *
      * @return mixed[]
      */
     public function formatStatistics(&$statistics)
     {
-        foreach ($statistics as &$value)
-        {
+        foreach ($statistics as &$value) {
             $this->formatStatisticsRecord($value);
         }
     }
@@ -168,7 +172,7 @@ class PointStatisticsApiV1Service
     /**
      * Format Statistics to api output
      *
-     * @param mixed[] $value
+     * @param mixed[] &$value
      *
      * @return mixed[]
      */
@@ -194,7 +198,7 @@ class PointStatisticsApiV1Service
     /**
      * Persists statistics info
      *
-     * @param int $id
+     * @param int     $id
      * @param Request $request
      *
      * @return mixed[]
@@ -257,7 +261,7 @@ class PointStatisticsApiV1Service
     /**
      * Persists status info
      *
-     * @param int $id
+     * @param int     $id
      * @param Request $request
      *
      * @return mixed[]
@@ -278,6 +282,7 @@ class PointStatisticsApiV1Service
 
         $requestData = $request->request->get('pointStatusApiForm');
 
+        /** @var PointStatus $status*/
         $status = $psr->find($requestData['statusId']);
 
         // EOF Request data TEMP

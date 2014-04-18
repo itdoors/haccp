@@ -19,7 +19,10 @@ class PointApiV1Service
     protected $pointStatisticsApiV1Service;
 
     /**
-     * __construct
+     * __construct()
+     *
+     * @param PointRepository             $repository
+     * @param PointStatisticsApiV1Service $pointStatisticsApiV1Service
      */
     public function __construct(PointRepository $repository, PointStatisticsApiV1Service $pointStatisticsApiV1Service)
     {
@@ -47,8 +50,7 @@ class PointApiV1Service
 
         $points = $pr->ApiV1Get($ids);
 
-        foreach ($points as $key => &$point)
-        {
+        foreach ($points as $key => &$point) {
             $point['plan'] = array();
             $point['plan']['id'] = $point['planId'];
             $point['plan']['name'] = $point['planName'];
@@ -77,9 +79,6 @@ class PointApiV1Service
                 $point['statusSlug'],
                 $point['statusName']
             );
-
-            /*$statistics = $psv1s->getLastStatistics($point['id']);
-            $psv1s->formatStatistics($statistics);*/
 
             $statistics = $psv1s->getMoreStatistics($point['id']);
 

@@ -1,11 +1,8 @@
 <?php
 
 namespace ITDoors\HaccpBundle\Services;
-use Doctrine\ORM\Query;
 use ITDoors\HaccpBundle\Entity\PointGroupCharacteristic;
 use ITDoors\HaccpBundle\Entity\PointGroupCharacteristicRepository;
-use ITDoors\HaccpBundle\Entity\PointRepository;
-use ITDoors\HaccpBundle\Entity\PointStatisticsRepository;
 use Symfony\Component\DependencyInjection\Container;
 
 /**
@@ -29,7 +26,6 @@ class PointGroupCharacteristicService
      */
     protected $container;
 
-
     /**
      * @var mixed $criticalChars
      */
@@ -49,7 +45,10 @@ class PointGroupCharacteristicService
     );
 
     /**
-     * __construct
+     * __construct()
+     *
+     * @param PointGroupCharacteristicRepository $repository
+     * @param Container                          $container
      */
     public function __construct(PointGroupCharacteristicRepository $repository, Container $container)
     {
@@ -60,7 +59,7 @@ class PointGroupCharacteristicService
     /**
      * Returns char depending on characteristicId & value
      *
-     * @param int $characteristicId
+     * @param int   $characteristicId
      * @param mixed $value
      *
      * @return string
@@ -70,18 +69,15 @@ class PointGroupCharacteristicService
         /** @var PointGroupCharacteristic $characteristic*/
         $characteristic = $this->repository->find($characteristicId);
 
-        if (!$characteristic)
-        {
+        if (!$characteristic) {
             return self::CRITICAL_CHAR_A;
         }
 
-        if ($value > $characteristic->getCriticalValueTop())
-        {
+        if ($value > $characteristic->getCriticalValueTop()) {
             return self::CRITICAL_CHAR_D;
         }
 
-        if ($value > $characteristic->getCriticalValueBottom())
-        {
+        if ($value > $characteristic->getCriticalValueBottom()) {
             return self::CRITICAL_CHAR_W;
         }
 

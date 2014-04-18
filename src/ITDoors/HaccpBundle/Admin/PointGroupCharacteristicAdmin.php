@@ -25,16 +25,14 @@ class PointGroupCharacteristicAdmin extends Admin
             ->add('allowValueMax')
             ->add('allowValueMin')
             ->add('criticalValueTop')
-            ->add('criticalValueBottom')
-        ;
+            ->add('criticalValueBottom');
     }
 
     // Fields to be shown on filter forms
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('group')
-        ;
+            ->add('group');
     }
 
     // Fields to be shown on lists
@@ -51,7 +49,6 @@ class PointGroupCharacteristicAdmin extends Admin
             ->add('allowValueMax')
             ->add('allowValueMin')
             ->add('criticalValueTop')
-            ->add('criticalValueBottom')
-        ;
+            ->add('criticalValueBottom');
     }
 }

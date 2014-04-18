@@ -45,12 +45,10 @@ class CompanyObject
      */
     private $company;
 
-
-
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -61,6 +59,7 @@ class CompanyObject
      * Set name
      *
      * @param string $name
+     *
      * @return CompanyObject
      */
     public function setName($name)
@@ -73,7 +72,7 @@ class CompanyObject
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -84,6 +83,7 @@ class CompanyObject
      * Set companyId
      *
      * @param integer $companyId
+     *
      * @return CompanyObject
      */
     public function setCompanyId($companyId)
@@ -96,7 +96,7 @@ class CompanyObject
     /**
      * Get companyId
      *
-     * @return integer 
+     * @return integer
      */
     public function getCompanyId()
     {
@@ -107,6 +107,7 @@ class CompanyObject
      * Set company
      *
      * @param \ITDoors\HaccpBundle\Entity\Company $company
+     *
      * @return CompanyObject
      */
     public function setCompany(\ITDoors\HaccpBundle\Entity\Company $company = null)
@@ -119,7 +120,7 @@ class CompanyObject
     /**
      * Get company
      *
-     * @return \ITDoors\HaccpBundle\Entity\Company 
+     * @return \ITDoors\HaccpBundle\Entity\Company
      */
     public function getCompany()
     {

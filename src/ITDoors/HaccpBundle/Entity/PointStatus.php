@@ -35,12 +35,10 @@ class PointStatus
      */
     private $name;
 
-
-
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -51,6 +49,7 @@ class PointStatus
      * Set name
      *
      * @param string $name
+     *
      * @return PointGroup
      */
     public function setName($name)
@@ -63,7 +62,7 @@ class PointStatus
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -72,6 +71,8 @@ class PointStatus
 
     /**
      * __toString()
+     *
+     * @return string
      */
     public function __toString()
     {
@@ -82,6 +83,7 @@ class PointStatus
      * Set slug
      *
      * @param string $slug
+     *
      * @return PointStatus
      */
     public function setSlug($slug)
@@ -94,7 +96,7 @@ class PointStatus
     /**
      * Get slug
      *
-     * @return string 
+     * @return string
      */
     public function getSlug()
     {

@@ -18,7 +18,7 @@ ITDoors\HaccpBundle\Entity\PointStatistics:
             exclude: true
             groups: [api]
             serialized_name: entryDate
-        Characteristic:
+        characteristic:
             exclude: true
             groups: [api]
             serialized_name: characteristic

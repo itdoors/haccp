@@ -16,6 +16,8 @@ use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 class PointGroupController extends FOSRestController
 {
     /**
+     * @param int $id
+     *
      * @Rest\Get("/{id}/characteristics")
      *
      * @ApiDoc(
@@ -33,6 +35,8 @@ class PointGroupController extends FOSRestController
      *      "groups"={"apiFull"}
      *  }
      * )
+     *
+     * @return string
      */
     public function getCharacteristicsAction($id)
     {

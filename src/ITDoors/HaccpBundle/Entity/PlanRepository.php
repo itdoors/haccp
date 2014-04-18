@@ -46,7 +46,9 @@ class PlanRepository extends EntityRepository
     /**
      * Get Children Query
      *
-     * @params int[] $parentIds
+     * @param int[] $parentIds
+     *
+     * @return Query
      */
     public function getChildrenQuery($parentIds)
     {

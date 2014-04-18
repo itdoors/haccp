@@ -17,8 +17,7 @@ class PointStatusAdmin extends Admin
     {
         $formMapper
             ->add('slug')
-            ->add('name')
-        ;
+            ->add('name');
     }
 
     // Fields to be shown on filter forms
@@ -26,8 +25,7 @@ class PointStatusAdmin extends Admin
     {
         $datagridMapper
             ->add('slug')
-            ->add('name')
-        ;
+            ->add('name');
     }
 
     // Fields to be shown on lists
@@ -36,7 +34,6 @@ class PointStatusAdmin extends Admin
         $listMapper
             ->addIdentifier('id')
             ->add('slug')
-            ->add('name')
-        ;
+            ->add('name');
     }
 }

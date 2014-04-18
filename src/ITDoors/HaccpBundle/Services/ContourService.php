@@ -23,14 +23,16 @@ class ContourService
     protected $container;
 
     /**
-     * __construct
+     * __construct()
+     *
+     * @param ContourRepository $repository
+     * @param Container         $container
      */
     public function __construct(ContourRepository $repository, Container $container)
     {
         $this->repository = $repository;
         $this->container = $container;
     }
-
 
     /**
      * Return service choices

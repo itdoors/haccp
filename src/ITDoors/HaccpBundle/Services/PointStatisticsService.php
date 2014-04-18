@@ -2,11 +2,11 @@
 
 namespace ITDoors\HaccpBundle\Services;
 use Doctrine\ORM\EntityManager;
+use ITDoors\HaccpBundle\Entity\Point;
 use ITDoors\HaccpBundle\Entity\PointGroupCharacteristic;
 use ITDoors\HaccpBundle\Entity\PointGroupCharacteristicRepository;
 use ITDoors\HaccpBundle\Entity\PointRepository;
 use ITDoors\HaccpBundle\Entity\PointStatistics;
-use ITDoors\HaccpBundle\Entity\PointStatisticsRepository;
 use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,7 +22,9 @@ class PointStatisticsService
     protected $container;
 
     /**
-     * __construct
+     * __construct()
+     *
+     * @param Container $container
      */
     public function __construct(Container $container)
     {
@@ -32,7 +34,7 @@ class PointStatisticsService
     /**
      * Add form defaults depending on defaults)
      *
-     * @param Form $form
+     * @param Form    $form
      * @param mixed[] $defaults
      */
     public function addFormDefaults(Form $form, $defaults)
@@ -80,7 +82,7 @@ class PointStatisticsService
     /**
      * Save form
      *
-     * @param Form $form
+     * @param Form    $form
      * @param Request $request
      * @param mixed[] $params
      */
@@ -97,7 +99,9 @@ class PointStatisticsService
         /** @var PointGroupCharacteristicRepository $pgcr */
         $pgcr = $this->container->get('point.group.characteristic.repository');
 
+        /** @var Point $point */
         $point = $pr->find($data['pointId']);
+        /** @var PointGroupCharacteristic $characteristic */
         $characteristic = $pgcr->find($data['characteristicId']);
 
         $pointStatistics = new PointStatistics();

@@ -57,7 +57,7 @@ class Contour
      *   @ORM\JoinColumn(name="service_id", referencedColumnName="id")
      * })
      */
-    private $Service;
+    private $service;
 
     /**
      * @var string
@@ -66,12 +66,10 @@ class Contour
      */
     private $level;
 
-
-
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -82,6 +80,7 @@ class Contour
      * Set name
      *
      * @param string $name
+     *
      * @return Contour
      */
     public function setName($name)
@@ -94,7 +93,7 @@ class Contour
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -105,6 +104,7 @@ class Contour
      * Set color
      *
      * @param string $color
+     *
      * @return Contour
      */
     public function setColor($color)
@@ -117,7 +117,7 @@ class Contour
     /**
      * Get color
      *
-     * @return string 
+     * @return string
      */
     public function getColor()
     {
@@ -128,6 +128,7 @@ class Contour
      * Set serviceId
      *
      * @param integer $serviceId
+     *
      * @return Contour
      */
     public function setServiceId($serviceId)
@@ -140,7 +141,7 @@ class Contour
     /**
      * Get serviceId
      *
-     * @return integer 
+     * @return integer
      */
     public function getServiceId()
     {
@@ -151,6 +152,7 @@ class Contour
      * Set slug
      *
      * @param string $slug
+     *
      * @return Contour
      */
     public function setSlug($slug)
@@ -163,7 +165,7 @@ class Contour
     /**
      * Get slug
      *
-     * @return string 
+     * @return string
      */
     public function getSlug()
     {
@@ -174,11 +176,12 @@ class Contour
      * Set Service
      *
      * @param \ITDoors\HaccpBundle\Entity\Service $service
-     * @return Contour
+     *
+     * @return Service
      */
     public function setService(\ITDoors\HaccpBundle\Entity\Service $service = null)
     {
-        $this->Service = $service;
+        $this->service = $service;
 
         return $this;
     }
@@ -186,15 +189,17 @@ class Contour
     /**
      * Get Service
      *
-     * @return \ITDoors\HaccpBundle\Entity\Service 
+     * @return \ITDoors\HaccpBundle\Entity\Service
      */
     public function getService()
     {
-        return $this->Service;
+        return $this->service;
     }
 
     /**
      * __toString()
+     *
+     * @return string
      */
     public function __toString()
     {
@@ -205,7 +210,8 @@ class Contour
      * Set level
      *
      * @param integer $level
-     * @return Contour
+     *
+     * @return int
      */
     public function setLevel($level)
     {
@@ -217,7 +223,7 @@ class Contour
     /**
      * Get level
      *
-     * @return integer 
+     * @return integer
      */
     public function getLevel()
     {

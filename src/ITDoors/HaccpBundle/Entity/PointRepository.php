@@ -17,8 +17,9 @@ class PointRepository extends EntityRepository
     /**
      * Returns point info for list
      *
-     * @param int[] $planIds
+     * @param int[]   $planIds
      * @param mixed[] $filters
+     *
      * @return Query
      */
     public function getPointsListQuery($planIds, $filters)
@@ -30,15 +31,15 @@ class PointRepository extends EntityRepository
             ->addSelect('p.imageLongitude as imageLongitude')
             ->addSelect('p.mapLatitude as mapLatitude')
             ->addSelect('p.mapLongitude as mapLongitude')
-            ->addSelect('Contour.color as contourColor')
-            ->addSelect('Contour.id as contourId')
-            ->addSelect('Contour.slug as contourSlug')
-            ->addSelect('Contour.level as contourLevel')
+            ->addSelect('contour.color as contourColor')
+            ->addSelect('contour.id as contourId')
+            ->addSelect('contour.slug as contourSlug')
+            ->addSelect('contour.level as contourLevel')
             ->addSelect('PointGroup.id as pointGroupId')
-            ->addSelect('Plan.type as planType')
-            ->leftJoin('p.Contour', 'Contour')
-            ->leftJoin('p.Group', 'PointGroup')
-            ->leftJoin('p.Plan', 'Plan')
+            ->addSelect('plan.type as planType')
+            ->leftJoin('p.contour', 'contour')
+            ->leftJoin('p.group', 'PointGroup')
+            ->leftJoin('p.plan', 'plan')
             ->where('p.planId in (:planIds)')
             ->setParameter(':planIds', $planIds);
 
@@ -52,14 +53,13 @@ class PointRepository extends EntityRepository
      * Processes filters
      *
      * @param QueryBuilder $sql
-     * @param mixed[] $filters
-     *
+     * @param mixed[]      $filters
      */
     protected function processFilters($sql, $filters)
     {
         if (isset($filters['serviceId']) && $filters['serviceId']) {
             $sql
-                ->andWhere('Contour.id = :serviceId')
+                ->andWhere('contour.id = :serviceId')
                 ->setParameter(':serviceId', $filters['serviceId']);
         }
 
@@ -80,8 +80,7 @@ class PointRepository extends EntityRepository
                      ) as pointAVG')
                 ->setParameter(':startDate', $filters['daterangecustom']['start'])
                 ->setParameter(':endDate', $filters['daterangecustom']['end']);
-        }
-        else {
+        } else {
             $sql
                 ->addSelect('(
                     SELECT
@@ -97,13 +96,17 @@ class PointRepository extends EntityRepository
             $contourIds = explode(',', $filters['contourId']);
 
             $sql
-                ->andWhere('Contour.id in (:contourIds)')
+                ->andWhere('contour.id in (:contourIds)')
                 ->setParameter(':contourIds', $contourIds);
         }
     }
 
     /**
      * Return point data for ajax show
+     *
+     * @param int[] $pointIds
+     *
+     * @return Query
      */
     public function getPointShowQuery($pointIds)
     {
@@ -116,17 +119,17 @@ class PointRepository extends EntityRepository
             ->addSelect('p.mapLatitude as mapLatitude')
             ->addSelect('p.mapLongitude as mapLongitude')
             ->addSelect('PointGroup.name as groupName')
-            ->addSelect('Contour.color as contourColor')
-            ->addSelect('Contour.name as contourName')
-            ->addSelect('Contour.level as contourLevel')
-            ->addSelect('Plan.name as objectName')
-            ->addSelect('Plan.type as planType')
-            ->addSelect('Status.id as statusId')
-            ->addSelect('Status.name as statusName')
-            ->leftJoin('p.Contour', 'Contour')
-            ->leftJoin('p.Group', 'PointGroup')
-            ->leftJoin('p.Plan', 'Plan')
-            ->leftJoin('p.Status', 'Status')
+            ->addSelect('contour.color as contourColor')
+            ->addSelect('contour.name as contourName')
+            ->addSelect('contour.level as contourLevel')
+            ->addSelect('plan.name as objectName')
+            ->addSelect('plan.type as planType')
+            ->addSelect('status.id as statusId')
+            ->addSelect('status.name as statusName')
+            ->leftJoin('p.contour', 'contour')
+            ->leftJoin('p.group', 'PointGroup')
+            ->leftJoin('p.plan', 'plan')
+            ->leftJoin('p.status', 'status')
             ->where('p.id in (:pointIds)')
             ->setParameter(':pointIds', $pointIds)
             ->getQuery();
@@ -135,11 +138,11 @@ class PointRepository extends EntityRepository
     /**
      * Return point statistic query for show
      *
-     * @param int[] $ids
+     * @param int[]     $ids
      * @param \DateTime $startDate
      * @param \DateTime $endDate
      *
-     * return Query
+     * @return Query
      */
     public function getPointStatisticQuery($ids, $startDate, $endDate)
     {
@@ -160,18 +163,18 @@ class PointRepository extends EntityRepository
             ->addSelect('p.name as number')
             ->addSelect('PointGroup.id as groupId')
             ->addSelect('PointGroup.name as groupName')
-            ->addSelect('Plan.id as planId')
-            ->addSelect('Plan.name as planName')
-            ->addSelect('Contour.name as contourName')
-            ->addSelect('Contour.id as contourId')
+            ->addSelect('plan.id as planId')
+            ->addSelect('plan.name as planName')
+            ->addSelect('contour.name as contourName')
+            ->addSelect('contour.id as contourId')
             ->addSelect('p.installationDate as installationDate')
-            ->addSelect('Status.id as statusId')
-            ->addSelect('Status.slug as statusSlug')
-            ->addSelect('Status.name as statusName')
-            ->leftJoin('p.Group', 'PointGroup')
-            ->leftJoin('p.Plan', 'Plan')
-            ->leftJoin('p.Contour', 'Contour')
-            ->leftJoin('p.Status', 'Status');
+            ->addSelect('status.id as statusId')
+            ->addSelect('status.slug as statusSlug')
+            ->addSelect('status.name as statusName')
+            ->leftJoin('p.group', 'PointGroup')
+            ->leftJoin('p.plan', 'plan')
+            ->leftJoin('p.contour', 'contour')
+            ->leftJoin('p.status', 'status');
 
         $sql->where('p.id in (:ids)')
             ->setParameter(':ids', $ids);

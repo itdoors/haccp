@@ -24,7 +24,10 @@ class PointService
     protected $container;
 
     /**
-     * __construct
+     * __construct()
+     *
+     * @param PointRepository $repository
+     * @param Container       $container
      */
     public function __construct(PointRepository $repository, Container $container)
     {
@@ -35,7 +38,7 @@ class PointService
     /**
      * Returns formatted point data for list
      *
-     * @param int $planId
+     * @param int     $planId
      * @param mixed[] $filters
      *
      * @return mixed
@@ -50,8 +53,7 @@ class PointService
         /** @var PointGroupCharacteristicService $characteristicService */
         $characteristicService = $this->container->get('point.characteristic.service');
 
-        foreach ($pointList as &$point)
-        {
+        foreach ($pointList as &$point) {
             $criticalChar = $characteristicService->getCriticalChar($point['pointGroupId'], $point['pointAVG']);
 
             $classNameStatistics = PointGroupCharacteristicService::$criticalChars[$criticalChar]['classNameStatistics'];
@@ -69,23 +71,20 @@ class PointService
     /**
      * Formats point coordinates for view depends on plan.type
      *
-     * @param mixed[] $points
-     *
+     * @param mixed[] &$points
      */
     public function formatPointsForView(&$points)
     {
         /** @var Router $router*/
         $router = $this->container->get('router');
 
-        foreach ($points as &$point)
-        {
+        foreach ($points as &$point) {
             $point['lat'] = $point['imageLatitude'];
             $point['lng'] = $point['imageLongitude'];
 
             $point['url'] = $router->generate('point_show_ajax', array('id' => $point['id']));
 
-            if ($point['planType'] == PlanService::PLAN_TYPE_MAP)
-            {
+            if ($point['planType'] == PlanService::PLAN_TYPE_MAP) {
                 $point['lat'] = $point['mapLatitude'];
                 $point['lng'] = $point['mapLongitude'];
             }
@@ -110,10 +109,8 @@ class PointService
     {
         $pointsByContours = array();
 
-        foreach ($points as $point)
-        {
-            if (!isset($pointsByContours[$point['contourSlug']]))
-            {
+        foreach ($points as $point) {
+            if (!isset($pointsByContours[$point['contourSlug']])) {
                 $pointsByContours[$point['contourSlug']] = array();
             }
 
@@ -185,7 +182,7 @@ class PointService
     /**
      * Returns point statistics by period
      *
-     * @param int $id
+     * @param int       $id
      * @param \DateTime $startDate
      * @param \DateTime $endDate
      *
@@ -206,8 +203,7 @@ class PointService
         $statistics = $statisticsQuery
             ->getResult();
 
-        foreach ($statistics as &$item)
-        {
+        foreach ($statistics as &$item) {
             $item['color'] = $this->getStatisticsColor($item);
             $item['text'] = $this->getStatisticsText($item);
             $item['className'] = $this->getStatisticsClassName($item);
@@ -225,13 +221,11 @@ class PointService
      */
     public function getStatisticsColor($statistics)
     {
-        /*if ($statistics['value'] > $statistics['criticalValueTop'])
-        {
+        /*if ($statistics['value'] > $statistics['criticalValueTop']) {
             return $statistics['criticalColorTop'];
         }
 
-        if ($statistics['value'] > $statistics['criticalValueBottom'])
-        {
+        if ($statistics['value'] > $statistics['criticalValueBottom']) {
             return $statistics['criticalColorMiddle'];
         }
 
@@ -249,13 +243,11 @@ class PointService
      */
     public function getStatisticsClassName($statistics)
     {
-        if ($statistics['value'] > $statistics['criticalValueTop'])
-        {
+        if ($statistics['value'] > $statistics['criticalValueTop']) {
             return 'label-danger';
         }
 
-        if ($statistics['value'] > $statistics['criticalValueBottom'])
-        {
+        if ($statistics['value'] > $statistics['criticalValueBottom']) {
             return 'label-warning';
         }
 
@@ -273,13 +265,11 @@ class PointService
     {
         $translator = $this->container->get('translator');
 
-        if ($statistics['value'] > $statistics['criticalValueTop'])
-        {
+        if ($statistics['value'] > $statistics['criticalValueTop']) {
             return $translator->trans("Danger", array(), 'messages');
         }
 
-        if ($statistics['value'] > $statistics['criticalValueBottom'])
-        {
+        if ($statistics['value'] > $statistics['criticalValueBottom']) {
             return $translator->trans("Warning", array(), 'messages');
         }
 
@@ -344,8 +334,7 @@ class PointService
         $imgAbsolutePath = $this->getQRCodeImagePathAbsolutePath($pointShow);
         $imgPath = $this->getQRCodeImagePath($pointShow);
 
-        if (file_exists($imgAbsolutePath))
-        {
+        if (file_exists($imgAbsolutePath)) {
             unlink($imgAbsolutePath);
         }
 

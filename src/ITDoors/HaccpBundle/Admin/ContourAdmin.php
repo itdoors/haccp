@@ -17,10 +17,9 @@ class ContourAdmin extends Admin
     {
         $formMapper
             ->add('name')
-            ->add('Service')
+            ->add('service')
             ->add('slug')
-            ->add('level')
-        ;
+            ->add('level');
     }
 
     // Fields to be shown on filter forms
@@ -28,8 +27,7 @@ class ContourAdmin extends Admin
     {
         $datagridMapper
             ->add('name')
-            ->add('Service')
-        ;
+            ->add('service');
     }
 
     // Fields to be shown on lists
@@ -38,9 +36,8 @@ class ContourAdmin extends Admin
         $listMapper
             ->addIdentifier('id')
             ->add('name')
-            ->add('Service')
+            ->add('service')
             ->add('slug')
-            ->add('level')
-        ;
+            ->add('level');
     }
 }

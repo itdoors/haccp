@@ -26,8 +26,7 @@ class PlanAdmin extends Admin
             ->add('parentLatitudeBottomRight')
             ->add('parentLongitudeBottomRight')
             ->add('type')
-            ->add('maxZoom')
-        ;
+            ->add('maxZoom');
     }
 
     // Fields to be shown on filter forms
@@ -35,8 +34,7 @@ class PlanAdmin extends Admin
     {
         $datagridMapper
             ->add('name')
-            ->add('parent')
-        ;
+            ->add('parent');
     }
 
     // Fields to be shown on lists
@@ -51,7 +49,6 @@ class PlanAdmin extends Admin
             ->add('parentLatitudeBottomRight')
             ->add('parentLongitudeBottomRight')
             ->add('type')
-            ->add('maxZoom')
-        ;
+            ->add('maxZoom');
     }
 }

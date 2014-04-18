@@ -3,7 +3,6 @@
 namespace ITDoors\RestBundle\Controller;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
-use ITDoors\HaccpBundle\Services\PointGroupApiV1Service;
 use ITDoors\HaccpBundle\Services\PointStatusApiV1Service;
 use JMS\Serializer\SerializationContext;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
@@ -26,6 +25,8 @@ class PointStatusController extends FOSRestController
      *      "groups"={"apiFull"}
      *  }
      * )
+     *
+     * @return string
      */
     public function getAction()
     {
@@ -35,7 +36,6 @@ class PointStatusController extends FOSRestController
         $data = $pss->getAll();
         $view = $this->view($data, 200);
         //$view->setSerializationContext(SerializationContext::create()->setGroups(array('apiFull')));
-
         return $this->handleView($view);
     }
 }

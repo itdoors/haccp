@@ -12,6 +12,10 @@ class PointController extends Controller
 {
     /**
      * Execute show ajax action
+     *
+     * @param int $id
+     *
+     * @return string
      */
     public function showAjaxAction($id)
     {
@@ -27,6 +31,10 @@ class PointController extends Controller
 
     /**
      * Statistics list
+     *
+     * @param int $id
+     *
+     * @return string
      */
     public function statisticsAjaxAction($id)
     {

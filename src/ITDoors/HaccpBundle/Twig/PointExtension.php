@@ -2,6 +2,9 @@
 
 namespace ITDoors\HaccpBundle\Twig;
 
+/**
+ * PointExtension
+ */
 class PointExtension extends \Twig_Extension
 {
     /**
@@ -14,11 +17,22 @@ class PointExtension extends \Twig_Extension
         );
     }
 
+    /**
+     * pointCharacteristicColor
+     *
+     * @param int    $characteristicId
+     * @param string $value
+     *
+     * @return string
+     */
     public function pointCharacteristicColor($characteristicId, $value)
     {
         return $characteristicId . '&&&&&' .$value;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getName()
     {
         return 'point_extension';

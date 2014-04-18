@@ -154,11 +154,10 @@ class Plan
         $this->children = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
-
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -169,6 +168,7 @@ class Plan
      * Set name
      *
      * @param string $name
+     *
      * @return Plan
      */
     public function setName($name)
@@ -181,7 +181,7 @@ class Plan
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -192,6 +192,7 @@ class Plan
      * Set imageSrc
      *
      * @param string $imageSrc
+     *
      * @return Plan
      */
     public function setImageSrc($imageSrc)
@@ -204,7 +205,7 @@ class Plan
     /**
      * Get imageSrc
      *
-     * @return string 
+     * @return string
      */
     public function getImageSrc()
     {
@@ -215,6 +216,7 @@ class Plan
      * Set imageWidth
      *
      * @param integer $imageWidth
+     *
      * @return Plan
      */
     public function setImageWidth($imageWidth)
@@ -227,7 +229,7 @@ class Plan
     /**
      * Get imageWidth
      *
-     * @return integer 
+     * @return integer
      */
     public function getImageWidth()
     {
@@ -238,6 +240,7 @@ class Plan
      * Set imageHeight
      *
      * @param integer $imageHeight
+     *
      * @return Plan
      */
     public function setImageHeight($imageHeight)
@@ -250,7 +253,7 @@ class Plan
     /**
      * Get imageHeight
      *
-     * @return integer 
+     * @return integer
      */
     public function getImageHeight()
     {
@@ -261,6 +264,7 @@ class Plan
      * Set latitude
      *
      * @param string $latitude
+     *
      * @return Plan
      */
     public function setLatitude($latitude)
@@ -273,7 +277,7 @@ class Plan
     /**
      * Get latitude
      *
-     * @return string 
+     * @return string
      */
     public function getLatitude()
     {
@@ -284,6 +288,7 @@ class Plan
      * Set longitude
      *
      * @param string $longitude
+     *
      * @return Plan
      */
     public function setLongitude($longitude)
@@ -296,7 +301,7 @@ class Plan
     /**
      * Get longitude
      *
-     * @return string 
+     * @return string
      */
     public function getLongitude()
     {
@@ -307,6 +312,7 @@ class Plan
      * Set companyObjectId
      *
      * @param integer $companyObjectId
+     *
      * @return Plan
      */
     public function setCompanyObjectId($companyObjectId)
@@ -319,7 +325,7 @@ class Plan
     /**
      * Get companyObjectId
      *
-     * @return integer 
+     * @return integer
      */
     public function getCompanyObjectId()
     {
@@ -330,6 +336,7 @@ class Plan
      * Set type
      *
      * @param string $type
+     *
      * @return Plan
      */
     public function setType($type)
@@ -342,7 +349,7 @@ class Plan
     /**
      * Get type
      *
-     * @return string 
+     * @return string
      */
     public function getType()
     {
@@ -353,6 +360,7 @@ class Plan
      * Set parentId
      *
      * @param integer $parentId
+     *
      * @return Plan
      */
     public function setParentId($parentId)
@@ -365,7 +373,7 @@ class Plan
     /**
      * Get parentId
      *
-     * @return integer 
+     * @return integer
      */
     public function getParentId()
     {
@@ -376,6 +384,7 @@ class Plan
      * Set parentLatitudeTopLeft
      *
      * @param string $parentLatitudeTopLeft
+     *
      * @return Plan
      */
     public function setParentLatitudeTopLeft($parentLatitudeTopLeft)
@@ -388,7 +397,7 @@ class Plan
     /**
      * Get parentLatitudeTopLeft
      *
-     * @return string 
+     * @return string
      */
     public function getParentLatitudeTopLeft()
     {
@@ -399,6 +408,7 @@ class Plan
      * Set parentLongitudeTopLeft
      *
      * @param string $parentLongitudeTopLeft
+     *
      * @return Plan
      */
     public function setParentLongitudeTopLeft($parentLongitudeTopLeft)
@@ -411,7 +421,7 @@ class Plan
     /**
      * Get parentLongitudeTopLeft
      *
-     * @return string 
+     * @return string
      */
     public function getParentLongitudeTopLeft()
     {
@@ -422,6 +432,7 @@ class Plan
      * Set parentLatitudeBottomRight
      *
      * @param string $parentLatitudeBottomRight
+     *
      * @return Plan
      */
     public function setParentLatitudeBottomRight($parentLatitudeBottomRight)
@@ -434,7 +445,7 @@ class Plan
     /**
      * Get parentLatitudeBottomRight
      *
-     * @return string 
+     * @return string
      */
     public function getParentLatitudeBottomRight()
     {
@@ -445,6 +456,7 @@ class Plan
      * Set parentLongitudeBottomRight
      *
      * @param string $parentLongitudeBottomRight
+     *
      * @return Plan
      */
     public function setParentLongitudeBottomRight($parentLongitudeBottomRight)
@@ -457,7 +469,7 @@ class Plan
     /**
      * Get parentLongitudeBottomRight
      *
-     * @return string 
+     * @return string
      */
     public function getParentLongitudeBottomRight()
     {
@@ -468,6 +480,7 @@ class Plan
      * Set maxZoom
      *
      * @param integer $maxZoom
+     *
      * @return Plan
      */
     public function setMaxZoom($maxZoom)
@@ -480,7 +493,7 @@ class Plan
     /**
      * Get maxZoom
      *
-     * @return integer 
+     * @return integer
      */
     public function getMaxZoom()
     {
@@ -491,6 +504,7 @@ class Plan
      * Add children
      *
      * @param \ITDoors\HaccpBundle\Entity\Plan $children
+     *
      * @return Plan
      */
     public function addChild(\ITDoors\HaccpBundle\Entity\Plan $children)
@@ -513,7 +527,7 @@ class Plan
     /**
      * Get children
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getChildren()
     {
@@ -524,6 +538,7 @@ class Plan
      * Set companyObject
      *
      * @param \ITDoors\HaccpBundle\Entity\CompanyObject $companyObject
+     *
      * @return Plan
      */
     public function setCompanyObject(\ITDoors\HaccpBundle\Entity\CompanyObject $companyObject = null)
@@ -536,7 +551,7 @@ class Plan
     /**
      * Get companyObject
      *
-     * @return \ITDoors\HaccpBundle\Entity\CompanyObject 
+     * @return \ITDoors\HaccpBundle\Entity\CompanyObject
      */
     public function getCompanyObject()
     {
@@ -547,6 +562,7 @@ class Plan
      * Set parent
      *
      * @param \ITDoors\HaccpBundle\Entity\Plan $parent
+     *
      * @return Plan
      */
     public function setParent(\ITDoors\HaccpBundle\Entity\Plan $parent = null)
@@ -559,7 +575,7 @@ class Plan
     /**
      * Get parent
      *
-     * @return \ITDoors\HaccpBundle\Entity\Plan 
+     * @return \ITDoors\HaccpBundle\Entity\Plan
      */
     public function getParent()
     {
@@ -568,6 +584,8 @@ class Plan
 
     /**
      * __toString()
+     *
+     * @return string
      */
     public function __toString()
     {

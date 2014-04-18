@@ -64,7 +64,7 @@ class PointStatistics
      *   @ORM\JoinColumn(name="characteristic_id", referencedColumnName="id")
      * })
      */
-    private $Characteristic;
+    private $characteristic;
 
     /**
      * @var \ITDoors\HaccpBundle\Entity\Point
@@ -74,14 +74,12 @@ class PointStatistics
      *   @ORM\JoinColumn(name="point_id", referencedColumnName="id")
      * })
      */
-    private $Point;
-
-
+    private $point;
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -92,6 +90,7 @@ class PointStatistics
      * Set createdAt
      *
      * @param \DateTime $createdAt
+     *
      * @return PointStatistics
      */
     public function setCreatedAt($createdAt)
@@ -104,7 +103,7 @@ class PointStatistics
     /**
      * Get createdAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -115,6 +114,7 @@ class PointStatistics
      * Set entryDate
      *
      * @param \DateTime $entryDate
+     *
      * @return PointStatistics
      */
     public function setEntryDate($entryDate)
@@ -127,7 +127,7 @@ class PointStatistics
     /**
      * Get entryDate
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getEntryDate()
     {
@@ -138,6 +138,7 @@ class PointStatistics
      * Set pointId
      *
      * @param integer $pointId
+     *
      * @return PointStatistics
      */
     public function setPointId($pointId)
@@ -150,7 +151,7 @@ class PointStatistics
     /**
      * Get pointId
      *
-     * @return integer 
+     * @return integer
      */
     public function getPointId()
     {
@@ -161,6 +162,7 @@ class PointStatistics
      * Set characteristicId
      *
      * @param integer $characteristicId
+     *
      * @return PointStatistics
      */
     public function setCharacteristicId($characteristicId)
@@ -173,7 +175,7 @@ class PointStatistics
     /**
      * Get characteristicId
      *
-     * @return integer 
+     * @return integer
      */
     public function getCharacteristicId()
     {
@@ -184,6 +186,7 @@ class PointStatistics
      * Set value
      *
      * @param string $value
+     *
      * @return PointStatistics
      */
     public function setValue($value)
@@ -196,7 +199,7 @@ class PointStatistics
     /**
      * Get value
      *
-     * @return string 
+     * @return string
      */
     public function getValue()
     {
@@ -207,11 +210,12 @@ class PointStatistics
      * Set Characteristic
      *
      * @param \ITDoors\HaccpBundle\Entity\PointGroupCharacteristic $characteristic
+     *
      * @return PointStatistics
      */
     public function setCharacteristic(\ITDoors\HaccpBundle\Entity\PointGroupCharacteristic $characteristic = null)
     {
-        $this->Characteristic = $characteristic;
+        $this->characteristic = $characteristic;
 
         return $this;
     }
@@ -219,22 +223,23 @@ class PointStatistics
     /**
      * Get Characteristic
      *
-     * @return \ITDoors\HaccpBundle\Entity\PointGroupCharacteristic 
+     * @return \ITDoors\HaccpBundle\Entity\PointGroupCharacteristic
      */
     public function getCharacteristic()
     {
-        return $this->Characteristic;
+        return $this->characteristic;
     }
 
     /**
      * Set Point
      *
      * @param \ITDoors\HaccpBundle\Entity\Point $point
+     *
      * @return PointStatistics
      */
     public function setPoint(\ITDoors\HaccpBundle\Entity\Point $point = null)
     {
-        $this->Point = $point;
+        $this->point = $point;
 
         return $this;
     }
@@ -242,10 +247,10 @@ class PointStatistics
     /**
      * Get Point
      *
-     * @return \ITDoors\HaccpBundle\Entity\Point 
+     * @return \ITDoors\HaccpBundle\Entity\Point
      */
     public function getPoint()
     {
-        return $this->Point;
+        return $this->point;
     }
 }

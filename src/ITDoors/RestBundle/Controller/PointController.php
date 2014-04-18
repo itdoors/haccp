@@ -18,8 +18,9 @@ use Symfony\Component\HttpFoundation\Request;
 class PointController extends FOSRestController
 {
     /**
-     * @Rest\Get("/{ids}")
+     * @param string $ids
      *
+     * @Rest\Get("/{ids}")
      *
      * @ApiDoc(
      *  description="Returns a collection of Points",
@@ -36,6 +37,8 @@ class PointController extends FOSRestController
      *      "groups"={"api"}
      *  }
      * )
+     *
+     * @return string
      */
     public function getPointAction($ids)
     {
@@ -49,6 +52,11 @@ class PointController extends FOSRestController
     }
 
     /**
+     * @param int    $id
+     * @param string $startDate
+     * @param string $endDate
+     * @param int    $lastStatisticId
+     *
      * @Rest\Get("/{id}/statistics/{startDate}/{endDate}")
      *
      * @ApiDoc(
@@ -78,6 +86,8 @@ class PointController extends FOSRestController
      *      "groups"={"api"}
      *  }
      * )
+     *
+     * @return string
      */
     public function getPointStatisticsRangeAction($id, $startDate, $endDate, $lastStatisticId = null)
     {
@@ -96,6 +106,11 @@ class PointController extends FOSRestController
     }
 
     /**
+     * @param int    $id
+     * @param string $startDate
+     * @param string $endDate
+     * @param int    $lastStatisticId
+     *
      * @Rest\Get("/{id}/statistics/{startDate}/{endDate}/{lastStatisticId}")
      *
      * @ApiDoc(
@@ -131,6 +146,8 @@ class PointController extends FOSRestController
      *      "groups"={"api"}
      *  }
      * )
+     *
+     * @return string
      */
     public function getPointStatisticsRangeMoreAction($id, $startDate, $endDate, $lastStatisticId)
     {
@@ -138,6 +155,8 @@ class PointController extends FOSRestController
     }
 
     /**
+     * @param int $id
+     *
      * @Rest\Get("/{id}/statistics")
      *
      * @ApiDoc(
@@ -155,6 +174,8 @@ class PointController extends FOSRestController
      *      "groups"={"api"}
      *  }
      * )
+     *
+     * @return string
      */
     public function getPointStatisticsAction($id)
     {
@@ -162,6 +183,9 @@ class PointController extends FOSRestController
     }
 
     /**
+     * @param int $id
+     * @param int $lastStatisticId
+     *
      * @Rest\Get("/{id}/statistics/{lastStatisticId}")
      *
      * @ApiDoc(
@@ -185,6 +209,8 @@ class PointController extends FOSRestController
      *      "groups"={"api"}
      *  }
      * )
+     *
+     * @return string
      */
     public function getPointStatisticsMoreAction($id, $lastStatisticId)
     {
@@ -198,6 +224,8 @@ class PointController extends FOSRestController
     }
 
     /**
+     * @param int     $id
+     * @param Request $request
      *
      * @Rest\Post("/{id}/statistics")
      *
@@ -217,6 +245,8 @@ class PointController extends FOSRestController
      *      "groups"={"api"}
      *  }
      * )
+     *
+     * @return string
      */
     public function postPointStatisticsAction($id, Request $request)
     {
@@ -231,6 +261,8 @@ class PointController extends FOSRestController
     }
 
     /**
+     * @param int     $id
+     * @param Request $request
      *
      * @Rest\Post("/{id}/status")
      *
@@ -250,6 +282,8 @@ class PointController extends FOSRestController
      *      "groups"={"api"}
      *  }
      * )
+     *
+     * @return string
      */
     public function postPointStatusAction($id, Request $request)
     {

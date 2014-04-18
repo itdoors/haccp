@@ -16,16 +16,14 @@ class PointGroupAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('name')
-        ;
+            ->add('name');
     }
 
     // Fields to be shown on filter forms
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('name')
-        ;
+            ->add('name');
     }
 
     // Fields to be shown on lists
@@ -33,7 +31,6 @@ class PointGroupAdmin extends Admin
     {
         $listMapper
             ->addIdentifier('id')
-            ->add('name')
-        ;
+            ->add('name');
     }
 }

@@ -28,12 +28,10 @@ class Company
      */
     private $name;
 
-
-
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -44,6 +42,7 @@ class Company
      * Set name
      *
      * @param string $name
+     *
      * @return Company
      */
     public function setName($name)
@@ -56,7 +55,7 @@ class Company
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {

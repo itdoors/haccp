@@ -16,6 +16,11 @@ class ApiDocOutputArray implements ParserInterface
      */
     private $jmsMetadataParser;
 
+    /**
+     * __construct()
+     *
+     * @param JmsMetadataParser $jmsMetadataParser
+     */
     public function __construct(JmsMetadataParser $jmsMetadataParser)
     {
         $this->jmsMetadataParser = $jmsMetadataParser;

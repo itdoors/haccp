@@ -1,7 +1,6 @@
 <?php
 
 namespace ITDoors\HaccpBundle\Services;
-use ITDoors\HaccpBundle\Entity\PointGroupCharacteristicRepository;
 use ITDoors\HaccpBundle\Entity\PointStatusRepository;
 use Symfony\Component\DependencyInjection\Container;
 
@@ -17,6 +16,8 @@ class PointStatusApiV1Service
 
     /**
      * __construct()
+     *
+     * @param Container $container
      */
     public function __construct(Container $container)
     {

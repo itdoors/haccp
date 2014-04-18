@@ -32,7 +32,11 @@ class PlanService
     protected $uploadDir;
 
     /**
-     * __construct
+     * __construct()
+     *
+     * @param Container      $container
+     * @param PlanRepository $repository
+     * @param string         $uploadDir
      */
     public function __construct(Container $container, PlanRepository $repository, $uploadDir)
     {

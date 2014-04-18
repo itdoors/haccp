@@ -82,7 +82,7 @@ class Point
      *
      * @ORM\OneToMany(targetEntity="ITDoors\HaccpBundle\Entity\PointStatistics", mappedBy="Point")
      */
-    private $Statistics;
+    private $statistics;
 
     /**
      * @var \ITDoors\HaccpBundle\Entity\Plan
@@ -92,7 +92,7 @@ class Point
      *   @ORM\JoinColumn(name="plan_id", referencedColumnName="id")
      * })
      */
-    private $Plan;
+    private $plan;
 
     /**
      * @var \ITDoors\HaccpBundle\Entity\Contour
@@ -102,7 +102,7 @@ class Point
      *   @ORM\JoinColumn(name="contour_id", referencedColumnName="id")
      * })
      */
-    private $Contour;
+    private $contour;
 
     /**
      * @var \ITDoors\HaccpBundle\Entity\PointGroup
@@ -112,7 +112,7 @@ class Point
      *   @ORM\JoinColumn(name="point_group_id", referencedColumnName="id")
      * })
      */
-    private $Group;
+    private $group;
 
     /**
      * @var \ITDoors\HaccpBundle\Entity\PointStatus
@@ -122,21 +122,20 @@ class Point
      *   @ORM\JoinColumn(name="status_id", referencedColumnName="id")
      * })
      */
-    private $Status;
+    private $status;
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->Statistics = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->statistics = new \Doctrine\Common\Collections\ArrayCollection();
     }
-
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -147,6 +146,7 @@ class Point
      * Set name
      *
      * @param string $name
+     *
      * @return Point
      */
     public function setName($name)
@@ -159,7 +159,7 @@ class Point
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -170,6 +170,7 @@ class Point
      * Set installationDate
      *
      * @param \DateTime $installationDate
+     *
      * @return Point
      */
     public function setInstallationDate($installationDate)
@@ -182,7 +183,7 @@ class Point
     /**
      * Get installationDate
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getInstallationDate()
     {
@@ -193,6 +194,7 @@ class Point
      * Set imageLatitude
      *
      * @param string $imageLatitude
+     *
      * @return Point
      */
     public function setImageLatitude($imageLatitude)
@@ -205,7 +207,7 @@ class Point
     /**
      * Get imageLatitude
      *
-     * @return string 
+     * @return string
      */
     public function getImageLatitude()
     {
@@ -216,6 +218,7 @@ class Point
      * Set imageLongitude
      *
      * @param string $imageLongitude
+     *
      * @return Point
      */
     public function setImageLongitude($imageLongitude)
@@ -228,7 +231,7 @@ class Point
     /**
      * Get imageLongitude
      *
-     * @return string 
+     * @return string
      */
     public function getImageLongitude()
     {
@@ -239,6 +242,7 @@ class Point
      * Set mapLatitude
      *
      * @param string $mapLatitude
+     *
      * @return Point
      */
     public function setMapLatitude($mapLatitude)
@@ -251,7 +255,7 @@ class Point
     /**
      * Get mapLatitude
      *
-     * @return string 
+     * @return string
      */
     public function getMapLatitude()
     {
@@ -262,6 +266,7 @@ class Point
      * Set mapLongitude
      *
      * @param string $mapLongitude
+     *
      * @return Point
      */
     public function setMapLongitude($mapLongitude)
@@ -274,7 +279,7 @@ class Point
     /**
      * Get mapLongitude
      *
-     * @return string 
+     * @return string
      */
     public function getMapLongitude()
     {
@@ -285,6 +290,7 @@ class Point
      * Set contourId
      *
      * @param integer $contourId
+     *
      * @return Point
      */
     public function setContourId($contourId)
@@ -297,7 +303,7 @@ class Point
     /**
      * Get contourId
      *
-     * @return integer 
+     * @return integer
      */
     public function getContourId()
     {
@@ -308,6 +314,7 @@ class Point
      * Set planId
      *
      * @param integer $planId
+     *
      * @return Point
      */
     public function setPlanId($planId)
@@ -320,7 +327,7 @@ class Point
     /**
      * Get planId
      *
-     * @return integer 
+     * @return integer
      */
     public function getPlanId()
     {
@@ -331,11 +338,12 @@ class Point
      * Add Statistics
      *
      * @param \ITDoors\HaccpBundle\Entity\PointStatistics $statistics
+     *
      * @return Point
      */
     public function addStatistic(\ITDoors\HaccpBundle\Entity\PointStatistics $statistics)
     {
-        $this->Statistics[] = $statistics;
+        $this->statistics[] = $statistics;
 
         return $this;
     }
@@ -347,28 +355,29 @@ class Point
      */
     public function removeStatistic(\ITDoors\HaccpBundle\Entity\PointStatistics $statistics)
     {
-        $this->Statistics->removeElement($statistics);
+        $this->statistics->removeElement($statistics);
     }
 
     /**
      * Get Statistics
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getStatistics()
     {
-        return $this->Statistics;
+        return $this->statistics;
     }
 
     /**
      * Set Plan
      *
      * @param \ITDoors\HaccpBundle\Entity\Plan $plan
+     *
      * @return Point
      */
     public function setPlan(\ITDoors\HaccpBundle\Entity\Plan $plan = null)
     {
-        $this->Plan = $plan;
+        $this->plan = $plan;
 
         return $this;
     }
@@ -376,22 +385,23 @@ class Point
     /**
      * Get Plan
      *
-     * @return \ITDoors\HaccpBundle\Entity\Plan 
+     * @return \ITDoors\HaccpBundle\Entity\Plan
      */
     public function getPlan()
     {
-        return $this->Plan;
+        return $this->plan;
     }
 
     /**
      * Set Contour
      *
      * @param \ITDoors\HaccpBundle\Entity\Contour $contour
+     *
      * @return Point
      */
     public function setContour(\ITDoors\HaccpBundle\Entity\Contour $contour = null)
     {
-        $this->Contour = $contour;
+        $this->contour = $contour;
 
         return $this;
     }
@@ -399,22 +409,23 @@ class Point
     /**
      * Get Contour
      *
-     * @return \ITDoors\HaccpBundle\Entity\Contour 
+     * @return \ITDoors\HaccpBundle\Entity\Contour
      */
     public function getContour()
     {
-        return $this->Contour;
+        return $this->contour;
     }
 
     /**
      * Set Group
      *
      * @param \ITDoors\HaccpBundle\Entity\PointGroup $group
+     *
      * @return Point
      */
     public function setGroup(\ITDoors\HaccpBundle\Entity\PointGroup $group = null)
     {
-        $this->Group = $group;
+        $this->group = $group;
 
         return $this;
     }
@@ -422,15 +433,17 @@ class Point
     /**
      * Get Group
      *
-     * @return \ITDoors\HaccpBundle\Entity\PointGroup 
+     * @return \ITDoors\HaccpBundle\Entity\PointGroup
      */
     public function getGroup()
     {
-        return $this->Group;
+        return $this->group;
     }
 
     /**
      * __toString()
+     *
+     * @return string
      */
     public function __toString()
     {
@@ -441,11 +454,12 @@ class Point
      * Set Status
      *
      * @param \ITDoors\HaccpBundle\Entity\PointStatus $status
+     *
      * @return Point
      */
     public function setStatus(\ITDoors\HaccpBundle\Entity\PointStatus $status = null)
     {
-        $this->Status = $status;
+        $this->status = $status;
 
         return $this;
     }
@@ -453,10 +467,10 @@ class Point
     /**
      * Get Status
      *
-     * @return \ITDoors\HaccpBundle\Entity\PointStatus 
+     * @return \ITDoors\HaccpBundle\Entity\PointStatus
      */
     public function getStatus()
     {
-        return $this->Status;
+        return $this->status;
     }
 }

@@ -16,21 +16,19 @@ class PointStatisticsAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('Point')
-            ->add('Characteristic')
+            ->add('point')
+            ->add('characteristic')
             ->add('value')
             ->add('entryDate')
-            ->add('createdAt')
-        ;
+            ->add('createdAt');
     }
 
     // Fields to be shown on filter forms
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('Point')
-            ->add('Characteristic')
-        ;
+            ->add('point')
+            ->add('characteristic');
     }
 
     // Fields to be shown on lists
@@ -38,11 +36,10 @@ class PointStatisticsAdmin extends Admin
     {
         $listMapper
             ->addIdentifier('id')
-            ->add('Point')
-            ->add('Characteristic')
+            ->add('point')
+            ->add('characteristic')
             ->add('value')
             ->add('entryDate')
-            ->add('createdAt')
-        ;
+            ->add('createdAt');
     }
 }

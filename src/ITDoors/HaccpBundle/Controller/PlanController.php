@@ -13,6 +13,10 @@ class PlanController extends BaseFilterController
 {
     /**
      * Execute show action
+     *
+     * @param int $planId
+     *
+     * @return string
      */
     public function showAction($planId)
     {
@@ -28,6 +32,10 @@ class PlanController extends BaseFilterController
 
     /**
      * Execute map action
+     *
+     * @param int $planId
+     *
+     * @return string
      */
     public function mapAction($planId)
     {

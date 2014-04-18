@@ -1,7 +1,6 @@
 <?php
 
 namespace ITDoors\HaccpBundle\Form;
-use ITDoors\HaccpBundle\Services\ContourService;
 use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -29,7 +28,7 @@ class PointStatisticsType extends AbstractType
 
     /**
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -47,7 +46,7 @@ class PointStatisticsType extends AbstractType
     }
 
     /**
-     * @{@inheritDoc}
+     * {@inheritDoc}
      */
     public function getName()
     {
