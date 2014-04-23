@@ -183,4 +183,16 @@ class PointRepository extends EntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    /**
+     * Returns data for backup
+     *
+     * @return array
+     */
+    public function getBackupData()
+    {
+        return $this->createQueryBuilder('obj')
+            ->getQuery()
+            ->getArrayResult();
+    }
 }

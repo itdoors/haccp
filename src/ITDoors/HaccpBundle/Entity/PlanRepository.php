@@ -64,4 +64,16 @@ class PlanRepository extends EntityRepository
             ->setParameter(':parentIds', $parentIds)
             ->getQuery();
     }
+
+    /**
+     * Returns data for backup
+     *
+     * @return array
+     */
+    public function getBackupData()
+    {
+        return $this->createQueryBuilder('obj')
+            ->getQuery()
+            ->getArrayResult();
+    }
 }

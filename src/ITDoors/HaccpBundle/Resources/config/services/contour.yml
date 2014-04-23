@@ -1,0 +1,24 @@
+parameters:
+    # Contour
+    it_doors_haccp.contour.repository.class: ITDoors\HaccpBundle\Entity\ContourRepository
+    it_doors_haccp.contour.repository.entity: ITDoors\HaccpBundle\Entity\Contour
+    it_doors_haccp.contour.service.class: ITDoors\HaccpBundle\Services\ContourService
+
+services:
+    # Contour
+    it_doors_haccp.contour.repository:
+        class: %it_doors_haccp.contour.repository.class%
+        factory_service: doctrine # this is an instance of Registry
+        factory_method: getRepository
+        arguments: [ %it_doors_haccp.contour.repository.entity% ]
+
+    contour.repository:
+        alias: it_doors_haccp.contour.repository
+
+    it_doors_haccp.contour.service:
+        class: %it_doors_haccp.contour.service.class%
+        arguments: [ @it_doors_haccp.contour.repository, @service_container]
+
+    contour.service:
+        alias: it_doors_haccp.contour.service
+    # Contour END

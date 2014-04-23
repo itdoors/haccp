@@ -103,4 +103,14 @@ class ContourService
 
         return $result;
     }
+
+    /**
+     * Returns all data for backup (mobile sync)
+     *
+     * @return array
+     */
+    public function getBackupData()
+    {
+        return $this->repository->getBackupData();
+    }
 }

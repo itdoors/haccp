@@ -1,0 +1,24 @@
+parameters:
+    # Plan
+    it_doors_haccp.plan.repository.class: ITDoors\HaccpBundle\Entity\PlanRepository
+    it_doors_haccp.plan.repository.entity: ITDoors\HaccpBundle\Entity\Plan
+    it_doors_haccp.plan.service.class: ITDoors\HaccpBundle\Services\PlanService
+
+services:
+    # Plan
+    it_doors_haccp.plan.repository:
+        class: %it_doors_haccp.plan.repository.class%
+        factory_service: doctrine # this is an instance of Registry
+        factory_method: getRepository
+        arguments: [ %it_doors_haccp.plan.repository.entity% ]
+
+    plan.repository:
+        alias: it_doors_haccp.plan.repository
+
+    it_doors_haccp.plan.service:
+        class: %it_doors_haccp.plan.service.class%
+        arguments: [ @service_container, @it_doors_haccp.plan.repository, %plan.upload_dir% ]
+
+    plan.service:
+        alias: it_doors_haccp.plan.service
+    # Plan END

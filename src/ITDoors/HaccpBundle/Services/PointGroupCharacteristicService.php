@@ -83,4 +83,14 @@ class PointGroupCharacteristicService
 
         return self::CRITICAL_CHAR_A;
     }
+
+    /**
+     * Returns all data for backup (mobile sync)
+     *
+     * @return array
+     */
+    public function getBackupData()
+    {
+        return $this->repository->getBackupData();
+    }
 }

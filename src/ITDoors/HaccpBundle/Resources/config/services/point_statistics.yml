@@ -1,0 +1,24 @@
+parameters:
+    # Point statistics
+    it_doors_haccp.point.statistics.repository.class: ITDoors\HaccpBundle\Entity\PointStatisticsRepository
+    it_doors_haccp.point.statistics.repository.entity: ITDoors\HaccpBundle\Entity\PointStatistics
+    it_doors_haccp.point.statistics.service.class: ITDoors\HaccpBundle\Services\PointStatisticsService
+
+services:
+    # Point Statistics
+    it_doors_haccp.point.statistics.repository:
+        class: %it_doors_haccp.point.statistics.repository.class%
+        factory_service: doctrine # this is an instance of Registry
+        factory_method: getRepository
+        arguments: [ %it_doors_haccp.point.statistics.repository.entity% ]
+
+    point.statistics.repository:
+        alias: it_doors_haccp.point.statistics.repository
+
+    it_doors_haccp.point.statistics.service:
+        class: %it_doors_haccp.point.statistics.service.class%
+        arguments: [ @it_doors_haccp.point.statistics.repository,, @service_container ]
+
+    point.statistics.service:
+        alias: it_doors_haccp.point.statistics.service
+    # Point Statistics END

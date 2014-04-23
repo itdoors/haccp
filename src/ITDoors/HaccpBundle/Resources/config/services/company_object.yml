@@ -1,0 +1,22 @@
+parameters:
+    # Company Object
+    it_doors_haccp.company.object.repository.class: ITDoors\HaccpBundle\Entity\CompanyObjectRepository
+    it_doors_haccp.company.object.repository.entity: ITDoors\HaccpBundle\Entity\CompanyObject
+    it_doors_haccp.company.object.service.class: ITDoors\HaccpBundle\Services\CompanyObjectService
+
+services:
+    it_doors_haccp.company.object.repository:
+        class: %it_doors_haccp.company.object.repository.class%
+        factory_service: doctrine # this is an instance of Registry
+        factory_method: getRepository
+        arguments: [ %it_doors_haccp.company.object.repository.entity% ]
+
+    company.object.repository:
+        alias: it_doors_haccp.company.object.repository
+
+    it_doors_haccp.company.object.service:
+        class: %it_doors_haccp.company.object.service.class%
+        arguments: [ @it_doors_haccp.company.object.repository, @service_container]
+
+    company.object.service:
+        alias: it_doors_haccp.company.object.service

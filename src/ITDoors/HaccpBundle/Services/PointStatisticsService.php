@@ -7,6 +7,7 @@ use ITDoors\HaccpBundle\Entity\PointGroupCharacteristic;
 use ITDoors\HaccpBundle\Entity\PointGroupCharacteristicRepository;
 use ITDoors\HaccpBundle\Entity\PointRepository;
 use ITDoors\HaccpBundle\Entity\PointStatistics;
+use ITDoors\HaccpBundle\Entity\PointStatisticsRepository;
 use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,6 +18,11 @@ use Symfony\Component\HttpFoundation\Request;
 class PointStatisticsService
 {
     /**
+     * @var PointStatisticsRepository $repository
+     */
+    protected $repository;
+
+    /**
      * @var Container $container
      */
     protected $container;
@@ -24,10 +30,12 @@ class PointStatisticsService
     /**
      * __construct()
      *
-     * @param Container $container
+     * @param PointStatisticsRepository $repository
+     * @param Container                 $container
      */
-    public function __construct(Container $container)
+    public function __construct(PointStatisticsRepository $repository, Container $container)
     {
+        $this->repository = $repository;
         $this->container = $container;
     }
 
@@ -114,5 +122,15 @@ class PointStatisticsService
 
         $em->persist($pointStatistics);
         $em->flush();
+    }
+
+    /**
+     * Returns all data for backup (mobile sync)
+     *
+     * @return array
+     */
+    public function getBackupData()
+    {
+        return $this->repository->getBackupData();
     }
 }

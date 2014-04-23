@@ -112,4 +112,14 @@ class PlanService
     {
         return $this->uploadDir;
     }
+
+    /**
+     * Returns all data for backup (mobile sync)
+     *
+     * @return array
+     */
+    public function getBackupData()
+    {
+        return $this->repository->getBackupData();
+    }
 }

@@ -15,6 +15,9 @@ parameters:
     ajax.filter.namespace.point.statistics: "point.statistics"
     api.v1.point.statistics.limit: 5
     log.file.path: "%project.dir%/log.txt"
+    backup.json.file.name: "db.gz"
+    backup.json.file.path: "%project.dir%/%backup.json.file.name%"
+
 
 framework:
     #esi:             ~

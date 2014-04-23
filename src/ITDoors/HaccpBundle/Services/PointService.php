@@ -380,4 +380,14 @@ class PointService
 
         return $data;
     }
+
+    /**
+     * Returns all data for backup (mobile sync)
+     *
+     * @return array
+     */
+    public function getBackupData()
+    {
+        return $this->repository->getBackupData();
+    }
 }

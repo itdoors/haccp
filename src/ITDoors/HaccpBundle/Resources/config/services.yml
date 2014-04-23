@@ -1,33 +1,21 @@
+imports:
+    - { resource: "services/point.yml" }
+    - { resource: "services/company.yml" }
+    - { resource: "services/company_object.yml" }
+    - { resource: "services/plan.yml" }
+    - { resource: "services/point_group.yml" }
+    - { resource: "services/point_statistics.yml" }
+    - { resource: "services/point_status.yml" }
+    - { resource: "services/point_group_characteristic.yml" }
+    - { resource: "services/contour.yml" }
+    - { resource: "services/service.yml" }
+
 parameters:
-    it_doors_haccp.plan.repository.class: ITDoors\HaccpBundle\Entity\PlanRepository
-    it_doors_haccp.plan.repository.entity: ITDoors\HaccpBundle\Entity\Plan
-    it_doors_haccp.plan.service.class: ITDoors\HaccpBundle\Services\PlanService
-
-    it_doors_haccp.point.repository.class: ITDoors\HaccpBundle\Entity\PointRepository
-    it_doors_haccp.point.repository.entity: ITDoors\HaccpBundle\Entity\Point
-    it_doors_haccp.point.service.class: ITDoors\HaccpBundle\Services\PointService
-
-    it_doors_haccp.point.statistics.repository.class: ITDoors\HaccpBundle\Entity\PointStatisticsRepository
-    it_doors_haccp.point.statistics.repository.entity: ITDoors\HaccpBundle\Entity\PointStatistics
-    it_doors_haccp.point.statistics.service.class: ITDoors\HaccpBundle\Services\PointStatisticsService
-
-    it_doors_haccp.point.status.repository.class: ITDoors\HaccpBundle\Entity\PointStatusRepository
-    it_doors_haccp.point.status.repository.entity: ITDoors\HaccpBundle\Entity\PointStatus
-
-    it_doors_haccp.point.group.characteristic.repository.class: ITDoors\HaccpBundle\Entity\PointGroupCharacteristicRepository
-    it_doors_haccp.point.group.characteristic.repository.entity: ITDoors\HaccpBundle\Entity\PointGroupCharacteristic
-    it_doors_haccp.point.group.characteristic.service.class: ITDoors\HaccpBundle\Services\PointGroupCharacteristicService
-
-    it_doors_haccp.contour.repository.class: ITDoors\HaccpBundle\Entity\ContourRepository
-    it_doors_haccp.contour.repository.entity: ITDoors\HaccpBundle\Entity\Contour
-    it_doors_haccp.contour.service.class: ITDoors\HaccpBundle\Services\ContourService
-
-    it_doors_haccp.service.repository.class: ITDoors\HaccpBundle\Entity\ServiceRepository
-    it_doors_haccp.service.repository.entity: ITDoors\HaccpBundle\Entity\Service
-
+    # Filtes & Forms
     it_doors_haccp.form.serviceFilterType.class: ITDoors\HaccpBundle\Form\ServiceFilterType
     it_doors_haccp.form.pointStatisticsDateRangeType.class: ITDoors\HaccpBundle\Form\PointStatisticsDateRangeType
 
+    # Log
     it_doors_haccp.log.service.class: ITDoors\HaccpBundle\Services\LogService
 
 #API V1 SERVICE CLASSES
@@ -44,104 +32,6 @@ parameters:
     it_doors_haccp.form.pointStatisticsType.class: ITDoors\HaccpBundle\Form\PointStatisticsType
 
 services:
-    it_doors_haccp.plan.repository:
-        class: %it_doors_haccp.plan.repository.class%
-        factory_service: doctrine # this is an instance of Registry
-        factory_method: getRepository
-        arguments: [ %it_doors_haccp.plan.repository.entity% ]
-
-    plan.repository:
-        alias: it_doors_haccp.plan.repository
-
-    it_doors_haccp.plan.service:
-        class: %it_doors_haccp.plan.service.class%
-        arguments: [ @service_container, @it_doors_haccp.plan.repository, %plan.upload_dir% ]
-
-    plan.service:
-        alias: it_doors_haccp.plan.service
-
-    it_doors_haccp.point.repository:
-        class: %it_doors_haccp.point.repository.class%
-        factory_service: doctrine # this is an instance of Registry
-        factory_method: getRepository
-        arguments: [ %it_doors_haccp.point.repository.entity% ]
-
-    point.repository:
-        alias: it_doors_haccp.point.repository
-
-    it_doors_haccp.point.service:
-        class: %it_doors_haccp.point.service.class%
-        arguments: [ @it_doors_haccp.point.repository, @service_container]
-
-    point.service:
-        alias: it_doors_haccp.point.service
-
-    it_doors_haccp.point.statistics.repository:
-        class: %it_doors_haccp.point.statistics.repository.class%
-        factory_service: doctrine # this is an instance of Registry
-        factory_method: getRepository
-        arguments: [ %it_doors_haccp.point.statistics.repository.entity% ]
-
-    point.statistics.repository:
-        alias: it_doors_haccp.point.statistics.repository
-
-    it_doors_haccp.point.statistics.service:
-        class: %it_doors_haccp.point.statistics.service.class%
-        arguments: [ @service_container ]
-
-    point.statistics.service:
-        alias: it_doors_haccp.point.statistics.service
-
-    it_doors_haccp.point.status.repository:
-        class: %it_doors_haccp.point.status.repository.class%
-        factory_service: doctrine # this is an instance of Registry
-        factory_method: getRepository
-        arguments: [ %it_doors_haccp.point.status.repository.entity% ]
-
-    point.status.repository:
-        alias: it_doors_haccp.point.status.repository
-
-    it_doors_haccp.point.group.characteristic.repository:
-        class: %it_doors_haccp.point.group.characteristic.repository.class%
-        factory_service: doctrine # this is an instance of Registry
-        factory_method: getRepository
-        arguments: [ %it_doors_haccp.point.group.characteristic.repository.entity% ]
-
-    point.group.characteristic.repository:
-        alias: it_doors_haccp.point.group.characteristic.repository
-
-    it_doors_haccp.point.group.characteristic.service:
-        class: %it_doors_haccp.point.group.characteristic.service.class%
-        arguments: [ @it_doors_haccp.point.group.characteristic.repository, @service_container]
-
-    point.characteristic.service:
-        alias: it_doors_haccp.point.group.characteristic.service
-
-    it_doors_haccp.contour.repository:
-        class: %it_doors_haccp.contour.repository.class%
-        factory_service: doctrine # this is an instance of Registry
-        factory_method: getRepository
-        arguments: [ %it_doors_haccp.contour.repository.entity% ]
-
-    contour.repository:
-        alias: it_doors_haccp.contour.repository
-
-    it_doors_haccp.contour.service:
-        class: %it_doors_haccp.contour.service.class%
-        arguments: [ @it_doors_haccp.contour.repository, @service_container]
-
-    contour.service:
-        alias: it_doors_haccp.contour.service
-
-    it_doors_haccp.service.repository:
-        class: %it_doors_haccp.service.repository.class%
-        factory_service: doctrine # this is an instance of Registry
-        factory_method: getRepository
-        arguments: [ %it_doors_haccp.service.repository.entity% ]
-
-    service.repository:
-        alias: it_doors_haccp.service.repository
-
     it_doors_haccp.twig.point_extension:
         class: ITDoors\HaccpBundle\Twig\PointExtension
         arguments: [@service_container]
@@ -165,7 +55,6 @@ services:
         arguments: [@service_container]
         tags:
             - { name: form.type, alias: pointStatisticsType }
-
 
 #API SERVICES V1
     it_doors_haccp.point.api.v1.service:

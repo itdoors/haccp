@@ -97,4 +97,16 @@ class PointStatisticsRepository extends EntityRepository
 
         return $query->getResult();
     }
+
+    /**
+     * Returns data for backup
+     *
+     * @return array
+     */
+    public function getBackupData()
+    {
+        return $this->createQueryBuilder('obj')
+            ->getQuery()
+            ->getArrayResult();
+    }
 }

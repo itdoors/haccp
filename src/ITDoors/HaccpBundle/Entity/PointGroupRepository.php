@@ -12,4 +12,15 @@ use Doctrine\ORM\EntityRepository;
  */
 class PointGroupRepository extends EntityRepository
 {
+    /**
+     * Returns data for backup
+     *
+     * @return array
+     */
+    public function getBackupData()
+    {
+        return $this->createQueryBuilder('obj')
+            ->getQuery()
+            ->getArrayResult();
+    }
 }
