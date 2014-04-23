@@ -4,6 +4,7 @@ imports:
     - { resource: @ITDoorsHaccpBundle/Resources/config/admin.yml }
 
 parameters:
+    kernel.cache_dir: "%kernel.root_dir%/cache"
     project.version: 0.02
     plan.upload_dir: '/plans'
     project.dir: '/var/www/vhosts/itdoors.com.ua/subdomains/haccp'
@@ -16,7 +17,7 @@ parameters:
     api.v1.point.statistics.limit: 5
     log.file.path: "%project.dir%/log.txt"
     backup.json.file.name: "db.gz"
-    backup.json.file.path: "%project.dir%/%backup.json.file.name%"
+    backup.json.file.path: "%kernel.cache_dir%/%backup.json.file.name%"
 
 
 framework:
