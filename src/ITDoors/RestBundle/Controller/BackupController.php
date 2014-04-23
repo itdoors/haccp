@@ -31,6 +31,11 @@ class BackupController extends FOSRestController
         $filePath = $this->container->getParameter('backup.json.file.path');
         $fileName = $this->container->getParameter('backup.json.file.name');
 
+        if (!file_exists($filePath)) {
+            $view = $this->view('File not found', 404);
+            return $this->handleView($view);
+        }
+
         header("Status: 200");
         header('Content-Type: gzip');
         header('Content-Disposition: attachment;filename=' . $fileName);
