@@ -101,7 +101,7 @@ class PointGroupCharacteristic
     /**
      * @var string
      *
-     * @ORM\Column(name="critical_color_botton", type="string", length=20, nullable=true)
+     * @ORM\Column(name="critical_color_bottom", type="string", length=20, nullable=true)
      */
     private $criticalColorBottom;
 

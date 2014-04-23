@@ -36,6 +36,12 @@ class ContourRepository extends EntityRepository
     public function getBackupData()
     {
         return $this->createQueryBuilder('obj')
+            ->select('obj.id as id')
+            ->addSelect('obj.name as name')
+            ->addSelect('obj.color as color')
+            ->addSelect('obj.serviceId as service_id')
+            ->addSelect('obj.slug as slug')
+            ->addSelect('obj.level as level')
             ->getQuery()
             ->getArrayResult();
     }

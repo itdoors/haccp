@@ -20,6 +20,8 @@ class PointGroupRepository extends EntityRepository
     public function getBackupData()
     {
         return $this->createQueryBuilder('obj')
+            ->select('obj.id as id')
+            ->addSelect('obj.name as name')
             ->getQuery()
             ->getArrayResult();
     }

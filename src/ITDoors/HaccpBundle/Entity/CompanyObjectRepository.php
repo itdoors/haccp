@@ -20,6 +20,9 @@ class CompanyObjectRepository extends EntityRepository
     public function getBackupData()
     {
         return $this->createQueryBuilder('obj')
+            ->select('obj.id as id')
+            ->addSelect('obj.name as name')
+            ->addSelect('obj.companyId as company_id')
             ->getQuery()
             ->getArrayResult();
     }

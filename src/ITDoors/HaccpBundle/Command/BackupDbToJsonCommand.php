@@ -38,8 +38,8 @@ class BackupDbToJsonCommand extends ContainerAwareCommand
 
         // Company
         /** @var CompanyService $companyService */
-        //$companyService = $this->getContainer()->get('company.service');
-        //$content['company'] = $companyService->getBackupData();
+        $companyService = $this->getContainer()->get('company.service');
+        $content['company'] = $companyService->getBackupData();
 
         // Company object
         /** @var CompanyObjectService $companyObjectService */
@@ -48,28 +48,28 @@ class BackupDbToJsonCommand extends ContainerAwareCommand
 
         // Contour
         /** @var ContourService $contourService */
-        //$contourService = $this->getContainer()->get('contour.service');
-        //$content['contour'] = $contourService->getBackupData();
+        $contourService = $this->getContainer()->get('contour.service');
+        $content['contour'] = $contourService->getBackupData();
 
         // Plan
         /** @var PlanService $planService */
-        //$planService = $this->getContainer()->get('plan.service');
-        //$content['plan'] = $planService->getBackupData();
+        $planService = $this->getContainer()->get('plan.service');
+        $content['plan'] = $planService->getBackupData();
 
         // Point
         /** @var PointService $pointService */
-        //$pointService = $this->getContainer()->get('point.service');
-        //$content['point'] = $pointService->getBackupData();
+        $pointService = $this->getContainer()->get('point.service');
+        $content['point'] = $pointService->getBackupData();
 
         // Point group
         /** @var PointGroupService $pointGroupService */
-        //$pointGroupService = $this->getContainer()->get('point.group.service');
-        //$content['point_group'] = $pointGroupService->getBackupData();
+        $pointGroupService = $this->getContainer()->get('point.group.service');
+        $content['point_group'] = $pointGroupService->getBackupData();
 
         // Point group characteristic
         /** @var PointGroupCharacteristicService $pointGroupCharacteristicService */
-        //$pointGroupCharacteristicService = $this->getContainer()->get('point.characteristic.service');
-        //$content['point_group_characteristic'] = $pointGroupCharacteristicService->getBackupData();
+        $pointGroupCharacteristicService = $this->getContainer()->get('point.characteristic.service');
+        $content['point_group_characteristic'] = $pointGroupCharacteristicService->getBackupData();
 
         // Point statistics
         /** @var PointStatisticsService $pointStatisticsService */

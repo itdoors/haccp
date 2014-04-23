@@ -78,6 +78,20 @@ class Point
     private $planId;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="point_group_id", type="integer")
+     */
+    private $groupId;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="status_id", type="integer")
+     */
+    private $statusId;
+
+    /**
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\OneToMany(targetEntity="ITDoors\HaccpBundle\Entity\PointStatistics", mappedBy="Point")
@@ -335,6 +349,30 @@ class Point
     }
 
     /**
+     * Set groupId
+     *
+     * @param integer $groupId
+     *
+     * @return Point
+     */
+    public function setPointGroupId($groupId)
+    {
+        $this->groupId = $groupId;
+
+        return $this;
+    }
+
+    /**
+     * Get groupId
+     *
+     * @return integer
+     */
+    public function getGroupId()
+    {
+        return $this->groupId;
+    }
+
+    /**
      * Add Statistics
      *
      * @param \ITDoors\HaccpBundle\Entity\PointStatistics $statistics
@@ -472,5 +510,41 @@ class Point
     public function getStatus()
     {
         return $this->status;
+    }
+
+    /**
+     * Set groupId
+     *
+     * @param integer $groupId
+     * @return Point
+     */
+    public function setGroupId($groupId)
+    {
+        $this->groupId = $groupId;
+
+        return $this;
+    }
+
+    /**
+     * Set statusId
+     *
+     * @param integer $statusId
+     * @return Point
+     */
+    public function setStatusId($statusId)
+    {
+        $this->statusId = $statusId;
+
+        return $this;
+    }
+
+    /**
+     * Get statusId
+     *
+     * @return integer 
+     */
+    public function getStatusId()
+    {
+        return $this->statusId;
     }
 }

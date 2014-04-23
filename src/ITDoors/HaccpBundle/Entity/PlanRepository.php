@@ -73,6 +73,13 @@ class PlanRepository extends EntityRepository
     public function getBackupData()
     {
         return $this->createQueryBuilder('obj')
+            ->select('obj.id as id')
+            ->addSelect('obj.name as name')
+            ->addSelect('obj.companyObjectId as company_object_id')
+            ->addSelect('obj.parentId as parent_id')
+            ->addSelect('obj.type as type')
+            ->addSelect('obj.latitude as latitude')
+            ->addSelect('obj.longitude as longitude')
             ->getQuery()
             ->getArrayResult();
     }

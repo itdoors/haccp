@@ -192,6 +192,17 @@ class PointRepository extends EntityRepository
     public function getBackupData()
     {
         return $this->createQueryBuilder('obj')
+            ->select('obj.id as id')
+            ->addSelect('obj.name as name')
+            ->addSelect('obj.planId as plan_id')
+            ->addSelect('obj.groupId as point_group_id')
+            ->addSelect('obj.imageLatitude as imagelatitude')
+            ->addSelect('obj.imageLongitude as imagelongitude')
+            ->addSelect('obj.mapLatitude as maplatitude')
+            ->addSelect('obj.mapLongitude as maplongitude')
+            ->addSelect('obj.contourId as contour_id')
+            ->addSelect('obj.installationDate as installationdate')
+            ->addSelect('obj.statusId as status_id')
             ->getQuery()
             ->getArrayResult();
     }
