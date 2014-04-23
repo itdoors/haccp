@@ -28,7 +28,6 @@ class BackupController extends FOSRestController
      */
     public function getAction()
     {
-
         $filePath = $this->container->getParameter('backup.json.file.path');
         $fileName = $this->container->getParameter('backup.json.file.name');
 
