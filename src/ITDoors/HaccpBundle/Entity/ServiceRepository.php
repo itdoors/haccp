@@ -20,6 +20,8 @@ class ServiceRepository extends EntityRepository
     public function getBackupData()
     {
         return $this->createQueryBuilder('obj')
+            ->select('obj.id as id')
+            ->select('obj.name as name')
             ->getQuery()
             ->getArrayResult();
     }

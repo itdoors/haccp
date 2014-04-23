@@ -73,18 +73,18 @@ class BackupDbToJsonCommand extends ContainerAwareCommand
 
         // Point statistics
         /** @var PointStatisticsService $pointStatisticsService */
-        //$pointStatisticsService = $this->getContainer()->get('point.statistics.service');
-        //$content['point_statistics'] = $pointStatisticsService->getBackupData();
+        $pointStatisticsService = $this->getContainer()->get('point.statistics.service');
+        $content['point_statistics'] = $pointStatisticsService->getBackupData();
 
         // Point status
         /** @var PointStatusService $pointStatusService */
-        //$pointStatusService = $this->getContainer()->get('point.status.service');
-        //$content['point_status'] = $pointStatusService->getBackupData();
+        $pointStatusService = $this->getContainer()->get('point.status.service');
+        $content['point_status'] = $pointStatusService->getBackupData();
 
         // Service
         /** @var ServiceService $serviceService */
-        //$serviceService = $this->getContainer()->get('service.service');
-        //$content['service'] = $serviceService->getBackupData();
+        $serviceService = $this->getContainer()->get('service.service');
+        $content['service'] = $serviceService->getBackupData();
 
         $this->writeToFile($content);
 

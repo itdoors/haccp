@@ -42,15 +42,14 @@ class PointGroupCharacteristicRepository extends EntityRepository
             ->addSelect('obj.description as description')
             ->addSelect('obj.unit as unit')
             ->addSelect('obj.dataType as data_type')
-
-            ->addSelect('obj.allow_value_max as allow_value_max')
-            ->addSelect('obj.allow_value_min as allow_value_min')
-            ->addSelect('obj.critical_value_top as critical_value_top')
-            ->addSelect('obj.critical_value_bottom as critical_value_bottom')
-            ->addSelect('obj.critical_color_top as critical_color_top')
-            ->addSelect('obj.critical_color_bottom as critical_color_bottom')
-            ->addSelect('obj.critical_color_middle as critical_color_middle')
-            ->addSelect('obj.dataType as input_type')
+            ->addSelect('obj.allowValueMax as allow_value_max')
+            ->addSelect('obj.allowValueMin as allow_value_min')
+            ->addSelect('obj.criticalValueTop as critical_value_top')
+            ->addSelect('obj.criticalValueBottom as critical_value_bottom')
+            ->addSelect('obj.criticalColorTop as critical_color_top')
+            ->addSelect('obj.criticalColorBottom as critical_color_bottom')
+            ->addSelect('obj.criticalColorMiddle as critical_color_middle')
+            ->addSelect('obj.inputType as input_type')
             ->getQuery()
             ->getArrayResult();
     }

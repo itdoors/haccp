@@ -106,6 +106,12 @@ class PointStatisticsRepository extends EntityRepository
     public function getBackupData()
     {
         return $this->createQueryBuilder('obj')
+            ->select('obj.id as id')
+            ->addSelect('obj.characteristicId as characteristic_id')
+            ->addSelect('obj.pointId as point_id')
+            ->addSelect('obj.createdAt as created_at')
+            ->addSelect('obj.entryDate as entry_date')
+            ->addSelect('obj.value as value')
             ->getQuery()
             ->getArrayResult();
     }
