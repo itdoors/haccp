@@ -21,8 +21,8 @@ class PointStatusRepository extends EntityRepository
     {
         return $this->createQueryBuilder('obj')
             ->select('obj.id as id')
-            ->select('obj.name as name')
-            ->select('obj.slug as slug')
+            ->addSelect('obj.name as name')
+            ->addSelect('obj.slug as slug')
             ->getQuery()
             ->getArrayResult();
     }
