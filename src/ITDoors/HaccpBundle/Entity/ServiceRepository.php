@@ -21,7 +21,7 @@ class ServiceRepository extends EntityRepository
     {
         return $this->createQueryBuilder('obj')
             ->select('obj.id as id')
-            ->select('obj.name as name')
+            ->addSelect('obj.name as name')
             ->getQuery()
             ->getArrayResult();
     }
