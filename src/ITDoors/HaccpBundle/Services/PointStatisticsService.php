@@ -131,6 +131,18 @@ class PointStatisticsService
      */
     public function getBackupData()
     {
-        return $this->repository->getBackupData();
+        $statistics = $this->repository->getBackupData();
+
+        foreach ($statistics as &$statistic) {
+            if ($statistic['entry_date']) {
+                $statistic['entry_date'] = $statistic['entry_date']->format('U');
+            }
+
+            if ($statistic['created_at']) {
+                $statistic['created_at'] = $statistic['created_at']->format('U');
+            }
+        }
+
+        return $statistics;
     }
 }

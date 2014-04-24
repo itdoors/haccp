@@ -384,10 +384,18 @@ class PointService
     /**
      * Returns all data for backup (mobile sync)
      *
-     * @return array
+     * @return mixed[]
      */
     public function getBackupData()
     {
-        return $this->repository->getBackupData();
+        $points = $this->repository->getBackupData();
+
+        foreach ($points as &$point) {
+            if ($point['installationdate']) {
+                $point['installationdate'] = $point['installationdate']->format('U');
+            }
+        }
+
+        return $points;
     }
 }
