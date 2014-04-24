@@ -39,6 +39,7 @@ class PointGroupCharacteristicRepository extends EntityRepository
         return $this->createQueryBuilder('obj')
             ->select('obj.id as id')
             ->addSelect('obj.name as name')
+            ->addSelect('obj.groupId as point_group_id')
             ->addSelect('obj.description as description')
             ->addSelect('obj.unit as unit')
             ->addSelect('obj.dataType as data_type')
