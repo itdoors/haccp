@@ -33,6 +33,7 @@ class BackupController extends FOSRestController
 
         if (!file_exists($filePath)) {
             $view = $this->view('File not found', 404);
+
             return $this->handleView($view);
         }
 

@@ -93,6 +93,8 @@ class BackupDbToJsonCommand extends ContainerAwareCommand
 
     /**
      * Writes to file
+     *
+     * @param mixed[] $content
      */
     public function writeToFile($content)
     {

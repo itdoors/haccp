@@ -516,6 +516,7 @@ class Point
      * Set groupId
      *
      * @param integer $groupId
+     *
      * @return Point
      */
     public function setGroupId($groupId)
@@ -529,6 +530,7 @@ class Point
      * Set statusId
      *
      * @param integer $statusId
+     *
      * @return Point
      */
     public function setStatusId($statusId)
