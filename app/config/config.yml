@@ -16,7 +16,7 @@ parameters:
     api.v1.point.statistics.limit: 5
     log.file.path: "%project.dir%/log.txt"
     backup.json.file.name: "db.gz"
-    backup.json.file.path: "%kernel.root_dir%/cache/%backup.json.file.name%"
+    backup.json.file.path: "%kernel.root_dir%/backup/%backup.json.file.name%"
 
 
 framework:

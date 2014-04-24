@@ -5,6 +5,7 @@ app/bootstrap*
 vendor/*
 */logs/*
 */cache/*
+*/backup/*
 web/uploads/*
 web/qrcodes/*
 #web/plans/*
