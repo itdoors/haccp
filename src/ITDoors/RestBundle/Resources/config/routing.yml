@@ -14,10 +14,10 @@ it_doors_rest_point_status:
     type: rest
     prefix: /v1/point.status
     resource: ITDoors\RestBundle\Controller\PointStatusController
-    name_prefix:  api_v1_
+    name_prefix:  api_v1_point_status
 
 it_doors_rest_backup:
     type: rest
     prefix: /v1/backup
     resource: ITDoors\RestBundle\Controller\BackupController
-    name_prefix:  api_v1_
+    name_prefix:  api_v1_backup

@@ -16,7 +16,7 @@ use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 class PointStatusController extends FOSRestController
 {
     /**
-     * @Rest\Get("")
+     * @Rest\Get("/")
      *
      * @ApiDoc(
      *  description="Returns a collection of PointStatus",
