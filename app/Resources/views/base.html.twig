@@ -71,7 +71,7 @@
 		<!-- BEGIN TOP NAVIGATION BAR -->
 		<div class="header-inner">
 			<!-- BEGIN LOGO -->
-			<a class="navbar-brand" href="index.html">
+			<a class="navbar-brand" href="{{ path('dashboard') }}">
 			{#<img src="{{ asset('/templates/core/img/logo-small-gray.png') }}" alt="{% trans %}Impel Griffin logotype{% endtrans %}" class="img-responsive" />#}
 			</a>
 			<!-- END LOGO -->
@@ -141,10 +141,10 @@
 	<!-- IMPORTANT! Load jquery-ui-1.10.3.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
 	<script src="{{ asset('templates/metronic/plugins/jquery-ui/jquery-ui-1.10.3.custom.min.js') }}" type="text/javascript"></script>
 	<script src="{{ asset('templates/metronic/plugins/bootstrap/js/bootstrap.min.js') }}" type="text/javascript"></script>
-	<script src="{{ asset('templates/metronic/plugins/bootstrap-hover-dropdown/twitter-bootstrap-hover-dropdown.min.js') }}" type="text/javascript" ></script>
+	{#<script src="{{ asset('templates/metronic/plugins/bootstrap-hover-dropdown/twitter-bootstrap-hover-dropdown.min.js') }}" type="text/javascript" ></script>#}
 	<script src="{{ asset('templates/metronic/plugins/jquery-slimscroll/jquery.slimscroll.min.js') }}" type="text/javascript"></script>
 	<script src="{{ asset('templates/metronic/plugins/jquery.blockui.min.js') }}" type="text/javascript"></script>
-	<script src="{{ asset('templates/metronic/plugins/jquery.cookie.min.js') }}" type="text/javascript"></script>
+	{#<script src="{{ asset('templates/metronic/plugins/jquery.cookie.min.js') }}" type="text/javascript"></script>#}
 	<script src="{{ asset('templates/metronic/plugins/uniform/jquery.uniform.min.js') }}" type="text/javascript" ></script>
 	{% endblock %}
 	<!-- END CORE PLUGINS -->

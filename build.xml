@@ -15,11 +15,12 @@
 
   <property name="path.build" value="${project.basedir}/${dir.build}" />
   <property name="path.src" value="${project.basedir}/${dir.src}" />
+  <property name="path.phpcs.src" value="${project.basedir}/${dir.src}" />
 
   <property name="bin.phpunit" value="phpunit" />
   <property name="bin.phpcs" value="${path.bin}/phpcs" />
 
-  <target name="build" depends="build:phpcs,build:test">
+  <target name="build" depends="build:phpcs">
     <echo msg="Building project ${phing.project.name}" />
   </target>
 
