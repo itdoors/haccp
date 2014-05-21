@@ -2,6 +2,7 @@
 
 namespace ITDoors\HaccpBundle\Services;
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\Query;
 use ITDoors\HaccpBundle\Entity\Point;
 use ITDoors\HaccpBundle\Entity\PointRepository;
 use ITDoors\HaccpBundle\Entity\PointStatistics;
@@ -263,16 +264,13 @@ class PointStatisticsApiV1Service
         $psr = $this->container->get('point.statistics.repository');
 
         $statisticOptions = array(
-            'pointId' => array($point->getId()),
-            'shortForm' => true,
-            'statisticsIds' => array($pointStatistics->getId())
+            'id' => array($pointStatistics->getId())
         );
 
-        $statisticsQuery = $psr->getStatisticsQuery($statisticOptions);
+        $statisticsQuery = $psr->getDBQuery($statisticOptions);
 
-        $result = $statisticsQuery->getSingleResult();
-
-        $this->formatStatisticsRecordShort($result);
+        /** @var PointStatistics $result */
+        $result = $statisticsQuery->getSingleResult(Query::HYDRATE_ARRAY);
 
         return $result;
     }
@@ -313,9 +311,16 @@ class PointStatisticsApiV1Service
 
         $em->refresh($point);
 
-        $ps = $this->container->get('point.api.v1.service');
+        /** @var PointRepository $pr */
+        $pr = $this->container->get('point.repository');
 
-        $data = $ps->get($point->getId());
+        $options = array(
+            'id' => $point->getId()
+        );
+
+        $dataQuery = $pr->getDBquery($options);
+
+        $data = $dataQuery->getSingleResult(Query::HYDRATE_ARRAY);
 
         return $data;
     }
