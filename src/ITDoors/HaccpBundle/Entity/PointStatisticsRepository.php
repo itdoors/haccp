@@ -38,6 +38,12 @@ class PointStatisticsRepository extends EntityRepository
             ->addSelect('characteristic.criticalValueBottom as criticalValueBottom')
             ->leftJoin('ps.characteristic', 'characteristic');
 
+        // Add pointId to return array
+        if (isset($options['shortForm']) && $options['shortForm']) {
+            $sql
+                ->addSelect('ps.pointId as pointId');
+        }
+
         // Start date
         if (isset($options['startDate']) && $options['startDate']) {
             $sql

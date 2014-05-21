@@ -196,6 +196,24 @@ class PointStatisticsApiV1Service
     }
 
     /**
+     * Format Statistics to api output after post
+     *
+     * @param mixed[] &$value
+     *
+     * @return mixed[]
+     */
+    public function formatStatisticsRecordShort(&$value)
+    {
+        unset(
+
+            $value['characteristicName'],
+            $value['characteristicUnit'],
+            $value['criticalValueBottom'],
+            $value['criticalValueTop']
+        );
+    }
+
+    /**
      * Persists statistics info
      *
      * @param int     $id
@@ -246,6 +264,7 @@ class PointStatisticsApiV1Service
 
         $statisticOptions = array(
             'pointId' => array($point->getId()),
+            'shortForm' => true,
             'statisticsIds' => array($pointStatistics->getId())
         );
 
@@ -253,7 +272,7 @@ class PointStatisticsApiV1Service
 
         $result = $statisticsQuery->getSingleResult();
 
-        $this->formatStatisticsRecord($result);
+        $this->formatStatisticsRecordShort($result);
 
         return $result;
     }
@@ -294,6 +313,10 @@ class PointStatisticsApiV1Service
 
         $em->refresh($point);
 
-        return null;
+        $ps = $this->container->get('point.api.v1.service');
+
+        $data = $ps->get($point->getId());
+
+        return $data;
     }
 }
