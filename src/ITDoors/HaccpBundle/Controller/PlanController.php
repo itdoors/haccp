@@ -2,7 +2,7 @@
 
 namespace ITDoors\HaccpBundle\Controller;
 
-use ITDoors\CommonBundle\Controller\BaseFilterController;
+use ITDoors\AjaxBundle\Controller\BaseFilterController;
 use ITDoors\HaccpBundle\Services\PlanService;
 use ITDoors\HaccpBundle\Services\PointService;
 

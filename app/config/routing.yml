@@ -1,3 +1,7 @@
+it_doors_lookup:
+    resource: "@ITDoorsLookupBundle/Resources/config/routing.yml"
+    prefix:   /
+
 it_doors_rest:
     resource: "@ITDoorsRestBundle/Resources/config/routing.yml"
     type:     rest

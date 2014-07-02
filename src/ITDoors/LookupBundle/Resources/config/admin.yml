@@ -1,0 +1,16 @@
+#Sonata ADMIN
+parameters:
+    it_doors_lookup.lookup.admin.class: ITDoors\LookupBundle\Admin\LookupAdmin
+
+#Sonata ADMIN
+services:
+    sonata.admin.lookup:
+        class: %it_doors_lookup.lookup.admin.class%
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "HACCP", label: "Lookup" }
+        arguments:
+            - ~
+            - ITDoors\LookupBundle\Entity\Lookup
+            - ~
+        calls:
+            - [ setTranslationDomain, [ITDoorsLookupBundle]]

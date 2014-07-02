@@ -136,4 +136,148 @@ class CompanyObject
     {
         return $this->getName();
     }
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="impermeability_id", type="integer", nullable=true)
+     */
+    private $impermeabilityId;
+
+    /**
+     * @var \ITDoors\LookupBundle\Entity\Lookup
+     *
+     * @ORM\ManyToOne(targetEntity="ITDoors\LookupBundle\Entity\Lookup")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="impermeability_id", referencedColumnName="id")
+     * })
+     */
+    private $impermeability;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="terrain_id", type="integer", nullable=true)
+     */
+    private $terrainId;
+
+    /**
+     * @var \ITDoors\LookupBundle\Entity\Lookup
+     *
+     * @ORM\ManyToOne(targetEntity="ITDoors\LookupBundle\Entity\Lookup")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="terrain_id", referencedColumnName="id")
+     * })
+     */
+    private $terrain;
+
+    /**
+     * Set impermeabilityId
+     *
+     * @param integer $impermeabilityId
+     * @return CompanyObject
+     */
+    public function setImpermeabilityId($impermeabilityId)
+    {
+        $this->impermeabilityId = $impermeabilityId;
+
+        return $this;
+    }
+
+    /**
+     * Get impermeabilityId
+     *
+     * @return integer 
+     */
+    public function getImpermeabilityId()
+    {
+        return $this->impermeabilityId;
+    }
+
+    /**
+     * Set terrainId
+     *
+     * @param integer $terrainId
+     * @return CompanyObject
+     */
+    public function setTerrainId($terrainId)
+    {
+        $this->terrainId = $terrainId;
+
+        return $this;
+    }
+
+    /**
+     * Get terrainId
+     *
+     * @return integer 
+     */
+    public function getTerrainId()
+    {
+        return $this->terrainId;
+    }
+
+    /**
+     * Set impermeability
+     *
+     * @param \ITDoors\LookupBundle\Entity\Lookup $impermeability
+     * @return CompanyObject
+     */
+    public function setImpermeability(\ITDoors\LookupBundle\Entity\Lookup $impermeability = null)
+    {
+        $this->impermeability = $impermeability;
+
+        return $this;
+    }
+
+    /**
+     * Get impermeability
+     *
+     * @return \ITDoors\LookupBundle\Entity\Lookup 
+     */
+    public function getImpermeability()
+    {
+        return $this->impermeability;
+    }
+
+    /**
+     * Set terrain
+     *
+     * @param \ITDoors\LookupBundle\Entity\Lookup $terrain
+     * @return CompanyObject
+     */
+    public function setTerrain(\ITDoors\LookupBundle\Entity\Lookup $terrain = null)
+    {
+        $this->terrain = $terrain;
+
+        return $this;
+    }
+
+    /**
+     * Get terrain
+     *
+     * @return \ITDoors\LookupBundle\Entity\Lookup 
+     */
+    public function getTerrain()
+    {
+        return $this->terrain;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFullName()
+    {
+        $fullName = $this->getName();
+
+        if ($this->getImpermeability()) {
+            $fullName .= ' - ' . $this->getImpermeability();
+        }
+
+        if ($this->getTerrain()) {
+            $fullName .= ' - ' . $this->getTerrain();
+        }
+
+        return $fullName;
+    }
 }

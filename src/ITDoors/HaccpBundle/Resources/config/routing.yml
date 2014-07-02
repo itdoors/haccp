@@ -24,3 +24,12 @@ contour_choices_ajax:
 contour_choices_by_ids_ajax:
     pattern:  /ajax/contour/choices/ids
     defaults: { _controller: ITDoorsHaccpBundle:Contour:choicesByIdsAjax }
+
+# COMPANY OBJECT
+company_object_infestation:
+    pattern:  /company_object/infestation
+    defaults: { _controller: ITDoorsHaccpBundle:CompanyObject:infestation }
+
+company_object_infestation_content:
+    pattern:  /company_object/infestation_content
+    defaults: { _controller: ITDoorsHaccpBundle:CompanyObject:infestationContent }

@@ -134,4 +134,26 @@ class PointStatisticsRepository extends BaseRepository
             ->getQuery()
             ->getArrayResult();
     }
+
+    /**
+     * Get Infestation of all point (1,2 contour) for object
+     *
+     * @param CompanyObject $object
+     * @param \DateTime     $date
+     *
+     * @return PointStatistics[]
+     */
+    public function getInfestation(CompanyObject $object, \DateTime $date)
+    {
+        return $this->createQueryBuilder('psr')
+            ->leftJoin('psr.point', 'point')
+            ->leftJoin('point.plan', 'plan')
+            ->where('psr.characteristicId = :characteristicId')
+            ->andWhere('plan.companyObjectId = :companyObjectId')
+            ->setParameter(':characteristicId', 1)
+            ->setParameter(':companyObjectId', $object->getId())
+            ->orderBy('psr.entryDate')
+            ->getQuery()
+            ->getResult();
+    }
 }
